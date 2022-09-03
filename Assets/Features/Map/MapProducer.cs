@@ -4,17 +4,17 @@ using Object = UnityEngine.Object;
 using Random = System.Random;
 using Vector2 = System.Numerics.Vector2;
 
-namespace Features.Field
+namespace Features.Map
 {
-    public class FieldProducer
+    public class MapProducer
     {
-        private readonly Factory _groundFactory;
-        private readonly Object _groundPrefab;
+        private readonly Factory _sectorFactory;
+        private readonly Object _sectorPrefab;
 
-        public FieldProducer(Factory groundFactory, Object groundPrefab)
+        public MapProducer(Factory sectorFactory, Object sectorPrefab)
         {
-            _groundFactory = groundFactory;
-            _groundPrefab = groundPrefab;
+            _sectorFactory = sectorFactory;
+            _sectorPrefab = sectorPrefab;
         }
 
         public void Generate(int rows, int columns)
@@ -25,15 +25,15 @@ namespace Features.Field
             {
                 for (var z = 0; z <= columns; z++)
                 {
-                    CreateGround(tpX, x, tpZ, z);
+                    CreateSector(tpX, x, tpZ, z);
                 }
             }
         }
 
-        private void CreateGround(int tpX, int x, int tpZ, int z)
+        private void CreateSector(int tpX, int x, int tpZ, int z)
         {
             var isTreasure = Math.Abs(tpX - x) < 0.1 && Math.Abs(tpZ - z) < 0.1;
-            _groundFactory.Create(new Vector2(x, z), isTreasure, _groundPrefab);
+            _sectorFactory.Create(new Vector2(x, z), isTreasure, _sectorPrefab);
         }
 
         private static (int, int) GenerateTreasurePosition(int rows, int columns)
