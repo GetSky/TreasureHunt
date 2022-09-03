@@ -1,4 +1,4 @@
-using Features.Field;
+using Features.Map;
 using Features.Sector;
 using UnityEngine;
 using Zenject;
@@ -13,12 +13,12 @@ namespace Core
         public override void InstallBindings()
         {
             Container.BindFactory<Vector2, bool, Object, Sector, Factory>().FromFactory<SectorFactory>();
-            Container.Bind<FieldProducer>().AsTransient().WithArguments(_groundPrefab).Lazy();
+            Container.Bind<MapProducer>().AsTransient().WithArguments(_groundPrefab).Lazy();
         }
 
         public void Awake()
         {
-            Container.Resolve<FieldProducer>().Generate(8, 8);
+            Container.Resolve<MapProducer>().Generate(8, 8);
         }
     }
 }
