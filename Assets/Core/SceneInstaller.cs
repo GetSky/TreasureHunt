@@ -1,5 +1,6 @@
 using Features.Map;
 using Features.Sector;
+using Features.Sector.Repository;
 using UnityEngine;
 using Zenject;
 using Vector2 = System.Numerics.Vector2;
@@ -14,6 +15,12 @@ namespace Core
         {
             Container.BindFactory<Vector2, bool, Object, Sector, Factory>().FromFactory<SectorFactory>();
             Container.Bind<MapProducer>().AsTransient().WithArguments(_groundPrefab).Lazy();
+
+            Container
+                .Bind(typeof(ISectorRepository), typeof(ISectorFlasher))
+                .To<MemorySectorRepository>()
+                .AsSingle()
+                .NonLazy();
         }
 
         public void Awake()

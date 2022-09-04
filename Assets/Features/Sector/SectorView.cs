@@ -20,5 +20,10 @@ namespace Features.Sector
         {
             GetComponent<MeshRenderer>().material.color = _isTreasure ? Color.yellow : Color.gray;
         }
+        
+        private void OnMouseDown()
+        {
+            Destroy(gameObject);
+        }
     }
 }

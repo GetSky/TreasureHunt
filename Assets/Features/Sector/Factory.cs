@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Features.Sector.Repository;
+using UnityEngine;
 using Zenject;
 using Vector2 = System.Numerics.Vector2;
 
@@ -11,19 +12,24 @@ namespace Features.Sector
     public class SectorFactory : IFactory<Vector2, bool, Object, Sector>
     {
         private readonly DiContainer _container;
+        private readonly ISectorFlasher _flasher;
 
-        public SectorFactory(DiContainer container)
+        public SectorFactory(DiContainer container, ISectorFlasher flasher)
         {
             _container = container;
+            _flasher = flasher;
         }
 
-        public Features.Sector.Sector Create(Vector2 position, bool treasure, Object prefab)
+        public Sector Create(Vector2 position, bool treasure, Object prefab)
         {
             var obj = _container.InstantiatePrefabForComponent<SectorView>(prefab);
             obj.transform.position = new Vector3(position.X, 0, position.Y);
             obj.SetTreasure(treasure);
 
-            return new Features.Sector.Sector(position, treasure);
+            var entity = new Sector(obj.UniqueCode(), position, treasure);
+            _flasher.Save(entity);
+
+            return entity;
         }
     }
 }
