@@ -7,8 +7,12 @@ namespace Features.Sector
         private Vector2 _position;
         private readonly bool _treasure;
 
-        public Sector(Vector2 position, bool treasure)
+        public string Id { get; }
+
+
+        public Sector( string id, Vector2 position, bool treasure)
         {
+            Id = id;
             _position = position;
             _treasure = treasure;
         }
