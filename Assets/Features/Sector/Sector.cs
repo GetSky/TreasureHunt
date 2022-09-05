@@ -4,17 +4,17 @@ namespace Features.Sector
 {
     public class Sector
     {
-        private Vector2 _position;
-        private readonly bool _treasure;
+        public Vector2 Position { get; }
+        public bool Treasure { get; }
 
         public string Id { get; }
 
 
-        public Sector( string id, Vector2 position, bool treasure)
+        public Sector(string id, Vector2 position, bool treasure)
         {
             Id = id;
-            _position = position;
-            _treasure = treasure;
+            Position = position;
+            Treasure = treasure;
         }
     }
 }

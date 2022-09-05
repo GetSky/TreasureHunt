@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Features.Sector.Repository
 {
@@ -10,6 +11,12 @@ namespace Features.Sector.Repository
         {
             _sectors.TryGetValue(id, out var entity);
             return entity;
+        }
+
+        public Sector FindTreasure()
+        {
+            var entity = _sectors.First(sector => sector.Value.Treasure);
+            return entity.Value;
         }
 
         public void Save(Sector sector)
