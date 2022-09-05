@@ -1,5 +1,6 @@
 using Features.Map;
 using Features.Sector;
+using Features.Sector.Handler;
 using Features.Sector.Repository;
 using UnityEngine;
 using Zenject;
@@ -15,6 +16,8 @@ namespace Core
         {
             Container.BindFactory<Vector2, bool, Object, Sector, Factory>().FromFactory<SectorFactory>();
             Container.Bind<MapProducer>().AsTransient().WithArguments(_groundPrefab).Lazy();
+
+            Container.Bind<ISectorOpenHandler>().To<SectorOpenHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(ISectorRepository), typeof(ISectorFlasher))

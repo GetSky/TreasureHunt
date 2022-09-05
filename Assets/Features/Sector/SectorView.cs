@@ -1,10 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using Features.Sector.Handler;
+using TMPro;
+using UnityEngine;
+using Zenject;
 
 namespace Features.Sector
 {
     public class SectorView : MonoBehaviour
     {
+        private ISectorOpenHandler _openHandler;
         private bool _isTreasure;
+        private TextMeshPro _distanceText;
+
+        [Inject]
+        public void Construct(ISectorOpenHandler openHandler)
+        {
+            _openHandler = openHandler;
+        }
+
+        private void Awake()
+        {
+            _distanceText = GetComponentInChildren<TextMeshPro>();
+        }
 
         public void SetTreasure(bool isTreasure)
         {
@@ -13,17 +30,13 @@ namespace Features.Sector
 
         public string UniqueCode()
         {
-            return transform + gameObject.name;
+            return transform.position + gameObject.name;
         }
 
-        private void Start()
-        {
-            GetComponent<MeshRenderer>().material.color = _isTreasure ? Color.yellow : Color.gray;
-        }
-        
         private void OnMouseDown()
         {
-            Destroy(gameObject);
+            _distanceText.SetText("?");
+            _openHandler.Invoke(new SectorOpenCommand(UniqueCode()));
         }
     }
 }
