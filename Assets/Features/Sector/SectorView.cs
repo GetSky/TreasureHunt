@@ -1,5 +1,4 @@
-﻿using System;
-using Features.Sector.Handler;
+﻿using Features.Sector.Handler;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -25,7 +24,7 @@ namespace Features.Sector
 
         public void SetTreasure(bool isTreasure)
         {
-            _isTreasure = isTreasure;  
+            _isTreasure = isTreasure;
         }
 
         public string UniqueCode()
