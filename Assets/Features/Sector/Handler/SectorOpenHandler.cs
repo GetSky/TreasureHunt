@@ -1,6 +1,4 @@
-﻿using System;
-using Features.Sector.Repository;
-using UnityEngine;
+﻿using Features.Sector.Repository;
 
 namespace Features.Sector.Handler
 {
@@ -16,19 +14,9 @@ namespace Features.Sector.Handler
         public void Invoke(SectorOpenCommand command)
         {
             var sector = _repository.FindById(command.Id);
-            if (sector.Treasure) Debug.Log("Win!");
-            else
-            {
-                var treasure = _repository.FindTreasure();
-                if (treasure == null) return;
-
-                var distance = Math.Sqrt(
-                    Math.Pow(sector.Position.X - treasure.Position.X, 2) +
-                    Math.Pow(sector.Position.Y - treasure.Position.Y, 2)
-                );
-
-                Debug.Log(distance);
-            }
+            var treasure = _repository.FindTreasure();
+            if (treasure == null) return;
+            sector.CalculateSymbol(treasure);
         }
     }
 }

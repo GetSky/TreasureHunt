@@ -28,7 +28,7 @@ namespace Core
 
         public void Awake()
         {
-            Container.Resolve<MapProducer>().Generate(8, 8);
+            Container.Resolve<MapProducer>().Generate(10, 10);
         }
     }
 }

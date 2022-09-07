@@ -30,6 +30,8 @@ namespace Features.Sector
             var entity = new Sector(obj.UniqueCode(), position, treasure);
             _flasher.Save(entity);
 
+            var symbolModel = new SymbolModel(entity, obj);
+
             return entity;
         }
     }

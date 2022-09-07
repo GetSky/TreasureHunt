@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Features.Sector.View
 {
-    public class Sector : MonoBehaviour
+    public class Sector : MonoBehaviour, ISymbolView
     {
         private ISectorOpenHandler _openHandler;
         private bool _isTreasure;
@@ -34,8 +34,12 @@ namespace Features.Sector.View
 
         private void OnMouseDown()
         {
-            _distanceText.SetText("?");
             _openHandler.Invoke(new SectorOpenCommand(UniqueCode()));
+        }
+
+        public void UpdateSymbol(string symbol)
+        {
+            _distanceText.SetText(symbol);
         }
     }
 }
