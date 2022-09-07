@@ -1,4 +1,5 @@
 ﻿using Features.Sector.Repository;
+using Features.Sector.View;
 using UnityEngine;
 using Zenject;
 using Vector2 = System.Numerics.Vector2;
@@ -22,7 +23,7 @@ namespace Features.Sector
 
         public Sector Create(Vector2 position, bool treasure, Object prefab)
         {
-            var obj = _container.InstantiatePrefabForComponent<SectorView>(prefab);
+            var obj = _container.InstantiatePrefabForComponent<View.Sector>(prefab);
             obj.transform.position = new Vector3(position.X, 0, position.Y);
             obj.SetTreasure(treasure);
 
