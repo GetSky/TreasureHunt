@@ -3,9 +3,9 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Features.Sector
+namespace Features.Sector.View
 {
-    public class SectorView : MonoBehaviour
+    public class Sector : MonoBehaviour
     {
         private ISectorOpenHandler _openHandler;
         private bool _isTreasure;
