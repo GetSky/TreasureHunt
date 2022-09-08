@@ -1,20 +1,27 @@
-﻿namespace Features.Sector
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Features.Sector
 {
     public class SymbolModel
     {
         private readonly Sector _sector;
-        private readonly ISymbolView _symbolView;
+        private readonly List<ISymbolView> _symbolView = new List<ISymbolView>();
 
-        public SymbolModel(Sector sector, ISymbolView symbolView)
+        public SymbolModel(Sector sector)
         {
             _sector = sector;
-            _symbolView = symbolView;
             _sector._onOpened += OnOpened;
+        }
+
+        public void AddView(ISymbolView symbolView)
+        {
+            _symbolView.Add(symbolView);
         }
 
         private void OnOpened(string symbol)
         {
-            _symbolView.UpdateSymbol(symbol);
+            foreach (var view in _symbolView) view.UpdateSymbol(symbol);
             _sector._onOpened -= OnOpened;
         }
     }
