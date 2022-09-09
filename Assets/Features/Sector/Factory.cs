@@ -33,6 +33,9 @@ namespace Features.Sector
             var symbolModel = new SymbolModel(entity);
             symbolModel.AddView(obj);
 
+            var highlightedModel = new HighlightedModel(entity);
+            highlightedModel.AddView(obj);
+
             return entity;
         }
     }

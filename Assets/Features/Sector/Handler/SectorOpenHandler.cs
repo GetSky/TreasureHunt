@@ -1,4 +1,5 @@
-﻿using Features.Sector.Repository;
+﻿using System.Linq;
+using Features.Sector.Repository;
 
 namespace Features.Sector.Handler
 {
@@ -16,7 +17,13 @@ namespace Features.Sector.Handler
             var sector = _repository.FindById(command.Id);
             var treasure = _repository.FindTreasure();
             if (treasure == null) return;
-            sector.CalculateSymbol(treasure);
+
+            var distance = sector.CalculateSymbol(treasure);
+
+            foreach (var sec in _repository.FindAll())
+            {
+                sec.Highlight(distance == sec.DistanceTo(sector));
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Features.Sector
 {
@@ -11,7 +10,7 @@ namespace Features.Sector
         public SymbolModel(Sector sector)
         {
             _sector = sector;
-            _sector._onOpened += OnOpened;
+            _sector.OnOpened += OnOpened;
         }
 
         public void AddView(ISymbolView symbolView)
@@ -22,7 +21,7 @@ namespace Features.Sector
         private void OnOpened(string symbol)
         {
             foreach (var view in _symbolView) view.UpdateSymbol(symbol);
-            _sector._onOpened -= OnOpened;
+            _sector.OnOpened -= OnOpened;
         }
     }
 }

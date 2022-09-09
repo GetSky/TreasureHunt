@@ -5,15 +5,19 @@ using Zenject;
 
 namespace Features.Sector.View
 {
-    public class Sector : MonoBehaviour, ISymbolView
+    [RequireComponent(typeof(Animator))]
+    public class Sector : MonoBehaviour, ISymbolView, IHighlightedView
     {
+        private Animator _animator;
+        private TextMeshPro _distanceText;
         private ISectorOpenHandler _openHandler;
         private bool _isTreasure;
-        private TextMeshPro _distanceText;
+        private static readonly int IsHighlight = Animator.StringToHash("isHighlight");
 
         [Inject]
         public void Construct(ISectorOpenHandler openHandler)
         {
+            _animator = GetComponent<Animator>();
             _openHandler = openHandler;
         }
 
@@ -40,6 +44,16 @@ namespace Features.Sector.View
         public void UpdateSymbol(string symbol)
         {
             _distanceText.SetText(symbol);
+        }
+
+        public void Highlight()
+        {
+            _animator.SetBool(IsHighlight, true);
+        }
+
+        public void StopHighlight()
+        {
+            _animator.SetBool(IsHighlight, false);
         }
     }
 }
