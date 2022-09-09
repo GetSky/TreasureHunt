@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Features.Sector.Repository;
+﻿using Features.Sector.Repository;
 
 namespace Features.Sector.Handler
 {

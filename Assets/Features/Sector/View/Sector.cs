@@ -1,4 +1,5 @@
-﻿using Features.Sector.Handler;
+﻿using System.Collections;
+using Features.Sector.Handler;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -48,12 +49,21 @@ namespace Features.Sector.View
 
         public void Highlight()
         {
+            StopCoroutine(nameof(DelayStopHighlight));
             _animator.SetBool(IsHighlight, true);
+            StartCoroutine(nameof(DelayStopHighlight));
         }
 
         public void StopHighlight()
         {
+            StopCoroutine(nameof(DelayStopHighlight));
             _animator.SetBool(IsHighlight, false);
+        }
+
+        private IEnumerator DelayStopHighlight()
+        {
+            yield return new WaitForSeconds(1);
+            StopHighlight();
         }
     }
 }
