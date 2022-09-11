@@ -17,12 +17,8 @@ namespace Features.Sector.Handler
             var treasure = _repository.FindTreasure();
             if (treasure == null) return;
 
-            var distance = sector.CalculateSymbol(treasure);
-
-            foreach (var sec in _repository.FindAll())
-            {
-                sec.Highlight(distance == sec.DistanceTo(sector));
-            }
+            sector.Open(treasure);
+            foreach (var sec in _repository.FindAll()) sec.Highlight(treasure, sector);
         }
     }
 }

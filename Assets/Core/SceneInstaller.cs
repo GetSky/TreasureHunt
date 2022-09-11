@@ -14,7 +14,7 @@ namespace Core
 
         public override void InstallBindings()
         {
-            Container.BindFactory<Vector2, bool, Object, Sector, Factory>().FromFactory<SectorFactory>();
+            Container.BindFactory<Vector2, CardType, Object, Sector, Factory>().FromFactory<SectorFactory>();
             Container.Bind<MapProducer>().AsTransient().WithArguments(_groundPrefab).Lazy();
 
             Container.Bind<ISectorOpenHandler>().To<SectorOpenHandler>().AsSingle().Lazy();

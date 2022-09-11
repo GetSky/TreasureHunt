@@ -33,7 +33,7 @@ namespace Features.Map
         private void CreateSector(int tpX, int x, int tpZ, int z)
         {
             var isTreasure = Math.Abs(tpX - x) < 0.1 && Math.Abs(tpZ - z) < 0.1;
-            _sectorFactory.Create(new Vector2(x, z), isTreasure, _sectorPrefab);
+            _sectorFactory.Create(new Vector2(x, z), isTreasure ? CardType.Treasure : CardType.Distance, _sectorPrefab);
         }
 
         private static (int, int) GenerateTreasurePosition(int rows, int columns)

@@ -20,7 +20,7 @@ namespace Features.Sector.Repository
 
         public Sector FindTreasure()
         {
-            var entity = _sectors.First(sector => sector.Value.Treasure);
+            var entity = _sectors.First(sector => sector.Value.Card.Type == CardType.Treasure);
             return entity.Value;
         }
 
