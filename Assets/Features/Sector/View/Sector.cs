@@ -12,7 +12,6 @@ namespace Features.Sector.View
         private Animator _animator;
         private TextMeshPro _distanceText;
         private ISectorOpenHandler _openHandler;
-        private bool _isTreasure;
         private static readonly int IsHighlight = Animator.StringToHash("isHighlight");
 
         [Inject]
@@ -25,11 +24,6 @@ namespace Features.Sector.View
         private void Awake()
         {
             _distanceText = GetComponentInChildren<TextMeshPro>();
-        }
-
-        public void SetTreasure(bool isTreasure)
-        {
-            _isTreasure = isTreasure;
         }
 
         public string UniqueCode()

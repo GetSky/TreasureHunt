@@ -6,41 +6,40 @@ namespace Features.Sector
     public class Sector
     {
         public string Id { get; }
-        public bool Treasure { get; }
         private Vector2 Position { get; }
+        public Card Card { get; }
 
         public Action<string> OnOpened = delegate { };
         public Action OnHighlighted = delegate { };
         public Action OnStopHighlighted = delegate { };
 
-        public Sector(string id, Vector2 position, bool treasure)
+        public Sector(string id, Vector2 position, Card card)
         {
             Id = id;
             Position = position;
-            Treasure = treasure;
+            Card = card;
         }
 
-        public int CalculateSymbol(Sector treasure)
+        public void Open(Sector treasure)
         {
-            if (Treasure)
+            if (Card.Type == CardType.Treasure)
             {
-                OnOpened("G");
-                return 0;
+                OnOpened("X");
+                return;
             }
 
             var distance = DistanceTo(treasure);
-            var random = new Random();
-            OnOpened.Invoke(random.Next(100) <= 50 ? "?" : distance.ToString());
-            return distance;
+            OnOpened.Invoke(Card.Type == CardType.Distance && distance <= 6 ? distance.ToString() : "?");
         }
 
-        public void Highlight(bool isHighlight)
+        public void Highlight(Sector treasure, Sector openedSector)
         {
-            if (isHighlight) OnHighlighted.Invoke();
+            var distance = openedSector.DistanceTo(treasure);
+            if (distance == DistanceTo(openedSector) && distance <= 6) OnHighlighted.Invoke();
             else OnStopHighlighted.Invoke();
         }
 
-        public int DistanceTo(Sector sector)
+        private int DistanceTo(Sector sector)
         {
             return (int)Math.Round(Math.Sqrt(
                 Math.Pow(Position.X - sector.Position.X, 2) +
