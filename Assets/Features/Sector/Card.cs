@@ -6,6 +6,7 @@
         Treasure,
         Distance
     }
+
     public class Card
     {
         public CardType Type { get; }

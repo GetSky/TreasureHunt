@@ -1,5 +1,4 @@
 ﻿using Features.Sector.Repository;
-using Features.Sector.View;
 using UnityEngine;
 using Zenject;
 using Vector2 = System.Numerics.Vector2;
@@ -25,7 +24,7 @@ namespace Features.Sector
         {
             var obj = _container.InstantiatePrefabForComponent<View.Sector>(prefab);
             obj.transform.position = new Vector3(position.X, 0, position.Y);
-            
+
             var entity = new Sector(obj.UniqueCode(), position, new Card(type));
             _flasher.Save(entity);
 
