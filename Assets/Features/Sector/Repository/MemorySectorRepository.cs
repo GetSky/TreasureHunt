@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Features.Sector.Card;
 
 namespace Features.Sector.Repository
 {
@@ -20,7 +21,7 @@ namespace Features.Sector.Repository
 
         public Sector FindTreasure()
         {
-            var entity = _sectors.First(sector => sector.Value.Card.Type == CardType.Treasure);
+            var entity = _sectors.First(sector => sector.Value.Card.Type() == CardType.Treasure);
             return entity.Value;
         }
 

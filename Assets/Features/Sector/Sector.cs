@@ -7,13 +7,13 @@ namespace Features.Sector
     {
         public string Id { get; }
         private Vector2 Position { get; }
-        public Card Card { get; }
-
-        public Action<string> OnOpened = delegate { };
+        public ICard Card { get; }
+        
+        public Action<ICard> OnOpened = delegate { };
         public Action OnHighlighted = delegate { };
         public Action OnStopHighlighted = delegate { };
 
-        public Sector(string id, Vector2 position, Card card)
+        public Sector(string id, Vector2 position, ICard card)
         {
             Id = id;
             Position = position;
@@ -22,14 +22,16 @@ namespace Features.Sector
 
         public void Open(Sector treasure)
         {
-            if (Card.Type == CardType.Treasure)
+            Card.UpdateDistanceToTreasure(DistanceTo(treasure));
+            if (Card.Type() == CardType.Treasure)
             {
-                OnOpened("X");
+                OnOpened(Card);
                 return;
             }
 
+            
             var distance = DistanceTo(treasure);
-            OnOpened.Invoke(Card.Type == CardType.Distance && distance <= 6 ? distance.ToString() : "?");
+            OnOpened.Invoke(Card);
         }
 
         public void Highlight(Sector treasure, Sector openedSector)

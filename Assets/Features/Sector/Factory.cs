@@ -12,11 +12,13 @@ namespace Features.Sector
     public class SectorFactory : IFactory<Vector2, CardType, Object, Sector>
     {
         private readonly DiContainer _container;
+        private readonly Card.Factory _cardFactory;
         private readonly ISectorFlasher _flasher;
 
-        public SectorFactory(DiContainer container, ISectorFlasher flasher)
+        public SectorFactory(DiContainer container, Card.Factory cardFactory, ISectorFlasher flasher)
         {
             _container = container;
+            _cardFactory = cardFactory;
             _flasher = flasher;
         }
 
@@ -25,7 +27,7 @@ namespace Features.Sector
             var obj = _container.InstantiatePrefabForComponent<View.Sector>(prefab);
             obj.transform.position = new Vector3(position.X, 0, position.Y);
 
-            var entity = new Sector(obj.UniqueCode(), position, new Card(type));
+            var entity = new Sector(obj.UniqueCode(), position, _cardFactory.Create(type));
             _flasher.Save(entity);
 
             var symbolModel = new SymbolModel(entity);
