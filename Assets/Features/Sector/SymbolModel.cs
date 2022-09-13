@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Features.Sector
 {
@@ -18,9 +19,18 @@ namespace Features.Sector
             _symbolView.Add(symbolView);
         }
 
-        private void OnOpened(string symbol)
+        private void OnOpened(ICard card)
         {
+            var symbol = card.Type() switch
+            {
+                CardType.None => "",
+                CardType.Treasure => "X",
+                CardType.Distance => card.Value() == -1 ? "?" : card.Value().ToString(),
+                _ => ""
+            };
+
             foreach (var view in _symbolView) view.UpdateSymbol(symbol);
+            
             _sector.OnOpened -= OnOpened;
         }
     }

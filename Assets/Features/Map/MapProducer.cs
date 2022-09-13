@@ -1,5 +1,6 @@
 ﻿using System;
-using Features.Sector;
+using CardType = Features.Sector.CardType;
+using Factory = Features.Sector.Factory;
 using Object = UnityEngine.Object;
 using Random = System.Random;
 using Vector2 = System.Numerics.Vector2;
