@@ -23,13 +23,6 @@ namespace Features.Sector
         public void Open(Sector treasure)
         {
             Card.UpdateDistanceToTreasure(DistanceTo(treasure));
-            if (Card.Type() == CardType.Treasure)
-            {
-                OnOpened(Card);
-                return;
-            }
-            
-            var distance = DistanceTo(treasure);
             OnOpened.Invoke(Card);
         }
 
@@ -38,16 +31,15 @@ namespace Features.Sector
             if (openedSector.Card.Type() == CardType.None) return;
 
             var distance = openedSector.DistanceTo(treasure);
-            if (distance == DistanceTo(openedSector) && distance <= 6) OnHighlighted.Invoke();
+            if (distance == openedSector.Card.Value()) OnHighlighted.Invoke();
             else OnStopHighlighted.Invoke();
         }
 
         private int DistanceTo(Sector sector)
         {
-            return (int)Math.Round(Math.Sqrt(
-                Math.Pow(Position.X - sector.Position.X, 2) +
-                Math.Pow(Position.Y - sector.Position.Y, 2)
-            ));
+            return (int)Math.Round(
+                Math.Sqrt(Math.Pow(Position.X - sector.Position.X, 2) + Math.Pow(Position.Y - sector.Position.Y, 2))
+            );
         }
     }
 }
