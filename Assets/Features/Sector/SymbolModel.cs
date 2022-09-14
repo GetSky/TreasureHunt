@@ -23,7 +23,7 @@ namespace Features.Sector
         {
             var symbol = card.Type() switch
             {
-                CardType.None => "",
+                CardType.None => "-",
                 CardType.Treasure => "X",
                 CardType.Distance => card.Value() == -1 ? "?" : card.Value().ToString(),
                 _ => ""

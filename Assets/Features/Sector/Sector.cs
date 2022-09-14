@@ -8,7 +8,7 @@ namespace Features.Sector
         public string Id { get; }
         private Vector2 Position { get; }
         public ICard Card { get; }
-        
+
         public Action<ICard> OnOpened = delegate { };
         public Action OnHighlighted = delegate { };
         public Action OnStopHighlighted = delegate { };
@@ -28,7 +28,6 @@ namespace Features.Sector
                 OnOpened(Card);
                 return;
             }
-
             
             var distance = DistanceTo(treasure);
             OnOpened.Invoke(Card);
@@ -36,6 +35,8 @@ namespace Features.Sector
 
         public void Highlight(Sector treasure, Sector openedSector)
         {
+            if (openedSector.Card.Type() == CardType.None) return;
+
             var distance = openedSector.DistanceTo(treasure);
             if (distance == DistanceTo(openedSector) && distance <= 6) OnHighlighted.Invoke();
             else OnStopHighlighted.Invoke();
