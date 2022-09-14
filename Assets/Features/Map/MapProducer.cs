@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CardType = Features.Sector.CardType;
 using Factory = Features.Sector.Factory;
 using Object = UnityEngine.Object;
@@ -18,29 +20,32 @@ namespace Features.Map
             _sectorPrefab = sectorPrefab;
         }
 
-        public void Generate(int rows, int columns)
+        public void Generate(int rows, int columns, int countDistanceCard)
         {
-            var (tpX, tpZ) = GenerateTreasurePosition(rows, columns);
-
-            for (var x = 0; x <= rows; x++)
+            var deck = CreateDeck(rows * columns, countDistanceCard);
+            var idx = 0;
+            for (var x = 0; x < rows; x++)
             {
-                for (var z = 0; z <= columns; z++)
-                {
-                    CreateSector(tpX, x, tpZ, z);
-                }
+                for (var z = 0; z < columns; z++) CreateSector(x, z, deck[idx++]);
             }
         }
 
-        private void CreateSector(int tpX, int x, int tpZ, int z)
+        private void CreateSector(int x, int z, CardType type)
         {
-            var isTreasure = Math.Abs(tpX - x) < 0.1 && Math.Abs(tpZ - z) < 0.1;
-            _sectorFactory.Create(new Vector2(x, z), isTreasure ? CardType.Treasure : CardType.Distance, _sectorPrefab);
+            _sectorFactory.Create(new Vector2(x, z), type, _sectorPrefab);
         }
 
-        private static (int, int) GenerateTreasurePosition(int rows, int columns)
+        private static CardType[] CreateDeck(int countAll, int countDistanceCard)
         {
-            var rand = new Random();
-            return (rand.Next(0, rows), rand.Next(0, columns));
+            if (countAll < countDistanceCard + 1)
+                throw new ArgumentException("The number of cards must be greater for these parameters.");
+
+            var deck = new CardType[countAll];
+            deck[0] = CardType.Treasure;
+            for (var i = 1; i <= countDistanceCard; i++) deck[i] = CardType.Distance;
+
+            var rnd = new Random();
+            return deck.OrderBy(x => rnd.Next()).ToArray();
         }
     }
 }
