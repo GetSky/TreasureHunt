@@ -30,7 +30,7 @@ namespace Features.Sector
         {
             if (openedSector.Card.Type() == CardType.None) return;
 
-            var distance = openedSector.DistanceTo(treasure);
+            var distance = DistanceTo(openedSector);
             if (distance == openedSector.Card.Value()) OnHighlighted.Invoke();
             else OnStopHighlighted.Invoke();
         }
