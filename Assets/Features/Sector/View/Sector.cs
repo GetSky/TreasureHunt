@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
 using Features.Sector.Handler;
 using TMPro;
 using UnityEngine;
@@ -6,24 +6,30 @@ using Zenject;
 
 namespace Features.Sector.View
 {
-    [RequireComponent(typeof(Animator))]
     public class Sector : MonoBehaviour, ISymbolView, IHighlightedView
     {
-        private Animator _animator;
+        [SerializeField] private Color _defaultColor;
+        [SerializeField] private Color _highlightColor;
+        [SerializeField] private Color _pressingColor;
+        [SerializeField] private float _timeAnimationDuration = 0.75f;
+        [SerializeField] private float _timeAnimationDelay = 2.0f;
+
         private TextMeshPro _distanceText;
         private ISectorOpenHandler _openHandler;
-        private static readonly int IsHighlight = Animator.StringToHash("isHighlight");
+        private Material _material;
+        private bool _isOpened;
 
         [Inject]
         public void Construct(ISectorOpenHandler openHandler)
         {
-            _animator = GetComponent<Animator>();
             _openHandler = openHandler;
         }
 
         private void Awake()
         {
             _distanceText = GetComponentInChildren<TextMeshPro>();
+            _material = GetComponent<MeshRenderer>().material;
+            _defaultColor = _material.color;
         }
 
         public string UniqueCode()
@@ -39,25 +45,41 @@ namespace Features.Sector.View
         public void UpdateSymbol(string symbol)
         {
             _distanceText.SetText(symbol);
+            StopHighlight();
+            _isOpened = true;
+            switch (symbol)
+            {
+                case "?":
+                    _material.DOColor(_pressingColor, _timeAnimationDuration);
+                    break;
+                case "-":
+                    _material.DOColor(_pressingColor, _timeAnimationDuration);
+                    break;
+                case "X":
+                    _material.DOColor(_pressingColor, _timeAnimationDuration);
+                    break;
+                default:
+                    _material.DOColor(_pressingColor, _timeAnimationDuration);
+                    break;
+            }
         }
 
         public void Highlight()
         {
-            StopCoroutine(nameof(DelayStopHighlight));
-            _animator.SetBool(IsHighlight, true);
-            StartCoroutine(nameof(DelayStopHighlight));
+            if (_isOpened) return;
+            StopHighlight();
+
+            _material.DOColor(_highlightColor, _timeAnimationDuration);
+            _material
+                .DOColor(_defaultColor, _timeAnimationDuration)
+                .SetDelay(_timeAnimationDelay + _timeAnimationDuration);
         }
 
         public void StopHighlight()
         {
-            StopCoroutine(nameof(DelayStopHighlight));
-            _animator.SetBool(IsHighlight, false);
-        }
-
-        private IEnumerator DelayStopHighlight()
-        {
-            yield return new WaitForSeconds(1);
-            StopHighlight();
+            if (_isOpened) return;
+            _material.DOKill();
+            _material.DOColor(_defaultColor, _timeAnimationDuration);
         }
     }
 }
