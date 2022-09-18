@@ -11,6 +11,9 @@ namespace Features.Sector.View
         [SerializeField] private Color _defaultColor;
         [SerializeField] private Color _highlightColor;
         [SerializeField] private Color _pressingColor;
+        [SerializeField] private Color _treasureColor;
+        [SerializeField] private Color _distanceColor;
+
         [SerializeField] private float _timeAnimationDuration = 0.75f;
         [SerializeField] private float _timeAnimationDelay = 2.0f;
 
@@ -29,7 +32,7 @@ namespace Features.Sector.View
         {
             _distanceText = GetComponentInChildren<TextMeshPro>();
             _material = GetComponent<MeshRenderer>().material;
-            _defaultColor = _material.color;
+            _material.color = _defaultColor;
         }
 
         public string UniqueCode()
@@ -50,16 +53,14 @@ namespace Features.Sector.View
             switch (symbol)
             {
                 case "?":
-                    _material.DOColor(_pressingColor, _timeAnimationDuration);
-                    break;
                 case "-":
                     _material.DOColor(_pressingColor, _timeAnimationDuration);
                     break;
                 case "X":
-                    _material.DOColor(_pressingColor, _timeAnimationDuration);
+                    _material.DOColor(_treasureColor, _timeAnimationDuration);
                     break;
                 default:
-                    _material.DOColor(_pressingColor, _timeAnimationDuration);
+                    _material.DOColor(_distanceColor, _timeAnimationDuration);
                     break;
             }
         }

@@ -110,9 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9438317e602a406f9714b7bc92e220ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultColor: {r: 0.94509804, g: 0.8352941, b: 0.14509805, a: 0}
+  _defaultColor: {r: 0.9150943, g: 0.8528862, b: 0.46186364, a: 0}
   _highlightColor: {r: 0.12709148, g: 0.5283019, b: 0.15785608, a: 1}
   _pressingColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+  _treasureColor: {r: 1, g: 0.8479532, b: 0, a: 1}
+  _distanceColor: {r: 0.2775454, g: 0.48640528, b: 0.9339623, a: 1}
   _timeAnimationDuration: 0.5
   _timeAnimationDelay: 2
 --- !u!65 &4212686107642730950
