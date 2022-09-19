@@ -18,7 +18,7 @@ namespace Features.Sector.Handler
             if (treasure == null) return;
 
             sector.Open(treasure);
-            foreach (var sec in _repository.FindAll()) sec.Highlight(treasure, sector);
+            foreach (var sec in _repository.FindAll()) sec.Highlight(sector);
         }
     }
 }
