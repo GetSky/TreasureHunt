@@ -26,7 +26,7 @@ namespace Features.Sector
             OnOpened.Invoke(Card);
         }
 
-        public void Highlight(Sector treasure, Sector openedSector)
+        public void Highlight(Sector openedSector)
         {
             if (openedSector.Card.Type() == CardType.None) return;
 
