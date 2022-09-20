@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Features.Sector
 {
@@ -30,7 +29,7 @@ namespace Features.Sector
             };
 
             foreach (var view in _symbolView) view.UpdateSymbol(symbol);
-            
+
             _sector.OnOpened -= OnOpened;
         }
     }
