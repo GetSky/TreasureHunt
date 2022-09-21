@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Features.Sector
 {
@@ -11,6 +12,12 @@ namespace Features.Sector
         {
             _sector = sector;
             _sector.OnOpened += OnOpened;
+            _sector.OnDestroyed += OnDestroyed;
+        }
+
+        private void OnDestroyed()
+        {
+            foreach (var view in _symbolView) view.DestroyView();
         }
 
         public void AddView(ISymbolView symbolView)

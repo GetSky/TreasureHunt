@@ -10,6 +10,7 @@ namespace Features.Sector
         public ICard Card { get; }
 
         public Action<ICard> OnOpened = delegate { };
+        public Action OnDestroyed = delegate { };
         public Action OnHighlighted = delegate { };
         public Action OnStopHighlighted = delegate { };
 
@@ -33,6 +34,11 @@ namespace Features.Sector
             var distance = DistanceTo(openedSector);
             if (distance == openedSector.Card.Value()) OnHighlighted.Invoke();
             else OnStopHighlighted.Invoke();
+        }
+
+        public void Destroy()
+        {
+            OnDestroyed();
         }
 
         private int DistanceTo(Sector sector)

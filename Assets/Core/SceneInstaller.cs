@@ -1,4 +1,5 @@
 using Features.Map;
+using Features.Map.Handler;
 using Features.Sector;
 using Features.Sector.Card;
 using Features.Sector.Handler;
@@ -21,6 +22,7 @@ namespace Core
             Container.Bind<MapProducer>().AsTransient().WithArguments(_groundPrefab).Lazy();
 
             Container.Bind<ISectorOpenHandler>().To<SectorOpenHandler>().AsSingle().Lazy();
+            Container.Bind<IRestartMapHandler>().To<RestartMapHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(ISectorRepository), typeof(ISectorFlasher))

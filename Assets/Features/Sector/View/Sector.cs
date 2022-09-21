@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Features.Map.Handler;
 using Features.Sector.Handler;
 using TMPro;
 using UnityEngine;
@@ -18,14 +19,17 @@ namespace Features.Sector.View
         [SerializeField] private float _timeAnimationDelay = 2.0f;
 
         private TextMeshPro _distanceText;
+        private IRestartMapHandler _restartMapHandler;
         private ISectorOpenHandler _openHandler;
         private Material _material;
         private bool _isOpened;
+        private bool _isFinished;
 
         [Inject]
-        public void Construct(ISectorOpenHandler openHandler)
+        public void Construct(ISectorOpenHandler openHandler, IRestartMapHandler restartMapHandler)
         {
             _openHandler = openHandler;
+            _restartMapHandler = restartMapHandler;
         }
 
         private void Awake()
@@ -57,12 +61,18 @@ namespace Features.Sector.View
                     _material.DOColor(_pressingColor, _timeAnimationDuration);
                     break;
                 case "X":
-                    _material.DOColor(_treasureColor, _timeAnimationDuration);
+                    _isFinished = true;
+                    _material.DOColor(_treasureColor, _timeAnimationDuration).onComplete += OnComplete;
                     break;
                 default:
                     _material.DOColor(_distanceColor, _timeAnimationDuration);
                     break;
             }
+        }
+
+        public void DestroyView()
+        {
+            Destroy(gameObject);
         }
 
         public void Highlight()
@@ -74,6 +84,11 @@ namespace Features.Sector.View
             _material
                 .DOColor(_defaultColor, _timeAnimationDuration)
                 .SetDelay(_timeAnimationDelay + _timeAnimationDuration);
+        }
+        
+        private void OnComplete()
+        {
+            if (_isFinished) _restartMapHandler.Invoke(new RestartMapCommand());
         }
 
         public void StopHighlight()
