@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using DG.Tweening;
 using Features.Map.Handler;
 using Features.Sector.Handler;
 using TMPro;
@@ -88,7 +89,14 @@ namespace Features.Sector.View
         
         private void OnComplete()
         {
-            if (_isFinished) _restartMapHandler.Invoke(new RestartMapCommand());
+            if (_isFinished) StartCoroutine(nameof(RestartDelay));
+        }
+
+        private IEnumerator RestartDelay()
+        {
+            yield return new WaitForSeconds(_timeAnimationDuration);
+            _restartMapHandler.Invoke(new RestartMapCommand());
+            StopCoroutine(nameof(RestartDelay));
         }
 
         public void StopHighlight()
