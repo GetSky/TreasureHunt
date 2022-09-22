@@ -17,6 +17,7 @@ namespace Features.Sector.View
         [SerializeField] private Color _distanceColor;
 
         [SerializeField] private float _timeAnimationDuration = 0.75f;
+        [SerializeField] private float _timeRestartDuration = 0.75f;
         [SerializeField] private float _timeAnimationDelay = 2.0f;
 
         private TextMeshPro _distanceText;
@@ -94,7 +95,7 @@ namespace Features.Sector.View
 
         private IEnumerator RestartDelay()
         {
-            yield return new WaitForSeconds(_timeAnimationDuration);
+            yield return new WaitForSeconds(_timeRestartDuration);
             _restartMapHandler.Invoke(new RestartMapCommand());
             StopCoroutine(nameof(RestartDelay));
         }
