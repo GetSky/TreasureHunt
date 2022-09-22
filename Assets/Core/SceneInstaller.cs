@@ -33,7 +33,7 @@ namespace Core
 
         public void Awake()
         {
-            Container.Resolve<MapProducer>().Generate(10, 10, 50);
+            Container.Resolve<MapProducer>().Generate(10, 10, 90);
         }
     }
 }
