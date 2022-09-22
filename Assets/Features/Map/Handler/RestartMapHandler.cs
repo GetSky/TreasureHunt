@@ -19,7 +19,7 @@ namespace Features.Map.Handler
         {
             foreach (var sector in _repository.FindAll()) sector.Destroy();
             _flasher.Clear();
-            _producer.Generate(10, 10, 50);
+            _producer.Generate(10, 10, 90);
         }
     }
 }
