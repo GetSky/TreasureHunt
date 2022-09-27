@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using CardType = Features.Sector.CardType;
 using Factory = Features.Sector.Factory;
