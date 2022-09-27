@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Features.Sector.Repository
+﻿namespace Features.Sector.Repository
 {
     public interface ISectorRepository
     {
