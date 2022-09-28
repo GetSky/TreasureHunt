@@ -4,10 +4,7 @@
     {
         public string Id { get; }
 
-        public SectorOpenCommand(string id)
-        {
-            Id = id;
-        }
+        public SectorOpenCommand(string id) => Id = id;
     }
 
     public interface ISectorOpenHandler
