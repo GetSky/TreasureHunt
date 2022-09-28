@@ -8,10 +8,7 @@ namespace Features.Sector.Repository
     {
         private readonly Dictionary<string, Sector> _sectors = new Dictionary<string, Sector>();
 
-        public Sector[] FindAll()
-        {
-            return _sectors.Values.ToArray();
-        }
+        public Sector[] FindAll() => _sectors.Values.ToArray();
 
         public Sector FindById(string id)
         {
