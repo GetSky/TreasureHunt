@@ -15,16 +15,18 @@ namespace Features.Sector.Camera
         private void Update()
         {
             var mousePosition = Input.mousePosition;
-            mousePosition.z = 5.0f;
-            if (Input.GetMouseButtonDown(1)) _startPosition = _camera.ScreenToWorldPoint(mousePosition);
+
+            if (Input.GetMouseButtonDown(1)) _startPosition = mousePosition;
             else if (Input.GetMouseButton(1))
             {
                 var position = transform.position;
                 transform.position = new Vector3(
-                    position.x - (_camera.ScreenToWorldPoint(mousePosition).x - _startPosition.x),
+                    position.x - (mousePosition.x - _startPosition.x) / 100,
                     position.y,
-                    position.z - (_camera.ScreenToWorldPoint(mousePosition).z - _startPosition.z)
+                    position.z - (mousePosition.y - _startPosition.y) / 100
                 );
+
+                _startPosition = mousePosition;
             }
         }
     }
