@@ -4,6 +4,7 @@ namespace Features.Sector.Camera
 {
     public class CameraController : MonoBehaviour
     {
+        [Range(0.1f, 2.0f)] [SerializeField] private float _speed = 1.0f;
         private Vector3 _startPosition;
 
         private void Update()
@@ -21,9 +22,9 @@ namespace Features.Sector.Camera
         private Vector3 CalculatePosition(Vector3 mouse, Vector3 currentPosition)
         {
             return new Vector3(
-                currentPosition.x - (mouse.x - _startPosition.x) / 100,
+                currentPosition.x - (mouse.x - _startPosition.x) / (100 / _speed),
                 currentPosition.y,
-                currentPosition.z - (mouse.y - _startPosition.y) / 100
+                currentPosition.z - (mouse.y - _startPosition.y) / (100 / _speed)
             );
         }
     }
