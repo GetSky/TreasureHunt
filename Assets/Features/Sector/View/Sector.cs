@@ -41,10 +41,7 @@ namespace Features.Sector.View
             _material.color = _defaultColor;
         }
 
-        public string UniqueCode()
-        {
-            return transform.position + gameObject.name;
-        }
+        public string UniqueCode() => transform.position + gameObject.name;
 
         private void OnMouseDown()
         {
@@ -87,7 +84,7 @@ namespace Features.Sector.View
                 .DOColor(_defaultColor, _timeAnimationDuration)
                 .SetDelay(_timeAnimationDelay + _timeAnimationDuration);
         }
-        
+
         private void OnComplete()
         {
             if (_isFinished) StartCoroutine(nameof(RestartDelay));
