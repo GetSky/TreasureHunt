@@ -1,5 +1,6 @@
 using Features.Map;
 using Features.Map.Handler;
+using Features.Map.Repository;
 using Features.Sector;
 using Features.Sector.Card;
 using Features.Sector.Handler;
@@ -27,6 +28,12 @@ namespace Core
             Container
                 .Bind(typeof(ISectorRepository), typeof(ISectorFlasher))
                 .To<MemorySectorRepository>()
+                .AsSingle()
+                .NonLazy();
+            
+            Container
+                .Bind(typeof(IMapFlasher), typeof(IMapRepository))
+                .To<MemoryMapRepository>()
                 .AsSingle()
                 .NonLazy();
         }
