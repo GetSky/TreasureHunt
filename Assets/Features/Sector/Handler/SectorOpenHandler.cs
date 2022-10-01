@@ -1,24 +1,32 @@
-﻿using Features.Sector.Repository;
+﻿using Features.Map.Repository;
+using Features.Sector.Repository;
 
 namespace Features.Sector.Handler
 {
     public class SectorOpenHandler : ISectorOpenHandler
     {
-        private readonly ISectorRepository _repository;
+        private readonly ISectorRepository _sectorRepo;
+        private readonly IMapRepository _mapRepo;
 
-        public SectorOpenHandler(ISectorRepository repository)
+        public SectorOpenHandler(ISectorRepository sectorRepo, IMapRepository mapRepo)
         {
-            _repository = repository;
+            _sectorRepo = sectorRepo;
+            _mapRepo = mapRepo;
         }
 
         public void Invoke(SectorOpenCommand command)
         {
-            var sector = _repository.FindById(command.Id);
-            var treasure = _repository.FindTreasure();
+            var map = _mapRepo.FindActive();
+            if (map == null) return;
+
+            var sector = _sectorRepo.FindById(command.Id);
+            var treasure = _sectorRepo.FindTreasure();
             if (treasure == null) return;
 
             sector.Open(treasure);
-            foreach (var sec in _repository.FindAll()) sec.Highlight(sector);
+            foreach (var sec in _sectorRepo.FindAll()) sec.Highlight(sector);
+            
+            if (sector.Card.Type() == CardType.Treasure) map.Deactivate();
         }
     }
 }
