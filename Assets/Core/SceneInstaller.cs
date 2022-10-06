@@ -20,6 +20,8 @@ namespace Core
         {
             Container.BindFactory<Vector2, CardType, Object, Sector, Factory>().FromFactory<SectorFactory>();
             Container.BindFactory<CardType, ICard, Features.Sector.Card.Factory>().FromFactory<CardFactory>();
+            Container.BindFactory<Map, Features.Map.Factory>().FromFactory<MapFactory>();
+
             Container.Bind<MapProducer>().AsTransient().WithArguments(_groundPrefab).Lazy();
 
             Container.Bind<ISectorOpenHandler>().To<SectorOpenHandler>().AsSingle().Lazy();
@@ -30,7 +32,7 @@ namespace Core
                 .To<MemorySectorRepository>()
                 .AsSingle()
                 .NonLazy();
-            
+
             Container
                 .Bind(typeof(IMapFlasher), typeof(IMapRepository))
                 .To<MemoryMapRepository>()

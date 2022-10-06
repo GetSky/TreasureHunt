@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Features.Map.Repository;
 using CardType = Features.Sector.CardType;
-using Factory = Features.Sector.Factory;
 using Object = UnityEngine.Object;
 using Random = System.Random;
 using Vector2 = System.Numerics.Vector2;
@@ -11,21 +9,20 @@ namespace Features.Map
 {
     public class MapProducer
     {
-        private readonly Factory _sectorFactory;
+        private readonly Factory _mapFactory;
+        private readonly Sector.Factory _sectorFactory;
         private readonly Object _sectorPrefab;
-        private readonly IMapFlasher _mapFlasher;
 
-        public MapProducer(Factory sectorFactory, Object sectorPrefab, IMapFlasher mapFlasher)
+        public MapProducer(Factory mapFactory, Sector.Factory sectorFactory, Object sectorPrefab)
         {
+            _mapFactory = mapFactory;
             _sectorFactory = sectorFactory;
             _sectorPrefab = sectorPrefab;
-            _mapFlasher = mapFlasher;
         }
 
         public void Generate(int rows, int columns, int countDistanceCard)
         {
-            _mapFlasher.Save(new Map("map"));
-
+            _mapFactory.Create();
             var deck = CreateDeck(rows * columns, countDistanceCard);
             var idx = 0;
             for (var x = 0; x < rows; x++)
