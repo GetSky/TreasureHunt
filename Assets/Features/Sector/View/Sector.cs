@@ -21,17 +21,15 @@ namespace Features.Sector.View
         [SerializeField] private float _timeAnimationDelay = 2.0f;
 
         private TextMeshPro _distanceText;
-        private IRestartMapHandler _restartMapHandler;
         private ISectorOpenHandler _openHandler;
         private Material _material;
         private bool _isOpened;
         private bool _isFinished;
 
         [Inject]
-        public void Construct(ISectorOpenHandler openHandler, IRestartMapHandler restartMapHandler)
+        public void Construct(ISectorOpenHandler openHandler)
         {
             _openHandler = openHandler;
-            _restartMapHandler = restartMapHandler;
         }
 
         private void Awake()
@@ -93,7 +91,7 @@ namespace Features.Sector.View
         private IEnumerator RestartDelay()
         {
             yield return new WaitForSeconds(_timeRestartDuration);
-            _restartMapHandler.Invoke(new RestartMapCommand());
+            // _restartMapHandler.Invoke(new RestartMapCommand());
             StopCoroutine(nameof(RestartDelay));
         }
 

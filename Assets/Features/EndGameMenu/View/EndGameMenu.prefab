@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 2647774507236475714}
   - component: {fileID: 2647774507236475715}
   - component: {fileID: 2647774507236475724}
+  - component: {fileID: 6239504119722432557}
   m_Layer: 5
   m_Name: EndGameMenu
   m_TagString: Untagged
@@ -368,6 +369,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6239504119722432557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647774507236475725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ceff8b05b94976bb2577f12c6c935a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playButton: {fileID: 2647774507544404724}
+  _exitButton: {fileID: 2647774507552222776}
 --- !u!1 &2647774507544404726
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +459,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 1.5
 --- !u!114 &2647774507544404724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +580,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 1.5
 --- !u!114 &2647774507552222776
 MonoBehaviour:
   m_ObjectHideFlags: 0
