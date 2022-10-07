@@ -15,6 +15,7 @@ namespace Core
     public class SceneInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _groundPrefab;
+        [SerializeField] private GameObject _endGameMenuPrefab;
 
         public override void InstallBindings()
         {
