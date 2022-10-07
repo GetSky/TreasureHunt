@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Features.Sector.Camera
+namespace Features.Camera.View
 {
     public class CameraController : MonoBehaviour
     {
