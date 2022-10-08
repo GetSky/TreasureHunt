@@ -16,8 +16,8 @@ namespace Features.Sector.Handler
 
         public void Invoke(SectorOpenCommand command)
         {
-            var map = _mapRepo.FindActive();
-            if (map == null) return;
+            var map = _mapRepo.FindCurrent();
+            if (map.IsActive() == false) return;
 
             var sector = _sectorRepo.FindById(command.Id);
             var treasure = _sectorRepo.FindTreasure();

@@ -2,6 +2,6 @@
 {
     public interface IMapRepository
     {
-        public Map FindActive();
+        public Map FindCurrent();
     }
 }

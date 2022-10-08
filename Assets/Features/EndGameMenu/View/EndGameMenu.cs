@@ -1,7 +1,7 @@
 ﻿using Features.Map.Handler;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
+using Button = UnityEngine.UI.Button;
 
 namespace Features.EndGameMenu.View
 {
@@ -20,8 +20,10 @@ namespace Features.EndGameMenu.View
 
         private void Start()
         {
+            gameObject.SetActive(false);
             _playButton.onClick.AddListener(OnClickPlay);
             _exitButton.onClick.AddListener(OnClickExit);
+            gameObject.SetActive(true);
         }
 
         private void OnClickPlay()
