@@ -12,6 +12,7 @@
         }
 
         public void Deactivate() => _active = false;
+        public void Activate() => _active = true;
         public bool IsActive() => _active;
     }
 }

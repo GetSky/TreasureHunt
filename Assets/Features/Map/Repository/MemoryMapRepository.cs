@@ -18,10 +18,9 @@ namespace Features.Map.Repository
             _maps.Clear();
         }
 
-        public Map FindActive()
+        public Map FindCurrent()
         {
-            var entity = _maps.FirstOrDefault(map => map.Value.IsActive());
-            return entity.Value;
+            return _maps.Values.First();
         }
     }
 }

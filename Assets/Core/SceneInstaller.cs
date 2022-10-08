@@ -1,3 +1,4 @@
+using Features.EndGameMenu.View;
 using Features.Map;
 using Features.Map.Handler;
 using Features.Map.Repository;
@@ -43,6 +44,9 @@ namespace Core
 
         public void Awake()
         {
+            var map = Container.Resolve<Features.Map.Factory>().Create();
+            var endMenu = Container.InstantiatePrefabForComponent<EndGameMenu>(_endGameMenuPrefab);
+
             Container.Resolve<MapProducer>().Generate(10, 10, 90);
         }
     }
