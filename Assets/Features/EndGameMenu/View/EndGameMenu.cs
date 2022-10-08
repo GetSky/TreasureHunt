@@ -1,5 +1,4 @@
 ﻿using Features.Map.Handler;
-using Features.Sector.Handler;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -32,8 +31,13 @@ namespace Features.EndGameMenu.View
 
         private void OnClickExit()
         {
-            Application.Quit();
-            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();  
+        }
+
+        private void OnDisable()
+        {
+            _playButton.onClick.RemoveListener(OnClickPlay);
+            _exitButton.onClick.RemoveListener(OnClickExit);
         }
     }
 }
