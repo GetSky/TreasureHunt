@@ -1,11 +1,12 @@
-﻿using Features.Map.Handler;
+﻿using Features.Map;
+using Features.Map.Handler;
 using UnityEngine;
 using Zenject;
 using Button = UnityEngine.UI.Button;
 
 namespace Features.EndGameMenu.View
 {
-    public class EndGameMenu : MonoBehaviour
+    public class EndGameMenu : MonoBehaviour, IMapView
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _exitButton;
@@ -18,12 +19,21 @@ namespace Features.EndGameMenu.View
             _restartMapHandler = restartMapHandler;
         }
 
-        private void Start()
+        public void SetVisible(bool active)
         {
-            gameObject.SetActive(false);
-            _playButton.onClick.AddListener(OnClickPlay);
+            gameObject.SetActive(active);
+        }
+
+        private void OnEnable()
+        {
             _exitButton.onClick.AddListener(OnClickExit);
-            gameObject.SetActive(true);
+            _playButton.onClick.AddListener(OnClickPlay);
+        }
+
+        private void OnDisable()
+        {
+            _playButton.onClick.RemoveListener(OnClickPlay);
+            _exitButton.onClick.RemoveListener(OnClickExit);
         }
 
         private void OnClickPlay()
@@ -33,13 +43,7 @@ namespace Features.EndGameMenu.View
 
         private void OnClickExit()
         {
-            Application.Quit();  
-        }
-
-        private void OnDisable()
-        {
-            _playButton.onClick.RemoveListener(OnClickPlay);
-            _exitButton.onClick.RemoveListener(OnClickExit);
+            Application.Quit();
         }
     }
 }
