@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 
-namespace Features.Map
+namespace Features.EndGameMenu
 {
-    public class MapModel
+    public class EndGameMenuModel
     {
-        private readonly Map _map;
-        private readonly List<IMapView> _mapViews = new List<IMapView>();
+        private readonly Map.Map _map;
+        private readonly List<IEndGameMenuView> _mapViews = new List<IEndGameMenuView>();
 
-        public MapModel(Map map)
+        public EndGameMenuModel(Map.Map map)
         {
             _map = map;
             _map.OnChangedActiveStatus += OnChangedActiveStatus;
         }
 
-        public void AddView(IMapView symbolView)
+        public void AddView(IEndGameMenuView symbolView)
         {
             _mapViews.Add(symbolView);
         }

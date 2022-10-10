@@ -1,3 +1,4 @@
+using Features.EndGameMenu;
 using Features.EndGameMenu.View;
 using Features.Map;
 using Features.Sector;
@@ -26,7 +27,7 @@ namespace Core
         {
             var map = Container.Resolve<Features.Map.Factory>().Create();
             var endMenu = Container.InstantiatePrefabForComponent<EndGameMenu>(_endGameMenuPrefab);
-            var model = new MapModel(map);
+            var model = new EndGameMenuModel(map);
             model.AddView(endMenu);
 
             Container.Resolve<MapProducer>().Generate(10, 10, 90);
