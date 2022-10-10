@@ -6,7 +6,7 @@ using Button = UnityEngine.UI.Button;
 
 namespace Features.EndGameMenu.View
 {
-    public class EndGameMenu : MonoBehaviour, IMapView
+    public class EndGameMenu : MonoBehaviour, IEndGameMenuView
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _exitButton;
