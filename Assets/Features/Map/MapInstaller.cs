@@ -1,6 +1,7 @@
 using Features.Map.Event;
 using Features.Map.Handler;
 using Features.Map.Repository;
+using Features.Sector.Event;
 using UnityEngine;
 using Zenject;
 
@@ -27,7 +28,11 @@ namespace Features.Map
                 .AsSingle()
                 .NonLazy();
 
-            Container.DeclareSignal<GameStatusChange>();
+            Container.Bind<SectorConnector>().AsTransient().Lazy();
+
+            Container.BindSignal<TreasureFind>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
+
+            Container.DeclareSignal<GameStatusChange>().OptionalSubscriber();
         }
     }
 }

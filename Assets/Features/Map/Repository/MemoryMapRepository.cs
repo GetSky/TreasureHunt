@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Features.Map.Event;
 using Zenject;
 
 namespace Features.Map.Repository

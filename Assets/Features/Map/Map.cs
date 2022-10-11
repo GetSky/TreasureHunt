@@ -6,7 +6,7 @@ namespace Features.Map
 {
     public class Map
     {
-        public ICollection<IDomainEvent> Events { get; }
+        public ICollection<GameStatusChange> Events { get; }
         public string Id { get; }
         private bool _active = true;
 
@@ -15,7 +15,7 @@ namespace Features.Map
         public Map(string id)
         {
             Id = id;
-            Events = new List<IDomainEvent>();
+            Events = new List<GameStatusChange>();
             Events.Add(new GameStatusChange(_active));
         }
 

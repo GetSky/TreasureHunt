@@ -1,12 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Features.Sector.Card;
+using Zenject;
 
 namespace Features.Sector.Repository
 {
     public class MemorySectorRepository : ISectorRepository, ISectorFlasher
     {
+        private readonly SignalBus _signalBus;
         private readonly Dictionary<string, Sector> _sectors = new Dictionary<string, Sector>();
+
+        public MemorySectorRepository(SignalBus _signalBus)
+        {
+            this._signalBus = _signalBus;
+        }
 
         public Sector[] FindAll() => _sectors.Values.ToArray();
 
@@ -24,6 +30,9 @@ namespace Features.Sector.Repository
 
         public void Save(Sector sector)
         {
+            foreach (var domainEvent in sector.Events) _signalBus.Fire(domainEvent);
+            sector.Events.Clear();
+
             if (_sectors.ContainsKey(sector.Id)) return;
             _sectors[sector.Id] = sector;
         }
