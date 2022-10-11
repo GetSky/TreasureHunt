@@ -1,3 +1,4 @@
+using Features.Map.Event;
 using Features.Map.Handler;
 using Features.Map.Repository;
 using UnityEngine;
@@ -25,6 +26,8 @@ namespace Features.Map
                 .To<MemoryMapRepository>()
                 .AsSingle()
                 .NonLazy();
+
+            Container.DeclareSignal<GameStatusChange>();
         }
     }
 }
