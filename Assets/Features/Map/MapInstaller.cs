@@ -21,6 +21,7 @@ namespace Features.Map
             Container.BindFactory<Map, Features.Map.Factory>().FromFactory<MapFactory>();
             Container.Bind<MapProducer>().AsTransient().WithArguments(_groundPrefab).Lazy();
             Container.Bind<IRestartMapHandler>().To<RestartMapHandler>().AsSingle().Lazy();
+            Container.Bind<IDeactivateMapHandler>().To<DeactivateMapHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(IMapFlasher), typeof(IMapRepository))

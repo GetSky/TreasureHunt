@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using Features.Map.Handler;
 
 namespace Features.Map
 {
     public class SectorConnector
     {
-        public void TreasureFind()
+        private readonly IDeactivateMapHandler _mapHandler;
+
+        public SectorConnector(IDeactivateMapHandler mapHandler)
         {
-            Debug.Log("Treasure find!");
+            _mapHandler = mapHandler;
         }
+
+        public void TreasureFind() => _mapHandler.Invoke(new DeactivateMapCommand());
     }
 }

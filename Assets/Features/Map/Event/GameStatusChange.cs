@@ -2,7 +2,7 @@
 {
     public class GameStatusChange : IDomainEvent
     {
-        private bool Active { get; }
+        public bool Active { get; }
 
         public GameStatusChange(bool isActive)
         {
