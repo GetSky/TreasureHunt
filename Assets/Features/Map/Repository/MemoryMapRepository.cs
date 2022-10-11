@@ -19,9 +19,9 @@ namespace Features.Map.Repository
         {
             Clear();
             _maps[map.Id] = map;
-
-            foreach (var domainEvent in map.Events) _signalBus.Fire(domainEvent);
+            var events = map.Events.ToArray();
             map.Events.Clear();
+            foreach (var domainEvent in events) _signalBus.Fire(domainEvent);
         }
 
         public void Clear()
