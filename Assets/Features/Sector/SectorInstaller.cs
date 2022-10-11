@@ -1,4 +1,5 @@
 using Features.Sector.Card;
+using Features.Sector.Event;
 using Features.Sector.Handler;
 using Features.Sector.Repository;
 using UnityEngine;
@@ -21,6 +22,8 @@ namespace Features.Sector
                 .To<MemorySectorRepository>()
                 .AsSingle()
                 .NonLazy();
+
+            Container.DeclareSignal<TreasureFind>();
         }
     }
 }
