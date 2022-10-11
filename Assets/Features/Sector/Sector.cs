@@ -12,10 +12,13 @@ namespace Features.Sector
         private Vector2 Position { get; }
         public ICard Card { get; }
 
+        private bool _active = true;
+
         public Action<ICard> OnOpened = delegate { };
         public Action OnDestroyed = delegate { };
         public Action OnHighlighted = delegate { };
         public Action OnStopHighlighted = delegate { };
+
 
         public Sector(string id, Vector2 position, ICard card)
         {
@@ -27,6 +30,8 @@ namespace Features.Sector
 
         public void Open(Sector treasure)
         {
+            if (_active == false) return;
+
             Card.UpdateDistanceToTreasure(DistanceTo(treasure));
             if (Card.Type() == CardType.Treasure) Events.Add(new TreasureFind());
             OnOpened.Invoke(Card);
@@ -34,12 +39,16 @@ namespace Features.Sector
 
         public void Highlight(Sector openedSector)
         {
+            if (_active == false) return;
+
             if (openedSector.Card.Type() == CardType.None) return;
 
             var distance = DistanceTo(openedSector);
             if (distance == openedSector.Card.Value()) OnHighlighted.Invoke();
             else OnStopHighlighted.Invoke();
         }
+
+        public void Deactivate() => _active = false;
 
         public void Destroy()
         {

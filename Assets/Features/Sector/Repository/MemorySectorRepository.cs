@@ -30,8 +30,9 @@ namespace Features.Sector.Repository
 
         public void Save(Sector sector)
         {
-            foreach (var domainEvent in sector.Events) _signalBus.Fire(domainEvent);
+            var events = sector.Events.ToArray();
             sector.Events.Clear();
+            foreach (var domainEvent in events) _signalBus.Fire(domainEvent);
 
             if (_sectors.ContainsKey(sector.Id)) return;
             _sectors[sector.Id] = sector;
