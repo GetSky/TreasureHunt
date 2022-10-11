@@ -14,6 +14,8 @@ namespace Core
 
         public override void InstallBindings()
         {
+            SignalBusInstaller.Install(Container);
+
             SectorInstaller.Install(Container);
             MapInstaller.Install(Container, _groundPrefab);
         }
