@@ -15,7 +15,6 @@ namespace Features.Sector.Handler
 
         public void Invoke(SectorOpenCommand command)
         {
-
             var sector = _sectorRepo.FindById(command.Id);
             var treasure = _sectorRepo.FindTreasure();
             if (treasure == null) return;
