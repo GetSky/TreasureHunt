@@ -20,8 +20,8 @@ namespace Zenject.ReflectionBaking
         ReorderableList _namespacePatternsList;
 
         // Layouts
-        Vector2 _logScrollPosition;
-        int _selectedLogIndex;
+        //Vector2 _logScrollPosition;
+        //int _selectedLogIndex;
 
         bool _hasModifiedProperties;
 
