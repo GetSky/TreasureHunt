@@ -7,19 +7,12 @@ using Zenject;
 
 namespace Features.Map
 {
-    public class MapInstaller : Installer<GameObject, MapInstaller>
+    public class MapInstaller : Installer<MapInstaller>
     {
-        private readonly GameObject _groundPrefab;
-
-        public MapInstaller(GameObject groundPrefab)
-        {
-            _groundPrefab = groundPrefab;
-        }
-
         public override void InstallBindings()
         {
-            Container.BindFactory<Map, Features.Map.Factory>().FromFactory<MapFactory>();
-            Container.Bind<MapProducer>().AsTransient().WithArguments(_groundPrefab).Lazy();
+            Container.BindFactory<Map, Factory>().FromFactory<MapFactory>();
+            Container.Bind<MapProducer>().AsTransient().Lazy();
             Container.Bind<IRestartMapHandler>().To<RestartMapHandler>().AsSingle().Lazy();
             Container.Bind<IDeactivateMapHandler>().To<DeactivateMapHandler>().AsSingle().Lazy();
 

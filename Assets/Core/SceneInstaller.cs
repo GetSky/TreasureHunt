@@ -16,8 +16,8 @@ namespace Core
         {
             SignalBusInstaller.Install(Container);
 
-            SectorInstaller.Install(Container);
-            MapInstaller.Install(Container, _groundPrefab);
+            SectorInstaller.Install(Container, _groundPrefab);
+            MapInstaller.Install(Container);
         }
 
         public void Awake()

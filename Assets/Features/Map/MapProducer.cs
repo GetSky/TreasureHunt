@@ -12,13 +12,11 @@ namespace Features.Map
     {
         private readonly IMapRepository _mapRepo;
         private readonly Sector.Factory _sectorFactory;
-        private readonly Object _sectorPrefab;
 
-        public MapProducer(IMapRepository mapRepo, Sector.Factory sectorFactory, Object sectorPrefab)
+        public MapProducer(IMapRepository mapRepo, Sector.Factory sectorFactory)
         {
             _mapRepo = mapRepo;
             _sectorFactory = sectorFactory;
-            _sectorPrefab = sectorPrefab;
         }
 
         public void Generate(int rows, int columns, int countDistanceCard)
@@ -34,7 +32,7 @@ namespace Features.Map
 
         private void CreateSector(int x, int z, CardType type)
         {
-            _sectorFactory.Create(new Vector2(x, z), type, _sectorPrefab);
+            _sectorFactory.Create(new Vector2(x, z), type);
         }
 
         private static CardType[] CreateDeck(int countAll, int countDistanceCard)

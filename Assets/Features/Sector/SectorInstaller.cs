@@ -9,11 +9,19 @@ using Vector2 = System.Numerics.Vector2;
 
 namespace Features.Sector
 {
-    public class SectorInstaller : Installer<SectorInstaller>
+    public class SectorInstaller : Installer<GameObject, SectorInstaller>
     {
+        private readonly GameObject _groundPrefab;
+
+        public SectorInstaller(GameObject prefab)
+        {
+            _groundPrefab = prefab;
+        }
+
         public override void InstallBindings()
         {
-            Container.BindFactory<Vector2, CardType, Object, Sector, Factory>().FromFactory<SectorFactory>();
+            Container.Bind<Factory>().AsSingle().WithArguments(_groundPrefab).Lazy();
+
             Container.BindFactory<CardType, ICard, Features.Sector.Card.Factory>().FromFactory<CardFactory>();
 
             Container.Bind<ISectorOpenHandler>().To<SectorOpenHandler>().AsSingle().Lazy();
