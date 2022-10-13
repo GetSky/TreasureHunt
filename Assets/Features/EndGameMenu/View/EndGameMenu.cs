@@ -1,5 +1,4 @@
-﻿using Features.Map;
-using Features.Map.Handler;
+﻿using Features.Map.Handler;
 using UnityEngine;
 using Zenject;
 using Button = UnityEngine.UI.Button;

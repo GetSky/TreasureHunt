@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using DG.Tweening;
-using Features.Map.Handler;
 using Features.Sector.Handler;
 using TMPro;
 using UnityEngine;
@@ -10,11 +9,11 @@ namespace Features.Sector.View
 {
     public class Sector : MonoBehaviour, ISymbolView, IHighlightedView
     {
-        [SerializeField] private Color _defaultColor;
-        [SerializeField] private Color _highlightColor;
-        [SerializeField] private Color _pressingColor;
-        [SerializeField] private Color _treasureColor;
-        [SerializeField] private Color _distanceColor;
+        [SerializeField] private Color _defaultColor = Color.white;
+        [SerializeField] private Color _highlightColor = Color.green;
+        [SerializeField] private Color _pressingColor = Color.gray;
+        [SerializeField] private Color _treasureColor = Color.yellow;
+        [SerializeField] private Color _distanceColor = Color.cyan;
 
         [SerializeField] private float _timeAnimationDuration = 0.75f;
         [SerializeField] private float _timeRestartDuration = 0.75f;
