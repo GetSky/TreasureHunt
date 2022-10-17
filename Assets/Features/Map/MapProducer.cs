@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Linq;
 using Features.Map.Repository;
+using Features.Sector.Handler;
+using Zenject;
 using CardType = Features.Sector.CardType;
-using Object = UnityEngine.Object;
 using Random = System.Random;
-using Vector2 = System.Numerics.Vector2;
 
 namespace Features.Map
 {
     public class MapProducer
     {
+        private readonly SignalBus _signalBus;
         private readonly IMapRepository _mapRepo;
-        private readonly Sector.Factory _sectorFactory;
 
-        public MapProducer(IMapRepository mapRepo, Sector.Factory sectorFactory)
+        public MapProducer(SignalBus signalBus, IMapRepository mapRepo)
         {
+            _signalBus = signalBus;
             _mapRepo = mapRepo;
-            _sectorFactory = sectorFactory;
         }
 
         public Map Generate(int rows, int columns, int countDistanceCard)
@@ -26,17 +26,13 @@ namespace Features.Map
             var idx = 0;
             for (var x = 0; x < rows; x++)
             {
-                for (var z = 0; z < columns; z++) CreateSector(x, z, deck[idx++]);
+                for (var z = 0; z < columns; z++)
+                    _signalBus.Fire(new CreateSectorCommand(x, z, deck[idx++].ToString()));
             }
 
             map.Activate();
 
             return map;
-        }
-
-        private void CreateSector(int x, int z, CardType type)
-        {
-            _sectorFactory.Create(new Vector2(x, z), type);
         }
 
         private static CardType[] CreateDeck(int countAll, int countDistanceCard)

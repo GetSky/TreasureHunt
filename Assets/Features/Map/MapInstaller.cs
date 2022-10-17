@@ -26,6 +26,7 @@ namespace Features.Map
             Container.BindSignal<TreasureFind>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
 
             Container.DeclareSignal<GameStatusChange>().OptionalSubscriber();
+            Container.DeclareSignal<ResetMap>().OptionalSubscriber();
             
             Container.Bind<IInitializable>().To<Initializer>().AsSingle();
         }
