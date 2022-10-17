@@ -3,7 +3,7 @@
     public class ActivateMenuCommand
     {
     }
-    
+
     public interface IActivateMenuCommand
     {
         public void Invoke(ActivateMenuCommand command);
