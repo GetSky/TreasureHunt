@@ -40,7 +40,7 @@ namespace Features.EndGameMenu.View
             _restartMapHandler.Invoke(new RestartMapCommand());
         }
 
-        private void OnClickExit()
+        private static void OnClickExit()
         {
             Application.Quit();
         }

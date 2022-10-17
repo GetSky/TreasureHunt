@@ -19,15 +19,19 @@ namespace Features.Map
             _sectorFactory = sectorFactory;
         }
 
-        public void Generate(int rows, int columns, int countDistanceCard)
+        public Map Generate(int rows, int columns, int countDistanceCard)
         {
-            _mapRepo.FindCurrent().Activate();
+            var map = _mapRepo.FindCurrent();
             var deck = CreateDeck(rows * columns, countDistanceCard);
             var idx = 0;
             for (var x = 0; x < rows; x++)
             {
                 for (var z = 0; z < columns; z++) CreateSector(x, z, deck[idx++]);
             }
+
+            map.Activate();
+
+            return map;
         }
 
         private void CreateSector(int x, int z, CardType type)

@@ -6,19 +6,14 @@ namespace Features.EndGameMenu
     {
         private readonly List<IEndGameMenuView> _mapViews = new List<IEndGameMenuView>();
 
-        public EndGameMenuModel(Map.Map map)
-        {
-            map.OnChangedActiveStatus += OnChangedActiveStatus;
-        }
-
         public void AddView(IEndGameMenuView symbolView)
         {
             _mapViews.Add(symbolView);
         }
 
-        private void OnChangedActiveStatus(bool active)
+        public void ChangeActiveStatus(bool active)
         {
-            foreach (var view in _mapViews) view.SetVisible(!active);
+            foreach (var view in _mapViews) view.SetVisible(active);
         }
     }
 }
