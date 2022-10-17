@@ -28,6 +28,11 @@ namespace Features.Sector.Repository
             return entity.Value;
         }
 
+        public Sector[] FindInactive()
+        {
+            return (from s in _sectors where s.Value.IsActive() == false select s.Value).ToArray();
+        }
+
         public void Save(Sector sector)
         {
             var events = sector.Events.ToArray();
@@ -39,5 +44,10 @@ namespace Features.Sector.Repository
         }
 
         public void Clear() => _sectors.Clear();
+
+        public void Remove(Sector sector)
+        {
+            _sectors.Remove(sector.Id);
+        }
     }
 }

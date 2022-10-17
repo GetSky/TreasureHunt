@@ -5,5 +5,6 @@
         public Sector[] FindAll();
         public Sector FindById(string id);
         public Sector FindTreasure();
+        public Sector[] FindInactive();
     }
 }

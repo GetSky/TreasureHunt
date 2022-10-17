@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Features.Map.Event;
 using Zenject;
 
 namespace Features.Map.Repository
@@ -19,9 +18,14 @@ namespace Features.Map.Repository
         {
             Clear();
             _maps[map.Id] = map;
-            var events = map.Events.ToArray();
-            map.Events.Clear();
-            foreach (var domainEvent in events) _signalBus.Fire(domainEvent);
+
+            var gameStatusEvents = map.GameStatusChangeEvents.ToArray();
+            map.GameStatusChangeEvents.Clear();
+            foreach (var domainEvent in gameStatusEvents) _signalBus.Fire(domainEvent);
+
+            var resetEvents = map.ResetEvents.ToArray();
+            map.ResetEvents.Clear();
+            foreach (var domainEvent in resetEvents) _signalBus.Fire(domainEvent);
         }
 
         public void Clear()

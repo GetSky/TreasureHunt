@@ -48,7 +48,11 @@ namespace Features.Sector
             else OnStopHighlighted.Invoke();
         }
 
+        public bool IsActive() => _active;
+
         public void Deactivate() => _active = false;
+
+        public void Activate() => _active = true;
 
         public void Destroy()
         {

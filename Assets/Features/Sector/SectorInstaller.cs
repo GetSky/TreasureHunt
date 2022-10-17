@@ -5,7 +5,6 @@ using Features.Sector.Handler;
 using Features.Sector.Repository;
 using UnityEngine;
 using Zenject;
-using Vector2 = System.Numerics.Vector2;
 
 namespace Features.Sector
 {
@@ -26,6 +25,9 @@ namespace Features.Sector
 
             Container.Bind<ISectorOpenHandler>().To<SectorOpenHandler>().AsSingle().Lazy();
             Container.Bind<IDeactivateSectorsHandler>().To<DeactivateSectorsHandler>().AsSingle().Lazy();
+            Container.Bind<IRemoveSectorsHandler>().To<RemoveSectorsHandler>().AsSingle().Lazy();
+            Container.Bind<IActivateSectorsHandler>().To<ActivateSectorsHandler>().AsSingle().Lazy();
+            Container.Bind<ICreateSectorHandler>().To<CreateSectorHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(ISectorRepository), typeof(ISectorFlasher))
@@ -35,7 +37,10 @@ namespace Features.Sector
 
             Container.Bind<MapConnector>().AsTransient().Lazy();
             Container.BindSignal<GameStatusChange>().ToMethod<MapConnector>(c => c.GameStatusChange).FromResolve();
-
+            Container.BindSignal<ResetMap>().ToMethod<MapConnector>(c => c.ResetMap).FromResolve();
+            
+            Container.DeclareSignal<CreateSectorCommand>();
+            Container.BindSignal<CreateSectorCommand>().ToMethod<ICreateSectorHandler>(c => c.Invoke).FromResolve();
 
             Container.DeclareSignal<TreasureFind>();
         }
