@@ -1,5 +1,4 @@
 using Features.EndGameMenu;
-using Features.EndGameMenu.View;
 using Features.Map;
 using Features.Sector;
 using UnityEngine;
