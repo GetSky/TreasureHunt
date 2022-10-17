@@ -2,7 +2,6 @@ using Features.Map.Event;
 using Features.Map.Handler;
 using Features.Map.Repository;
 using Features.Sector.Event;
-using UnityEngine;
 using Zenject;
 
 namespace Features.Map
@@ -27,6 +26,8 @@ namespace Features.Map
             Container.BindSignal<TreasureFind>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
 
             Container.DeclareSignal<GameStatusChange>().OptionalSubscriber();
+            
+            Container.Bind<IInitializable>().To<Initializer>().AsSingle();
         }
     }
 }

@@ -17,22 +17,8 @@ namespace Core
             SignalBusInstaller.Install(Container);
 
             SectorInstaller.Install(Container, _groundPrefab);
+            EndGameMenuInstaller.Install(Container, _endGameMenuPrefab);
             MapInstaller.Install(Container);
-        }
-
-        public void Awake()
-        {
-            CreateMap();
-        }
-
-        private void CreateMap()
-        {
-            var map = Container.Resolve<Features.Map.Factory>().Create();
-            var endMenu = Container.InstantiatePrefabForComponent<EndGameMenu>(_endGameMenuPrefab);
-            var model = new EndGameMenuModel(map);
-            model.AddView(endMenu);
-
-            Container.Resolve<MapProducer>().Generate(10, 10, 90);
         }
     }
 }
