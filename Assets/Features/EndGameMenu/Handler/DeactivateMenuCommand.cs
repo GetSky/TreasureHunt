@@ -3,7 +3,7 @@
     public class DeactivateMenuCommand
     {
     }
-    
+
     public interface IDeactivateMenuHandler
     {
         public void Invoke(DeactivateMenuCommand command);
