@@ -38,7 +38,7 @@ namespace Features.Sector
             Container.Bind<MapConnector>().AsTransient().Lazy();
             Container.BindSignal<GameStatusChange>().ToMethod<MapConnector>(c => c.GameStatusChange).FromResolve();
             Container.BindSignal<ResetMap>().ToMethod<MapConnector>(c => c.ResetMap).FromResolve();
-            
+
             Container.DeclareSignal<CreateSectorCommand>();
             Container.BindSignal<CreateSectorCommand>().ToMethod<ICreateSectorHandler>(c => c.Invoke).FromResolve();
 

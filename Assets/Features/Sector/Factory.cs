@@ -19,7 +19,7 @@ namespace Features.Sector
             _flasher = flasher;
             _prefab = prefab;
         }
-        
+
         public Sector Create(Vector2 position, CardType type)
         {
             var obj = _container.InstantiatePrefabForComponent<View.Sector>(_prefab);
