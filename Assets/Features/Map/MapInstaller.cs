@@ -27,7 +27,7 @@ namespace Features.Map
 
             Container.DeclareSignal<GameStatusChange>().OptionalSubscriber();
             Container.DeclareSignal<ResetMap>().OptionalSubscriber();
-            
+
             Container.Bind<IInitializable>().To<Initializer>().AsSingle();
         }
     }
