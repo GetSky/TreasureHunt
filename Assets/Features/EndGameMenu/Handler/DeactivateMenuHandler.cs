@@ -2,16 +2,16 @@
 
 namespace Features.EndGameMenu.Handler
 {
-    public class DeactivateMenuHandler : IDeactivateMenuHandler
+    public class DeactivateHandler : IDeactivateHandler
     {
-        private readonly IEndMenuRepository _repo;
+        private readonly IModelRepository _repo;
 
-        public DeactivateMenuHandler(IEndMenuRepository repo)
+        public DeactivateHandler(IModelRepository repo)
         {
             _repo = repo;
         }
 
-        public void Invoke(DeactivateMenuCommand command)
+        public void Invoke(DeactivateCommand command)
         {
             _repo.FindFirst().ChangeActiveStatus(false);
         }

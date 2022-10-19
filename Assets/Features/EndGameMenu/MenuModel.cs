@@ -2,7 +2,7 @@
 
 namespace Features.EndGameMenu
 {
-    public class EndGameMenuModel
+    public class MenuModel
     {
         private readonly List<IEndGameMenuView> _mapViews = new List<IEndGameMenuView>();
 
