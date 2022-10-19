@@ -4,18 +4,18 @@ namespace Features.Map
 {
     public class Initializer : IInitializable
     {
-        private readonly Factory _mapFactory;
+        private readonly Factory _factory;
         private readonly MapProducer _producer;
 
-        public Initializer(Factory mapFactory, MapProducer producer)
+        public Initializer(Factory factory, MapProducer producer)
         {
-            _mapFactory = mapFactory;
+            _factory = factory;
             _producer = producer;
         }
 
         public void Initialize()
         {
-            _mapFactory.Create();
+            _factory.Create();
             _producer.Generate(10, 10, 90);
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Features.Map.Repository
 {
-    public interface IMapFlasher
+    public interface IMapContext
     {
         public void Save(Map map);
 

@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Features.Map.Repository
 {
-    public class MemoryMapRepository : IMapFlasher, IMapRepository
+    public class MemoryMapRepository : IMapContext, IMapRepository
     {
         private readonly SignalBus _signalBus;
         private readonly Dictionary<string, Map> _maps = new Dictionary<string, Map>();

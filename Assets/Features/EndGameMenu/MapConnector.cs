@@ -14,7 +14,7 @@ namespace Features.EndGameMenu
             _activateCommand = activateCommand;
         }
 
-        public void GameStatusChange(GameStatusChange status)
+        public void GameStatusChange(GameStatusChanged status)
         {
             if (status.Active)
                 _deactivateHandler.Invoke(new DeactivateCommand());

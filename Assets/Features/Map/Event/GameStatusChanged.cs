@@ -1,10 +1,10 @@
 ﻿namespace Features.Map.Event
 {
-    public class GameStatusChange : IDomainEvent
+    public class GameStatusChanged : IDomainEvent
     {
         public bool Active { get; }
 
-        public GameStatusChange(bool isActive)
+        public GameStatusChanged(bool isActive)
         {
             Active = isActive;
         }

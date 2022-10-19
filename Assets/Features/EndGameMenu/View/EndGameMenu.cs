@@ -10,12 +10,12 @@ namespace Features.EndGameMenu.View
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _exitButton;
 
-        private IRestartMapHandler _restartMapHandler;
+        private IReloadMapHandler _reloadMapHandler;
 
         [Inject]
-        public void Construct(IRestartMapHandler restartMapHandler)
+        public void Construct(IReloadMapHandler reloadMapHandler)
         {
-            _restartMapHandler = restartMapHandler;
+            _reloadMapHandler = reloadMapHandler;
         }
 
         public void SetVisible(bool active)
@@ -37,7 +37,7 @@ namespace Features.EndGameMenu.View
 
         private void OnClickPlay()
         {
-            _restartMapHandler.Invoke(new RestartMapCommand());
+            _reloadMapHandler.Invoke(new ReloadMapCommand());
         }
 
         private static void OnClickExit()

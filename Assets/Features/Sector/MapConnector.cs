@@ -19,13 +19,13 @@ namespace Features.Sector
             _activateSectorsHandler = activateSectorsHandler;
         }
 
-        public void GameStatusChange(GameStatusChange status)
+        public void GameStatusChange(GameStatusChanged status)
         {
             if (status.Active) return;
             _handler.Invoke(new DeactivateSectorsCommand());
         }
 
-        public void ResetMap(ResetMap status)
+        public void ResetMap(MapReloaded status)
         {
             _removeSectorsHandler.Invoke(new RemoveSectorsCommand());
         }

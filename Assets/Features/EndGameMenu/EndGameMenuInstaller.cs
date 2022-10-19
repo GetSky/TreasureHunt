@@ -29,7 +29,7 @@ namespace Features.EndGameMenu
                 .NonLazy();
 
             Container.Bind<MapConnector>().AsTransient().Lazy();
-            Container.BindSignal<GameStatusChange>().ToMethod<MapConnector>(c => c.GameStatusChange).FromResolve();
+            Container.BindSignal<GameStatusChanged>().ToMethod<MapConnector>(c => c.GameStatusChange).FromResolve();
         }
     }
 }

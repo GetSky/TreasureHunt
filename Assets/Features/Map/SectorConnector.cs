@@ -4,13 +4,13 @@ namespace Features.Map
 {
     public class SectorConnector
     {
-        private readonly IDeactivateMapHandler _mapHandler;
+        private readonly IDeactivateMapHandler _deactivateHandler;
 
-        public SectorConnector(IDeactivateMapHandler mapHandler)
+        public SectorConnector(IDeactivateMapHandler deactivateHandler)
         {
-            _mapHandler = mapHandler;
+            _deactivateHandler = deactivateHandler;
         }
 
-        public void TreasureFind() => _mapHandler.Invoke(new DeactivateMapCommand());
+        public void TreasureFind() => _deactivateHandler.Invoke(new DeactivateMapCommand());
     }
 }

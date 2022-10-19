@@ -9,17 +9,17 @@ namespace Features.Map
 
     public class MapFactory : IFactory<Map>
     {
-        private readonly IMapFlasher _mapFlasher;
+        private readonly IMapContext _context;
 
-        public MapFactory(IMapFlasher mapFlasher)
+        public MapFactory(IMapContext context)
         {
-            _mapFlasher = mapFlasher;
+            _context = context;
         }
 
         public Map Create()
         {
             var entity = new Map("map");
-            _mapFlasher.Save(entity);
+            _context.Save(entity);
 
             return entity;
         }
