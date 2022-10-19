@@ -6,8 +6,8 @@ namespace Features.Map
 {
     public class Map
     {
-        public ICollection<GameStatusChange> GameStatusChangeEvents { get; }
-        public ICollection<ResetMap> ResetEvents { get; }
+        public ICollection<GameStatusChanged> GameStatusChangeEvents { get; }
+        public ICollection<MapReloaded> ResetEvents { get; }
         public string Id { get; }
         private bool _active = true;
 
@@ -16,28 +16,28 @@ namespace Features.Map
         public Map(string id)
         {
             Id = id;
-            GameStatusChangeEvents = new List<GameStatusChange>();
-            GameStatusChangeEvents.Add(new GameStatusChange(_active));
-            ResetEvents = new List<ResetMap>();
+            GameStatusChangeEvents = new List<GameStatusChanged>();
+            GameStatusChangeEvents.Add(new GameStatusChanged(_active));
+            ResetEvents = new List<MapReloaded>();
         }
 
         public void Deactivate()
         {
             _active = false;
             OnChangedActiveStatus.Invoke(_active);
-            GameStatusChangeEvents.Add(new GameStatusChange(_active));
+            GameStatusChangeEvents.Add(new GameStatusChanged(_active));
         }
 
         public void Activate()
         {
             _active = true;
             OnChangedActiveStatus.Invoke(_active);
-            GameStatusChangeEvents.Add(new GameStatusChange(_active));
+            GameStatusChangeEvents.Add(new GameStatusChanged(_active));
         }
 
-        public void ResetMap()
+        public void ReloadMap()
         {
-            ResetEvents.Add(new ResetMap());
+            ResetEvents.Add(new MapReloaded());
         }
     }
 }

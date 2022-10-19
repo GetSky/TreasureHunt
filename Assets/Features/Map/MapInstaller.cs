@@ -12,11 +12,11 @@ namespace Features.Map
         {
             Container.BindFactory<Map, Factory>().FromFactory<MapFactory>();
             Container.Bind<MapProducer>().AsTransient().Lazy();
-            Container.Bind<IRestartMapHandler>().To<RestartMapHandler>().AsSingle().Lazy();
+            Container.Bind<IReloadMapHandler>().To<ReloadMapHandler>().AsSingle().Lazy();
             Container.Bind<IDeactivateMapHandler>().To<DeactivateMapHandler>().AsSingle().Lazy();
 
             Container
-                .Bind(typeof(IMapFlasher), typeof(IMapRepository))
+                .Bind(typeof(IMapContext), typeof(IMapRepository))
                 .To<MemoryMapRepository>()
                 .AsSingle()
                 .NonLazy();
@@ -25,8 +25,8 @@ namespace Features.Map
 
             Container.BindSignal<TreasureFind>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
 
-            Container.DeclareSignal<GameStatusChange>().OptionalSubscriber();
-            Container.DeclareSignal<ResetMap>().OptionalSubscriber();
+            Container.DeclareSignal<GameStatusChanged>().OptionalSubscriber();
+            Container.DeclareSignal<MapReloaded>().OptionalSubscriber();
 
             Container.Bind<IInitializable>().To<Initializer>().AsSingle();
         }

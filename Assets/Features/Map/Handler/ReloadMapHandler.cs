@@ -2,26 +2,27 @@
 
 namespace Features.Map.Handler
 {
-    public class RestartMapHandler : IRestartMapHandler
+    public class ReloadMapHandler : IReloadMapHandler
     {
         private readonly IMapRepository _repository;
         private readonly MapProducer _producer;
-        private readonly IMapFlasher _mapFlasher;
+        private readonly IMapContext _context;
 
-        public RestartMapHandler(IMapRepository repository, MapProducer producer, IMapFlasher mapFlasher)
+        public ReloadMapHandler(IMapRepository repository, MapProducer producer, IMapContext context)
         {
             _repository = repository;
             _producer = producer;
-            _mapFlasher = mapFlasher;
+            _context = context;
         }
 
-        public void Invoke(RestartMapCommand command)
+        public void Invoke(ReloadMapCommand command)
         {
             var map = _repository.FindCurrent();
-            map.ResetMap();
-            _mapFlasher.Save(map);
+            map.ReloadMap();
+            _context.Save(map);
 
             _producer.Generate(10, 10, 90);
+            _context.Save(map);
         }
     }
 }

@@ -4,20 +4,20 @@ namespace Features.Map.Handler
 {
     public class DeactivateMapHandler : IDeactivateMapHandler
     {
-        private readonly IMapRepository _mapRepo;
-        private readonly IMapFlasher _mapFlasher;
+        private readonly IMapRepository _repository;
+        private readonly IMapContext _context;
 
-        public DeactivateMapHandler(IMapRepository mapRepo, IMapFlasher mapFlasher)
+        public DeactivateMapHandler(IMapRepository repository, IMapContext context)
         {
-            _mapRepo = mapRepo;
-            _mapFlasher = mapFlasher;
+            _repository = repository;
+            _context = context;
         }
 
         public void Invoke(DeactivateMapCommand command)
         {
-            var map = _mapRepo.FindCurrent();
+            var map = _repository.FindCurrent();
             map.Deactivate();
-            _mapFlasher.Save(map);
+            _context.Save(map);
         }
     }
 }

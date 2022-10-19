@@ -11,17 +11,17 @@ namespace Features.Map
     public class MapProducer
     {
         private readonly SignalBus _signalBus;
-        private readonly IMapRepository _mapRepo;
+        private readonly IMapRepository _repository;
 
-        public MapProducer(SignalBus signalBus, IMapRepository mapRepo)
+        public MapProducer(SignalBus signalBus, IMapRepository repository)
         {
             _signalBus = signalBus;
-            _mapRepo = mapRepo;
+            _repository = repository;
         }
 
         public Map Generate(int rows, int columns, int countDistanceCard)
         {
-            var map = _mapRepo.FindCurrent();
+            var map = _repository.FindCurrent();
             var deck = CreateDeck(rows * columns, countDistanceCard);
             var idx = 0;
             for (var x = 0; x < rows; x++)
