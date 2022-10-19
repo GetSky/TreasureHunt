@@ -19,12 +19,12 @@ namespace Features.EndGameMenu
         {
             Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_endGameMenuPrefab);
 
-            Container.Bind<IDeactivateMenuHandler>().To<DeactivateMenuHandler>().AsSingle().Lazy();
-            Container.Bind<IActivateMenuCommand>().To<ActivateMenuHandler>().AsSingle().Lazy();
+            Container.Bind<IDeactivateHandler>().To<DeactivateHandler>().AsSingle().Lazy();
+            Container.Bind<IActivateCommand>().To<ActivateHandler>().AsSingle().Lazy();
 
             Container
-                .Bind(typeof(IEndMenuContext), typeof(IEndMenuRepository))
-                .To<SceneEndMenuRepository>()
+                .Bind(typeof(IModelContext), typeof(IModelRepository))
+                .To<MemoryModelRepository>()
                 .AsSingle()
                 .NonLazy();
 

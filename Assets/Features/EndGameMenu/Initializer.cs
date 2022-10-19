@@ -8,9 +8,9 @@ namespace Features.EndGameMenu
     {
         private readonly DiContainer _container;
         private readonly GameObject _endGameMenuPrefab;
-        private readonly IEndMenuContext _context;
+        private readonly IModelContext _context;
 
-        public Initializer(DiContainer container, GameObject endGameMenuPrefab, IEndMenuContext context)
+        public Initializer(DiContainer container, GameObject endGameMenuPrefab, IModelContext context)
         {
             _container = container;
             _endGameMenuPrefab = endGameMenuPrefab;
@@ -20,7 +20,7 @@ namespace Features.EndGameMenu
         public void Initialize()
         {
             var endMenu = _container.InstantiatePrefabForComponent<View.EndGameMenu>(_endGameMenuPrefab);
-            var model = new EndGameMenuModel();
+            var model = new MenuModel();
             model.AddView(endMenu);
             _context.Save(model);
         }
