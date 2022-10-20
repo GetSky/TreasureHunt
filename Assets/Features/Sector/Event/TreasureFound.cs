@@ -1,6 +1,6 @@
 ﻿namespace Features.Sector.Event
 {
-    public class TreasureFind : IDomainEvent
+    public class TreasureFound : IDomainEvent
     {
     }
 }

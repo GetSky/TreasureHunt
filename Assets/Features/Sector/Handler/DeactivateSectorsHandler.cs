@@ -5,12 +5,12 @@ namespace Features.Sector.Handler
     public class DeactivateSectorsHandler : IDeactivateSectorsHandler
     {
         private readonly ISectorRepository _sectorRepo;
-        private readonly ISectorFlasher _flasher;
+        private readonly ISectorContext _context;
 
-        public DeactivateSectorsHandler(ISectorRepository sectorRepo, ISectorFlasher flasher)
+        public DeactivateSectorsHandler(ISectorRepository sectorRepo, ISectorContext context)
         {
             _sectorRepo = sectorRepo;
-            _flasher = flasher;
+            _context = context;
         }
 
         public void Invoke(DeactivateSectorsCommand command)
@@ -18,7 +18,7 @@ namespace Features.Sector.Handler
             foreach (var sector in _sectorRepo.FindAll())
             {
                 sector.Deactivate();
-                _flasher.Save(sector);
+                _context.Save(sector);
             }
         }
     }

@@ -23,7 +23,7 @@ namespace Features.Map
 
             Container.Bind<SectorConnector>().AsTransient().Lazy();
 
-            Container.BindSignal<TreasureFind>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
+            Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
 
             Container.DeclareSignal<GameStatusChanged>().OptionalSubscriber();
             Container.DeclareSignal<MapReloaded>().OptionalSubscriber();

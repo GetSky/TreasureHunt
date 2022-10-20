@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using Features.Sector.Card;
 
 namespace Features.Sector.Handler
 {

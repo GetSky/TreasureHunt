@@ -30,7 +30,7 @@ namespace Features.Sector
             Container.Bind<ICreateSectorHandler>().To<CreateSectorHandler>().AsSingle().Lazy();
 
             Container
-                .Bind(typeof(ISectorRepository), typeof(ISectorFlasher))
+                .Bind(typeof(ISectorRepository), typeof(ISectorContext))
                 .To<MemorySectorRepository>()
                 .AsSingle()
                 .NonLazy();
@@ -42,7 +42,7 @@ namespace Features.Sector
             Container.DeclareSignal<CreateSectorCommand>();
             Container.BindSignal<CreateSectorCommand>().ToMethod<ICreateSectorHandler>(c => c.Invoke).FromResolve();
 
-            Container.DeclareSignal<TreasureFind>();
+            Container.DeclareSignal<TreasureFound>();
         }
     }
 }
