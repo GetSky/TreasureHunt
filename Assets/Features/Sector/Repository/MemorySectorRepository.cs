@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Features.Sector.Card;
 using Zenject;
 
 namespace Features.Sector.Repository
 {
-    public class MemorySectorRepository : ISectorRepository, ISectorFlasher
+    public class MemorySectorRepository : ISectorRepository, ISectorContext
     {
         private readonly SignalBus _signalBus;
         private readonly Dictionary<string, Sector> _sectors = new Dictionary<string, Sector>();

@@ -5,12 +5,12 @@ namespace Features.Sector.Handler
     public class ActivateSectorsHandler : IActivateSectorsHandler
     {
         private readonly ISectorRepository _sectorRepo;
-        private readonly ISectorFlasher _flasher;
+        private readonly ISectorContext _context;
 
-        public ActivateSectorsHandler(ISectorRepository sectorRepo, ISectorFlasher flasher)
+        public ActivateSectorsHandler(ISectorRepository sectorRepo, ISectorContext context)
         {
             _sectorRepo = sectorRepo;
-            _flasher = flasher;
+            _context = context;
         }
 
         public void Invoke(ActivateSectorsCommand command)
@@ -18,7 +18,7 @@ namespace Features.Sector.Handler
             foreach (var sector in _sectorRepo.FindAll())
             {
                 sector.Activate();
-                _flasher.Save(sector);
+                _context.Save(sector);
             }
         }
     }

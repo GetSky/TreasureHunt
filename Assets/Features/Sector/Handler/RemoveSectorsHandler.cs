@@ -4,12 +4,12 @@ namespace Features.Sector.Handler
 {
     public class RemoveSectorsHandler : IRemoveSectorsHandler
     {
-        private readonly ISectorFlasher _flasher;
+        private readonly ISectorContext _context;
         private readonly ISectorRepository _repository;
 
-        public RemoveSectorsHandler(ISectorFlasher flasher, ISectorRepository repository)
+        public RemoveSectorsHandler(ISectorContext context, ISectorRepository repository)
         {
-            _flasher = flasher;
+            _context = context;
             _repository = repository;
         }
 
@@ -18,7 +18,7 @@ namespace Features.Sector.Handler
             foreach (var sector in _repository.FindInactive())
             {
                 sector.Destroy();
-                _flasher.Remove(sector);
+                _context.Remove(sector);
             }
         }
     }

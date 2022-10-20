@@ -5,12 +5,12 @@ namespace Features.Sector.Handler
     public class SectorOpenHandler : ISectorOpenHandler
     {
         private readonly ISectorRepository _sectorRepo;
-        private readonly ISectorFlasher _sectorFlasher;
+        private readonly ISectorContext _sectorContext;
 
-        public SectorOpenHandler(ISectorRepository sectorRepo, ISectorFlasher sectorFlasher)
+        public SectorOpenHandler(ISectorRepository sectorRepo, ISectorContext sectorContext)
         {
             _sectorRepo = sectorRepo;
-            _sectorFlasher = sectorFlasher;
+            _sectorContext = sectorContext;
         }
 
         public void Invoke(SectorOpenCommand command)
@@ -22,7 +22,7 @@ namespace Features.Sector.Handler
             sector.Open(treasure);
             foreach (var sec in _sectorRepo.FindAll()) sec.Highlight(sector);
 
-            _sectorFlasher.Save(sector);
+            _sectorContext.Save(sector);
         }
     }
 }

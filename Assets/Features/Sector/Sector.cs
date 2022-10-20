@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
+using Features.Sector.Card;
 using Features.Sector.Event;
 
 namespace Features.Sector
 {
     public class Sector
     {
-        public ICollection<TreasureFind> Events { get; }
+        public ICollection<TreasureFound> Events { get; }
         public string Id { get; }
         private Vector2 Position { get; }
         public ICard Card { get; }
@@ -22,7 +23,7 @@ namespace Features.Sector
 
         public Sector(string id, Vector2 position, ICard card)
         {
-            Events = new List<TreasureFind>();
+            Events = new List<TreasureFound>();
             Id = id;
             Position = position;
             Card = card;
@@ -33,7 +34,7 @@ namespace Features.Sector
             if (_active == false) return;
 
             Card.UpdateDistanceToTreasure(DistanceTo(treasure));
-            if (Card.Type() == CardType.Treasure) Events.Add(new TreasureFind());
+            if (Card.Type() == CardType.Treasure) Events.Add(new TreasureFound());
             OnOpened.Invoke(Card);
         }
 

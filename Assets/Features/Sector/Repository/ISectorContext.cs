@@ -1,6 +1,6 @@
 ﻿namespace Features.Sector.Repository
 {
-    public interface ISectorFlasher
+    public interface ISectorContext
     {
         public void Save(Sector sector);
 

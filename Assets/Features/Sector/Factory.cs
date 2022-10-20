@@ -1,4 +1,5 @@
-﻿using Features.Sector.Repository;
+﻿using Features.Sector.Card;
+using Features.Sector.Repository;
 using UnityEngine;
 using Zenject;
 using Vector2 = System.Numerics.Vector2;
@@ -9,14 +10,14 @@ namespace Features.Sector
     {
         private readonly DiContainer _container;
         private readonly Card.Factory _cardFactory;
-        private readonly ISectorFlasher _flasher;
+        private readonly ISectorContext _context;
         private readonly GameObject _prefab;
 
-        public Factory(DiContainer container, Card.Factory cardFactory, ISectorFlasher flasher, GameObject prefab)
+        public Factory(DiContainer container, Card.Factory cardFactory, ISectorContext context, GameObject prefab)
         {
             _container = container;
             _cardFactory = cardFactory;
-            _flasher = flasher;
+            _context = context;
             _prefab = prefab;
         }
 
@@ -26,7 +27,7 @@ namespace Features.Sector
             obj.transform.position = new Vector3(position.X, 0, position.Y);
 
             var entity = new Sector(obj.UniqueCode(), position, _cardFactory.Create(type));
-            _flasher.Save(entity);
+            _context.Save(entity);
 
             var symbolModel = new SymbolModel(entity);
             symbolModel.AddView(obj);
