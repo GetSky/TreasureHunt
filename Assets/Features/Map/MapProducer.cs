@@ -3,11 +3,17 @@ using System.Linq;
 using Features.Map.Repository;
 using Features.Sector.Handler;
 using Zenject;
-using CardType = Features.Sector.Card.CardType;
 using Random = System.Random;
 
 namespace Features.Map
 {
+    public enum CardType
+    {
+        None,
+        Treasure,
+        Distance
+    }
+
     public class MapProducer
     {
         private readonly SignalBus _signalBus;
