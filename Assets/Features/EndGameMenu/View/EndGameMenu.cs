@@ -1,4 +1,4 @@
-﻿using Features.Map.Handler;
+﻿using Features.EndGameMenu.Handler;
 using UnityEngine;
 using Zenject;
 using Button = UnityEngine.UI.Button;

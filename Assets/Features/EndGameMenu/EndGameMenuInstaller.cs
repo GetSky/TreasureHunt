@@ -21,6 +21,7 @@ namespace Features.EndGameMenu
 
             Container.Bind<IDeactivateHandler>().To<DeactivateHandler>().AsSingle().Lazy();
             Container.Bind<IActivateCommand>().To<ActivateHandler>().AsSingle().Lazy();
+            Container.Bind<IReloadMapHandler>().To<ReloadMapHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(IModelContext), typeof(IModelRepository))
