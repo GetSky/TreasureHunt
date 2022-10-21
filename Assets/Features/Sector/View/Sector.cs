@@ -58,7 +58,6 @@ namespace Features.Sector.View
                     break;
                 case "X":
                     _isFinished = true;
-                    _material.DOColor(_treasureColor, _timeAnimationDuration).onComplete += OnComplete;
                     break;
                 default:
                     _material.DOColor(_distanceColor, _timeAnimationDuration);
@@ -80,18 +79,6 @@ namespace Features.Sector.View
             _material
                 .DOColor(_defaultColor, _timeAnimationDuration)
                 .SetDelay(_timeAnimationDelay + _timeAnimationDuration);
-        }
-
-        private void OnComplete()
-        {
-            if (_isFinished) StartCoroutine(nameof(RestartDelay));
-        }
-
-        private IEnumerator RestartDelay()
-        {
-            yield return new WaitForSeconds(_timeRestartDuration);
-            // _restartMapHandler.Invoke(new RestartMapCommand());
-            StopCoroutine(nameof(RestartDelay));
         }
 
         public void StopHighlight()
