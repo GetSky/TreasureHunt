@@ -16,7 +16,6 @@ namespace Features.Sector.View
         [SerializeField] private Color _distanceColor = Color.cyan;
 
         [SerializeField] private float _timeAnimationDuration = 0.75f;
-        [SerializeField] private float _timeRestartDuration = 0.75f;
         [SerializeField] private float _timeAnimationDelay = 2.0f;
 
         private TextMeshPro _distanceText;
@@ -58,6 +57,7 @@ namespace Features.Sector.View
                     break;
                 case "X":
                     _isFinished = true;
+                    _material.DOColor(_treasureColor, _timeAnimationDuration);
                     break;
                 default:
                     _material.DOColor(_distanceColor, _timeAnimationDuration);
