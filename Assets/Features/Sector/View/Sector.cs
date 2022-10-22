@@ -17,14 +17,16 @@ namespace Features.Sector.View
         [SerializeField] private float _timeAnimationDuration = 0.75f;
         [SerializeField] private float _timeAnimationDelay = 2.0f;
 
-        private TextMeshPro _distanceText;
+        private IInputSectorControl _input;
         private ISectorOpenHandler _openHandler;
         private Material _material;
+        private TextMeshPro _distanceText;
         private bool _isOpened;
 
         [Inject]
-        public void Construct(ISectorOpenHandler openHandler)
+        public void Construct(IInputSectorControl input, ISectorOpenHandler openHandler)
         {
+            _input = input;
             _openHandler = openHandler;
         }
 
@@ -37,8 +39,9 @@ namespace Features.Sector.View
 
         public string UniqueCode() => transform.position + gameObject.name;
 
-        private void OnMouseDown()
+        private void OnMouseUp()
         {
+            if (_input.IsPressOnSector() == false) return;
             _openHandler.Invoke(new SectorOpenCommand(UniqueCode()));
         }
 
