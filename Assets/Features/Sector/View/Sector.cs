@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Features.Sector.Handler;
 using TMPro;
 using UnityEngine;
@@ -22,7 +21,6 @@ namespace Features.Sector.View
         private ISectorOpenHandler _openHandler;
         private Material _material;
         private bool _isOpened;
-        private bool _isFinished;
 
         [Inject]
         public void Construct(ISectorOpenHandler openHandler)
@@ -56,7 +54,6 @@ namespace Features.Sector.View
                     _material.DOColor(_pressingColor, _timeAnimationDuration);
                     break;
                 case "X":
-                    _isFinished = true;
                     _material.DOColor(_treasureColor, _timeAnimationDuration);
                     break;
                 default:
