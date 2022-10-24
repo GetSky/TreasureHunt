@@ -29,21 +29,21 @@ namespace Features.Sector
             Card = card;
         }
 
-        public void Open(Sector treasure)
+        public void OpenWithTreasureIn(Sector sector)
         {
             if (_active == false) return;
 
-            var domainEvent = Card.Execute(DistanceTo(treasure), this);
+            var domainEvent = Card.Execute(MeasureDistanceTo(sector), this);
             if (domainEvent != null) Events.Add(domainEvent);
 
             OnOpened.Invoke(Card);
         }
 
-        public void Highlight(Sector sector, int distance)
+        public void HighlightInRadius(Sector center, int radius)
         {
             if (_active == false) return;
 
-            if (DistanceTo(sector) == distance) OnHighlighted.Invoke();
+            if (MeasureDistanceTo(center) == radius) OnHighlighted.Invoke();
             else OnStopHighlighted.Invoke();
         }
 
@@ -58,7 +58,7 @@ namespace Features.Sector
             OnDestroyed();
         }
 
-        private int DistanceTo(Sector sector)
+        private int MeasureDistanceTo(Sector sector)
         {
             return (int)Math.Round(
                 Math.Sqrt(Math.Pow(Position.X - sector.Position.X, 2) + Math.Pow(Position.Y - sector.Position.Y, 2))

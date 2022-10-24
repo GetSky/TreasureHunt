@@ -14,7 +14,7 @@ namespace Features.Sector.Handler
         public void Invoke(HighlightSectorsAtDistanceCommand command)
         {
             var sector = _repository.FindById(command.Id);
-            foreach (var sec in _repository.FindAll()) sec.Highlight(sector, command.Distance);
+            foreach (var sec in _repository.FindAll()) sec.HighlightInRadius(sector, command.Distance);
         }
     }
 }
