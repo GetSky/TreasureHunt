@@ -19,7 +19,7 @@ namespace Features.Sector.Handler
             var treasure = _sectorRepo.FindTreasure();
             if (treasure == null) return;
 
-            sector.Open(treasure);
+            sector.OpenWithTreasureIn(treasure);
             _sectorContext.Save(sector);
         }
     }
