@@ -12,9 +12,9 @@ namespace Features.Sector.Repository
         private readonly SignalBus _signalBus;
         private readonly Dictionary<string, Sector> _sectors = new Dictionary<string, Sector>();
 
-        public MemorySectorRepository(SignalBus _signalBus)
+        public MemorySectorRepository(SignalBus signalBus)
         {
-            this._signalBus = _signalBus;
+            _signalBus = signalBus;
         }
 
         public Sector[] FindAll() => _sectors.Values.ToArray();
@@ -27,7 +27,7 @@ namespace Features.Sector.Repository
 
         public Sector FindTreasure()
         {
-            var entity = _sectors.First(sector => sector.Value.Card.Type() == CardType.Treasure);
+            var entity = _sectors.First(sector => sector.Value.Card is TreasureCard);
             return entity.Value;
         }
 
