@@ -28,6 +28,7 @@ namespace Features.Sector
             Container.Bind<IRemoveSectorsHandler>().To<RemoveSectorsHandler>().AsSingle().Lazy();
             Container.Bind<IActivateSectorsHandler>().To<ActivateSectorsHandler>().AsSingle().Lazy();
             Container.Bind<ICreateSectorHandler>().To<CreateSectorHandler>().AsSingle().Lazy();
+            Container.Bind<IHighlightSectorsAtDistanceHandler>().To<HighlightSectorsAtDistanceHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(ISectorRepository), typeof(ISectorContext))
@@ -41,8 +42,11 @@ namespace Features.Sector
 
             Container.DeclareSignal<CreateSectorCommand>();
             Container.BindSignal<CreateSectorCommand>().ToMethod<ICreateSectorHandler>(c => c.Invoke).FromResolve();
-
+            
             Container.DeclareSignal<TreasureFound>();
+            Container.DeclareSignal<HighlightSectorsAtDistanceCommand>();
+            Container.BindSignal<HighlightSectorsAtDistanceCommand>().ToMethod<IHighlightSectorsAtDistanceHandler>(c => c.Invoke).FromResolve();
+
         }
     }
 }

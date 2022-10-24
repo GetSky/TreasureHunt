@@ -8,7 +8,7 @@ namespace Features.Sector
 {
     public class Sector
     {
-        public ICollection<TreasureFound> Events { get; }
+        public ICollection<IDomainEvent> Events { get; }
         public string Id { get; }
         private Vector2 Position { get; }
         public ICard Card { get; }
@@ -23,7 +23,7 @@ namespace Features.Sector
 
         public Sector(string id, Vector2 position, ICard card)
         {
-            Events = new List<TreasureFound>();
+            Events = new List<IDomainEvent>();
             Id = id;
             Position = position;
             Card = card;
@@ -33,19 +33,17 @@ namespace Features.Sector
         {
             if (_active == false) return;
 
-            Card.UpdateDistanceToTreasure(DistanceTo(treasure));
-            if (Card.Type() == CardType.Treasure) Events.Add(new TreasureFound());
+            var domainEvent = Card.Execute(DistanceTo(treasure), this);
+            if (domainEvent != null) Events.Add(domainEvent);
+
             OnOpened.Invoke(Card);
         }
 
-        public void Highlight(Sector openedSector)
+        public void Highlight(Sector sector, int distance)
         {
             if (_active == false) return;
 
-            if (openedSector.Card.Type() == CardType.None) return;
-
-            var distance = DistanceTo(openedSector);
-            if (distance == openedSector.Card.Value()) OnHighlighted.Invoke();
+            if (DistanceTo(sector) == distance) OnHighlighted.Invoke();
             else OnStopHighlighted.Invoke();
         }
 

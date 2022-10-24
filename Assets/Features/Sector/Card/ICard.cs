@@ -1,4 +1,6 @@
-﻿namespace Features.Sector.Card
+﻿using Features.Sector.Event;
+
+namespace Features.Sector.Card
 {
     public enum CardType
     {
@@ -10,7 +12,7 @@
     public interface ICard
     {
         public CardType Type();
-        public void UpdateDistanceToTreasure(int distance);
+        public IDomainEvent Execute(int distance, Sector inSector);
         public int Value();
     }
 }

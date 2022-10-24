@@ -1,13 +1,15 @@
-﻿namespace Features.Sector.Card
+﻿using Features.Sector.Event;
+
+namespace Features.Sector.Card
 {
     public class TreasureCard : ICard
     {
-        private int _distanceToTreasure;
+        private const int NullValue = 0;
 
         public CardType Type() => CardType.Treasure;
 
-        public int Value() => _distanceToTreasure;
+        public int Value() => NullValue;
 
-        public void UpdateDistanceToTreasure(int value) => _distanceToTreasure = value;
+        public IDomainEvent Execute(int value, Sector sector) => new TreasureFound();
     }
 }

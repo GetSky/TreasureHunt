@@ -1,4 +1,7 @@
-﻿namespace Features.Sector.Card
+﻿using Features.Sector.Event;
+using Features.Sector.Handler;
+
+namespace Features.Sector.Card
 {
     public class DistanceCard : ICard
     {
@@ -10,6 +13,10 @@
 
         public int Value() => _distanceToTreasure <= MaxDistanceToView ? _distanceToTreasure : NullValue;
 
-        public void UpdateDistanceToTreasure(int value) => _distanceToTreasure = value;
+        public IDomainEvent Execute(int value, Sector sector)
+        {
+            _distanceToTreasure = value;
+            return Value() > 0 ? new HighlightSectorsAtDistanceCommand(sector.Id, Value()) : null;
+        }
     }
 }

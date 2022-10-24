@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Features.Sector.Card;
+using Features.Sector.Event;
+using Features.Sector.Handler;
 using Zenject;
 
 namespace Features.Sector.Repository
@@ -38,7 +40,20 @@ namespace Features.Sector.Repository
         {
             var events = sector.Events.ToArray();
             sector.Events.Clear();
-            foreach (var domainEvent in events) _signalBus.Fire(domainEvent);
+
+            foreach (var domainEvent in events)
+            {
+                switch (domainEvent)
+                {
+                    case HighlightSectorsAtDistanceCommand @event:
+                        _signalBus.Fire(@event);
+                        break;
+
+                    case TreasureFound @event:
+                        _signalBus.Fire(@event);
+                        break;
+                }
+            }
 
             if (_sectors.ContainsKey(sector.Id)) return;
             _sectors[sector.Id] = sector;

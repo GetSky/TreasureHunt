@@ -20,8 +20,6 @@ namespace Features.Sector.Handler
             if (treasure == null) return;
 
             sector.Open(treasure);
-            foreach (var sec in _sectorRepo.FindAll()) sec.Highlight(sector);
-
             _sectorContext.Save(sector);
         }
     }
