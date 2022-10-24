@@ -55,19 +55,19 @@ namespace Features.Sector
         {
             Container
                 .BindSignal<GameStatusChanged>()
-                .ToMethod<MapConnector>(c => c.GameStatusChange)
+                .ToMethod<MapConnector>(connector => connector.GameStatusChange)
                 .FromResolve();
             Container
                 .BindSignal<MapReloaded>()
-                .ToMethod<MapConnector>(c => c.ResetMap)
+                .ToMethod<MapConnector>(connector => connector.ResetMap)
                 .FromResolve();
             Container
                 .BindSignal<CreateSectorCommand>()
-                .ToMethod<ICreateSectorHandler>(c => c.Invoke)
+                .ToMethod<ICreateSectorHandler>(handler => handler.Invoke)
                 .FromResolve();
             Container
                 .BindSignal<HighlightSectorsAtDistanceCommand>()
-                .ToMethod<IHighlightSectorsAtDistanceHandler>(c => c.Invoke)
+                .ToMethod<IHighlightSectorsAtDistanceHandler>(handler => handler.Invoke)
                 .FromResolve();
         }
 
