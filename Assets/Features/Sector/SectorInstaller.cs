@@ -20,33 +20,64 @@ namespace Features.Sector
         public override void InstallBindings()
         {
             Container.Bind<Factory>().AsSingle().WithArguments(_groundPrefab).Lazy();
-
             Container.BindFactory<CardType, ICard, Features.Sector.Card.Factory>().FromFactory<CardFactory>();
 
+            Container.Bind<MapConnector>().AsTransient().Lazy();
+
+            InstallHandlers();
+            InstallRepositories();
+            BindSignals();
+            DeclareSignals();
+        }
+
+        private void InstallHandlers()
+        {
             Container.Bind<ISectorOpenHandler>().To<SectorOpenHandler>().AsSingle().Lazy();
             Container.Bind<IDeactivateSectorsHandler>().To<DeactivateSectorsHandler>().AsSingle().Lazy();
             Container.Bind<IRemoveSectorsHandler>().To<RemoveSectorsHandler>().AsSingle().Lazy();
             Container.Bind<IActivateSectorsHandler>().To<ActivateSectorsHandler>().AsSingle().Lazy();
             Container.Bind<ICreateSectorHandler>().To<CreateSectorHandler>().AsSingle().Lazy();
-            Container.Bind<IHighlightSectorsAtDistanceHandler>().To<HighlightSectorsAtDistanceHandler>().AsSingle().Lazy();
+            Container
+                .Bind<IHighlightSectorsAtDistanceHandler>()
+                .To<HighlightSectorsAtDistanceHandler>()
+                .AsSingle()
+                .Lazy();
+        }
 
+        private void DeclareSignals()
+        {
+            Container.DeclareSignal<TreasureFound>();
+            Container.DeclareSignal<CreateSectorCommand>();
+            Container.DeclareSignal<HighlightSectorsAtDistanceCommand>();
+        }
+
+        private void BindSignals()
+        {
+            Container
+                .BindSignal<GameStatusChanged>()
+                .ToMethod<MapConnector>(c => c.GameStatusChange)
+                .FromResolve();
+            Container
+                .BindSignal<MapReloaded>()
+                .ToMethod<MapConnector>(c => c.ResetMap)
+                .FromResolve();
+            Container
+                .BindSignal<CreateSectorCommand>()
+                .ToMethod<ICreateSectorHandler>(c => c.Invoke)
+                .FromResolve();
+            Container
+                .BindSignal<HighlightSectorsAtDistanceCommand>()
+                .ToMethod<IHighlightSectorsAtDistanceHandler>(c => c.Invoke)
+                .FromResolve();
+        }
+
+        private void InstallRepositories()
+        {
             Container
                 .Bind(typeof(ISectorRepository), typeof(ISectorContext))
                 .To<MemorySectorRepository>()
                 .AsSingle()
                 .NonLazy();
-
-            Container.Bind<MapConnector>().AsTransient().Lazy();
-            Container.BindSignal<GameStatusChanged>().ToMethod<MapConnector>(c => c.GameStatusChange).FromResolve();
-            Container.BindSignal<MapReloaded>().ToMethod<MapConnector>(c => c.ResetMap).FromResolve();
-
-            Container.DeclareSignal<CreateSectorCommand>();
-            Container.BindSignal<CreateSectorCommand>().ToMethod<ICreateSectorHandler>(c => c.Invoke).FromResolve();
-            
-            Container.DeclareSignal<TreasureFound>();
-            Container.DeclareSignal<HighlightSectorsAtDistanceCommand>();
-            Container.BindSignal<HighlightSectorsAtDistanceCommand>().ToMethod<IHighlightSectorsAtDistanceHandler>(c => c.Invoke).FromResolve();
-
         }
     }
 }
