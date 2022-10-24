@@ -15,23 +15,25 @@ namespace Features.Sector
             _sector.OnDestroyed += OnDestroyed;
         }
 
-        private void OnDestroyed()
-        {
-            foreach (var view in _symbolView) view.DestroyView();
-        }
-
         public void AddView(ISymbolView symbolView)
         {
             _symbolView.Add(symbolView);
         }
 
+        private void OnDestroyed()
+        {
+            foreach (var view in _symbolView) view.DestroyView();
+            _sector.OnOpened -= OnOpened;
+            _sector.OnDestroyed -= OnDestroyed;
+        }
+
         private void OnOpened(ICard card)
         {
-            var symbol = card.Type() switch
+            var symbol = card switch
             {
-                CardType.None => "-",
-                CardType.Treasure => "X",
-                CardType.Distance => card.Value() == -1 ? "?" : card.Value().ToString(),
+                NoneCard _ => "-",
+                TreasureCard _ => "X",
+                DistanceCard _ => card.Value() == -1 ? "?" : card.Value().ToString(),
                 _ => ""
             };
 

@@ -11,7 +11,6 @@ namespace Features.Sector.Card
 
     public interface ICard
     {
-        public CardType Type();
         public IDomainEvent Execute(int distance, Sector inSector);
         public int Value();
     }
