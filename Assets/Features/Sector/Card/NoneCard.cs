@@ -1,4 +1,6 @@
-﻿namespace Features.Sector.Card
+﻿using Features.Sector.Event;
+
+namespace Features.Sector.Card
 {
     public class NoneCard : ICard
     {
@@ -8,6 +10,6 @@
 
         public int Value() => NullValue;
 
-        public void UpdateDistanceToTreasure(int value) => _ = value;
+        public IDomainEvent Execute(int value, Sector sector) => null;
     }
 }
