@@ -508,8 +508,20 @@ MonoBehaviour:
   _treasureColor: {r: 1, g: 0.8479532, b: 0, a: 1}
   _distanceColor: {r: 0.2775454, g: 0.48640528, b: 0.9339623, a: 1}
   _timeAnimationDuration: 0.5
-  _timeRestartDuration: 0.75
   _timeAnimationDelay: 2
+  _states:
+  - _state: 0
+    _object: {fileID: 11400000, guid: 59a5e33608e15d149bb945a03df9f53e, type: 2}
+  - _state: 1
+    _object: {fileID: 11400000, guid: f9181da6ef064d84ba6ac4a8c71a92e5, type: 2}
+  - _state: 2
+    _object: {fileID: 11400000, guid: 8d58225ec436445419a5ab93feb27acf, type: 2}
+  - _state: 3
+    _object: {fileID: 11400000, guid: 78d9d128f6fd29849b16b610cefd4304, type: 2}
+  - _state: 4
+    _object: {fileID: 11400000, guid: 357d24a94b48a654887d270cec9352b0, type: 2}
+  - _state: 5
+    _object: {fileID: 11400000, guid: 6e500d8a28b56fa4cbff83088548cb81, type: 2}
 --- !u!65 &4212686107642730950
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,26 +1,26 @@
-﻿using DG.Tweening;
+﻿using System.Linq;
+using DG.Tweening;
 using Features.Sector.Handler;
+using Features.Sector.View.State;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Features.Sector.View
 {
     public class Sector : MonoBehaviour, ISymbolView, IHighlightedView
     {
-        [SerializeField] private Color _defaultColor = Color.white;
-        [SerializeField] private Color _highlightColor = Color.green;
-        [SerializeField] private Color _pressingColor = Color.gray;
-        [SerializeField] private Color _treasureColor = Color.yellow;
-        [SerializeField] private Color _distanceColor = Color.cyan;
-
-        [SerializeField] private float _timeAnimationDuration = 0.75f;
-        [SerializeField] private float _timeAnimationDelay = 2.0f;
+        [FormerlySerializedAs("_timeAnimationDuration")] [SerializeField] private float _animationDuration = 0.75f;
+        [FormerlySerializedAs("_timeAnimationDelay")] [SerializeField] private float _animationDelay = 2.0f;
+        [SerializeField] private CardState[] _states;
 
         private IInputSectorControl _input;
         private ISectorOpenHandler _openHandler;
         private Material _material;
         private TextMeshPro _distanceText;
+        private Color _lightColor;
+        private Color _shitColor;
         private bool _isOpened;
 
         [Inject]
@@ -34,7 +34,9 @@ namespace Features.Sector.View
         {
             _distanceText = GetComponentInChildren<TextMeshPro>();
             _material = GetComponent<MeshRenderer>().material;
-            _material.color = _defaultColor;
+            _material.color = _states.First(cardState => cardState.State == State.State.Shirt).Object.Color;
+            _lightColor = _states.First(cardState => cardState.State == State.State.Light).Object.Color;
+            _shitColor = _states.First(cardState => cardState.State == State.State.Shirt).Object.Color;
         }
 
         public string UniqueCode() => transform.position + gameObject.name;
@@ -45,24 +47,14 @@ namespace Features.Sector.View
             _openHandler.Invoke(new SectorOpenCommand(UniqueCode()));
         }
 
-        public void UpdateSymbol(string symbol)
+        public void UpdateSymbol(State.State state, int value)
         {
-            _distanceText.SetText(symbol);
             StopHighlight();
             _isOpened = true;
-            switch (symbol)
-            {
-                case "?":
-                case "-":
-                    _material.DOColor(_pressingColor, _timeAnimationDuration);
-                    break;
-                case "X":
-                    _material.DOColor(_treasureColor, _timeAnimationDuration);
-                    break;
-                default:
-                    _material.DOColor(_distanceColor, _timeAnimationDuration);
-                    break;
-            }
+
+            var stateObject = _states.First(cardState => cardState.State == state).Object;
+            _distanceText.SetText(stateObject.Text(value));
+            _material.DOColor(stateObject.Color, _animationDuration);
         }
 
         public void DestroyView()
@@ -74,18 +66,15 @@ namespace Features.Sector.View
         {
             if (_isOpened) return;
             StopHighlight();
-
-            _material.DOColor(_highlightColor, _timeAnimationDuration);
-            _material
-                .DOColor(_defaultColor, _timeAnimationDuration)
-                .SetDelay(_timeAnimationDelay + _timeAnimationDuration);
+            _material.DOColor(_lightColor, _animationDuration);
+            _material.DOColor(_shitColor, _animationDuration).SetDelay(_animationDelay + _animationDuration);
         }
 
         public void StopHighlight()
         {
             if (_isOpened) return;
             _material.DOKill();
-            _material.DOColor(_defaultColor, _timeAnimationDuration);
+            _material.DOColor(_shitColor, _animationDuration);
         }
     }
 }
