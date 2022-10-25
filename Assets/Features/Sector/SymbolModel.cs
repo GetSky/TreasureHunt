@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Features.Sector.Card;
+using Features.Sector.View.State;
 
 namespace Features.Sector
 {
@@ -29,15 +30,15 @@ namespace Features.Sector
 
         private void OnOpened(ICard card)
         {
-            var symbol = card switch
+            var state = card switch
             {
-                NoneCard _ => "-",
-                TreasureCard _ => "X",
-                DistanceCard _ => card.Value() == -1 ? "?" : card.Value().ToString(),
-                _ => ""
+                NoneCard _ => State.Empty,
+                TreasureCard _ => State.Treasure,
+                DistanceCard _ => card.Value() == -1 ? State.TooFar : State.Distance,
+                _ => State.Empty
             };
 
-            foreach (var view in _symbolView) view.UpdateSymbol(symbol);
+            foreach (var view in _symbolView) view.UpdateSymbol(state, card.Value());
 
             _sector.OnOpened -= OnOpened;
         }
