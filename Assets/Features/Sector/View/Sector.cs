@@ -11,8 +11,8 @@ namespace Features.Sector.View
 {
     public class Sector : MonoBehaviour, ISymbolView, IHighlightedView
     {
-        [FormerlySerializedAs("_timeAnimationDuration")] [SerializeField] private float _animationDuration = 0.75f;
-        [FormerlySerializedAs("_timeAnimationDelay")] [SerializeField] private float _animationDelay = 2.0f;
+        [SerializeField] private float _animationDuration = 0.5f;
+        [SerializeField] private float _animationDelay = 2.0f;
         [SerializeField] private CardState[] _states;
 
         private IInputSectorControl _input;
