@@ -7,16 +7,11 @@ namespace Features.Sector
     {
         private readonly IDeactivateSectorsHandler _handler;
         private readonly IRemoveSectorsHandler _removeSectorsHandler;
-        private readonly IActivateSectorsHandler _activateSectorsHandler;
 
-        public MapConnector(
-            IDeactivateSectorsHandler handler,
-            IRemoveSectorsHandler removeSectorsHandler,
-            IActivateSectorsHandler activateSectorsHandler)
+        public MapConnector(IDeactivateSectorsHandler handler, IRemoveSectorsHandler removeSectorsHandler)
         {
             _handler = handler;
             _removeSectorsHandler = removeSectorsHandler;
-            _activateSectorsHandler = activateSectorsHandler;
         }
 
         public void GameStatusChange(GameStatusChanged status)
