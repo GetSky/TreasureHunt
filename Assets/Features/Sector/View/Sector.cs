@@ -10,6 +10,7 @@ namespace Features.Sector.View
 {
     public class Sector : MonoBehaviour, ISymbolView, IHighlightedView
     {
+        [SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private float _animationDuration = 0.5f;
         [SerializeField] private float _animationDelay = 2.0f;
         [SerializeField] private CardState[] _states;
@@ -32,7 +33,7 @@ namespace Features.Sector.View
         private void Awake()
         {
             _distanceText = GetComponentInChildren<TextMeshPro>();
-            _material = GetComponent<MeshRenderer>().material;
+            _material = _meshRenderer.material;
             _material.color = _states.First(cardState => cardState.State == State.State.Shirt).Object.Color;
             _lightColor = _states.First(cardState => cardState.State == State.State.Light).Object.Color;
             _shitColor = _states.First(cardState => cardState.State == State.State.Shirt).Object.Color;
