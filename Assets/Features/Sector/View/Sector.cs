@@ -4,7 +4,6 @@ using Features.Sector.Handler;
 using Features.Sector.View.State;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Features.Sector.View
