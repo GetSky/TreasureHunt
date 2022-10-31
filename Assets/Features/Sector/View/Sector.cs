@@ -11,6 +11,7 @@ namespace Features.Sector.View
     public class Sector : MonoBehaviour, ISymbolView, IHighlightedView
     {
         [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private GameObject _chest;
         [SerializeField] private float _animationDuration = 0.5f;
         [SerializeField] private float _animationDelay = 2.0f;
         [SerializeField] private CardState[] _states;
@@ -22,6 +23,7 @@ namespace Features.Sector.View
         private Color _lightColor;
         private Color _shitColor;
         private bool _isOpened;
+        private static readonly int IsOpen = Animator.StringToHash("isOpen");
 
         [Inject]
         public void Construct(IInputSectorControl input, ISectorOpenHandler openHandler)
@@ -51,10 +53,15 @@ namespace Features.Sector.View
         {
             StopHighlight();
             _isOpened = true;
-
+            if (state == State.State.Treasure)
+            {
+                _chest.SetActive(true);
+                _chest.GetComponent<Animator>().SetBool(IsOpen, true);
+            }
             var stateObject = _states.First(cardState => cardState.State == state).Object;
             _distanceText.SetText(stateObject.Text(value));
             _material.DOColor(stateObject.Color, _animationDuration);
+
         }
 
         public void DestroyView()
