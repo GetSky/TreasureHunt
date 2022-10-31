@@ -25,6 +25,8 @@ namespace Core
                 _startPosition = mousePosition;
             }
 
+            if (Input.GetMouseButtonUp(0)) _cameraMoved = false;
+
             return diff;
         }
 
