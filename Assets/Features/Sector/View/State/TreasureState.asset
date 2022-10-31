@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d350eb980334fb3b163d4222d79fc3f, type: 3}
   m_Name: TreasureState
   m_EditorClassIdentifier: 
-  _color: {r: 1, g: 0.8470589, b: 0, a: 0}
-  _text: X
+  _color: {r: 0.7921569, g: 0.77254903, b: 0.1764706, a: 0}
+  _text: 
