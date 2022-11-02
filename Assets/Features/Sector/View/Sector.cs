@@ -61,7 +61,6 @@ namespace Features.Sector.View
             var stateObject = _states.First(cardState => cardState.State == state).Object;
             _distanceText.SetText(stateObject.Text(value));
             _material.DOColor(stateObject.Color, _animationDuration);
-
         }
 
         public void DestroyView()
