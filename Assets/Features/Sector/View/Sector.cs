@@ -58,6 +58,7 @@ namespace Features.Sector.View
                 _chest.SetActive(true);
                 _chest.GetComponent<Animator>().SetBool(IsOpen, true);
             }
+
             var stateObject = _states.First(cardState => cardState.State == state).Object;
             _distanceText.SetText(stateObject.Text(value));
             _material.DOColor(stateObject.Color, _animationDuration);
