@@ -6,8 +6,6 @@ namespace Features.Sector.Card
     {
         private const int NullValue = -1;
 
-        public CardType Type() => CardType.None;
-
         public int Value() => NullValue;
 
         public IDomainEvent Execute(int value, Sector sector) => null;
