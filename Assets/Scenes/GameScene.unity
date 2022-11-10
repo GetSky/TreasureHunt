@@ -1448,7 +1448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f03323361cf7410c8a12a861df4465ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depthTextureMode: 1
+  _depthTextureMode: 1
 --- !u!1 &965652249
 GameObject:
   m_ObjectHideFlags: 0
