@@ -4,7 +4,6 @@ using Features.Sector.Handler;
 using Features.Sector.View.State;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Features.Sector.View
@@ -94,7 +93,7 @@ namespace Features.Sector.View
             _material.DOColor(_shitColor, _animationDuration);
         }
 
-        public void Update()
+        public void Start()
         {
             RaycastHit hit;
 
