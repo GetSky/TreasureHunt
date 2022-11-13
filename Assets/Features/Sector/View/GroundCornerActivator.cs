@@ -13,42 +13,20 @@ namespace Features.Sector.View
         [SerializeField] private GameObject _topRight;
         [SerializeField] private GameObject _bottomRight;
 
+        private const float Distance = 1.5f;
+
         public void Start()
         {
-            RaycastHit hit;
+            var origin = transform.position;
 
-            if (!Physics.Raycast(transform.position, Vector3.forward, out hit,
-                    1.5f))
-            {
-                _centerTop.SetActive(true);
-            }
-
-            RaycastHit hit2;
-            if (!Physics.Raycast(transform.position, -1 * Vector3.forward, out hit2,
-                    1.5f))
-            {
-                _centerBottom.SetActive(true);
-            }
-
-            RaycastHit hit3;
-            if (!Physics.Raycast(transform.position, Vector3.left, out hit3,
-                    1.5f))
-            {
-                _centerLeft.SetActive(true);
-            }
-
-            if (hit2.collider == null && hit3.collider == null) _downLeft.SetActive(true);
-            if (hit.collider == null && hit3.collider == null) _topLeft.SetActive(true);
-
-            RaycastHit hit4;
-            if (!Physics.Raycast(transform.position, Vector3.right, out hit4,
-                    1.5f))
-            {
-                _centerRight.SetActive(true);
-            }
-
-            if (hit2.collider == null && hit4.collider == null) _bottomRight.SetActive(true);
-            if (hit.collider == null && hit4.collider == null) _topRight.SetActive(true);
+            if (!Physics.Raycast(origin, Vector3.forward, out var midTopHit, Distance)) _centerTop.SetActive(true);
+            if (!Physics.Raycast(origin, Vector3.back, out var midBottomHit, Distance)) _centerBottom.SetActive(true);
+            if (!Physics.Raycast(origin, Vector3.left, out var midLeftHit, Distance)) _centerLeft.SetActive(true);
+            if (midBottomHit.collider == null && midLeftHit.collider == null) _downLeft.SetActive(true);
+            if (midTopHit.collider == null && midLeftHit.collider == null) _topLeft.SetActive(true);
+            if (!Physics.Raycast(origin, Vector3.right, out var midRightHit, Distance)) _centerRight.SetActive(true);
+            if (midBottomHit.collider == null && midRightHit.collider == null) _bottomRight.SetActive(true);
+            if (midTopHit.collider == null && midRightHit.collider == null) _topRight.SetActive(true);
         }
     }
 }
