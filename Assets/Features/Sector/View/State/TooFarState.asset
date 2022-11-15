@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d350eb980334fb3b163d4222d79fc3f, type: 3}
   m_Name: TooFarState
   m_EditorClassIdentifier: 
-  _color: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
+  _color: {r: 0.5372549, g: 0.60784316, b: 0.14509805, a: 1}
   _text: '?'
