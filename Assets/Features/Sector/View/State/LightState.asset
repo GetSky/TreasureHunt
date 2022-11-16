@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d350eb980334fb3b163d4222d79fc3f, type: 3}
   m_Name: LightState
   m_EditorClassIdentifier: 
-  _color: {r: 0.1254902, g: 0.5294118, b: 0.15686275, a: 0}
+  _color: {r: 0.29411766, g: 0.4, b: 0.050980393, a: 0}
   _text: 
