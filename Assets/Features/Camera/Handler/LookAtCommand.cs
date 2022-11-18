@@ -1,12 +1,12 @@
-﻿namespace Features.Sector.Event
+﻿namespace Features.Camera.Handler
 {
-    public class TreasureFound : IDomainEvent
+    public class LookAtCommand
     {
         public float X { get; }
         public float Y { get; }
         public float Z { get; }
 
-        public TreasureFound(float x, float y, float z)
+        public LookAtCommand(float x, float y, float z)
         {
             X = x;
             Y = y;
