@@ -10,7 +10,7 @@ namespace Features.Sector
     {
         public ICollection<IDomainEvent> Events { get; }
         public string Id { get; }
-        private Vector2 Position { get; }
+        public Vector2 Position { get; }
         public ICard Card { get; }
 
         private bool _active = true;

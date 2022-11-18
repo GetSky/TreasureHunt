@@ -1,3 +1,4 @@
+using Features.Camera;
 using Features.Camera.View;
 using Features.EndGameMenu;
 using Features.Map;
@@ -12,6 +13,7 @@ namespace Core
     {
         [SerializeField] private GameObject _groundPrefab;
         [SerializeField] private GameObject _endGameMenuPrefab;
+        [SerializeField] private GameObject _cameraPrefab;
 
         public override void InstallBindings()
         {
@@ -20,6 +22,7 @@ namespace Core
             SectorInstaller.Install(Container, _groundPrefab);
             EndGameMenuInstaller.Install(Container, _endGameMenuPrefab);
             MapInstaller.Install(Container);
+            CameraInstaller.Install(Container, _cameraPrefab);
             
             Container
                 .Bind(typeof(IInputCameraControl), typeof(IInputSectorControl))

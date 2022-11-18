@@ -14,6 +14,14 @@ namespace Features.Camera.View
             _input = input;
         }
 
+        public void LookAt(float x, float y, float z)
+        {
+            var trn = transform;
+            var position = trn.position;
+            var deltaZ = position.y * Mathf.Tan(Mathf.Deg2Rad * (90 - trn.rotation.eulerAngles.x));
+            transform.position = new Vector3(x, position.y, z - deltaZ);
+        }
+
         private void Update()
         {
             transform.position = CalculatePosition(_input.MousePosition(), transform.position);
