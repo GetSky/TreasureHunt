@@ -3,11 +3,11 @@ using Features.Sector.Event;
 
 namespace Features.Camera
 {
-    public class MapConnector
+    public class SectorConnector
     {
         private readonly ILookAtHandler _handler;
 
-        public MapConnector(ILookAtHandler handler)
+        public SectorConnector(ILookAtHandler handler)
         {
             _handler = handler;
         }

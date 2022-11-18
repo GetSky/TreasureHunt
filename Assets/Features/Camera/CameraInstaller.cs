@@ -1,8 +1,6 @@
 ﻿using Features.Camera.Handler;
 using Features.Camera.Repository;
-using Features.Map.Event;
 using Features.Sector.Event;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using Zenject;
 using IModelContext = Features.Camera.Repository.IModelContext;
@@ -30,8 +28,8 @@ namespace Features.Camera
                 .AsSingle()
                 .NonLazy();
 
-            Container.Bind<MapConnector>().AsTransient().Lazy();
-            Container.BindSignal<TreasureFound>().ToMethod<MapConnector>(c => c.FoundTreasure).FromResolve();
+            Container.Bind<SectorConnector>().AsTransient().Lazy();
+            Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();
         }
     }
 
