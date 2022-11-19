@@ -32,19 +32,4 @@ namespace Features.Camera
             Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();
         }
     }
-
-    public class LookAtHandler : ILookAtHandler
-    {
-        private readonly IModelRepository _repository;
-
-        public LookAtHandler(IModelRepository repository)
-        {
-            _repository = repository;
-        }
-        public void Invoke(LookAtCommand command)
-        {
-            var cameraModel = _repository.FindFirst();
-            cameraModel?.LookAt(command.X, command.Y);
-        }
-    }
 }
