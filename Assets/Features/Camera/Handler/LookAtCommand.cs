@@ -11,4 +11,9 @@
             Y = y;
         }
     }
+
+    public interface ILookAtHandler
+    {
+        public void Invoke(LookAtCommand command);
+    }
 }
