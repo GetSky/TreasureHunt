@@ -12,9 +12,9 @@ namespace Features.Camera
             _cameraViews.Add(view);
         }
 
-        public void LookAt(float x, float y, float z)
+        public void LookAt(float x, float z)
         {
-            foreach (var view in _cameraViews) view.LookAt(x, y, z);
+            foreach (var view in _cameraViews) view.LookAt(x, z);
         }
     }
 }

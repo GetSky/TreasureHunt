@@ -44,7 +44,7 @@ namespace Features.Camera
         public void Invoke(LookAtCommand command)
         {
             var cameraModel = _repository.FindFirst();
-            cameraModel?.LookAt(command.X, command.Y, command.Z);
+            cameraModel?.LookAt(command.X, command.Y);
         }
     }
 }

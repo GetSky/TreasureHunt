@@ -4,13 +4,11 @@
     {
         public float X { get; }
         public float Y { get; }
-        public float Z { get; }
 
-        public TreasureFound(float x, float y, float z)
+        public TreasureFound(float x, float y)
         {
             X = x;
             Y = y;
-            Z = z;
         }
     }
 }
