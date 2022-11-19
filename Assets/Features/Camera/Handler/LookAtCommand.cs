@@ -4,13 +4,11 @@
     {
         public float X { get; }
         public float Y { get; }
-        public float Z { get; }
 
-        public LookAtCommand(float x, float y, float z)
+        public LookAtCommand(float x, float y)
         {
             X = x;
             Y = y;
-            Z = z;
         }
     }
 }

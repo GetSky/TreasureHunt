@@ -14,7 +14,7 @@ namespace Features.Camera.View
             _input = input;
         }
 
-        public void LookAt(float x, float y, float z)
+        public void LookAt(float x, float z)
         {
             var trn = transform;
             var position = trn.position;
