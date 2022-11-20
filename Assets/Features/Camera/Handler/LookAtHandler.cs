@@ -10,6 +10,7 @@ namespace Features.Camera.Handler
         {
             _repository = repository;
         }
+
         public void Invoke(LookAtCommand command)
         {
             var cameraModel = _repository.FindFirst();

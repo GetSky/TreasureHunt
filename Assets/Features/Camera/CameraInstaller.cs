@@ -21,7 +21,7 @@ namespace Features.Camera
             Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_cameraPrefab);
 
             Container.Bind<ILookAtHandler>().To<LookAtHandler>().AsSingle().Lazy();
-            
+
             Container
                 .Bind(typeof(IModelContext), typeof(IModelRepository))
                 .To<MemoryModelRepository>()
