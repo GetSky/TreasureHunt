@@ -1,5 +1,6 @@
 ﻿using Features.Camera.Handler;
 using Features.Camera.Repository;
+using Features.Map.Event;
 using Features.Sector.Event;
 using UnityEngine;
 using Zenject;
@@ -30,6 +31,9 @@ namespace Features.Camera
 
             Container.Bind<SectorConnector>().AsTransient().Lazy();
             Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();
+            
+            Container.Bind<MapConnector>().AsTransient().Lazy();
+            Container.BindSignal<MapReloaded>().ToMethod<MapConnector>(c => c.MapReload).FromResolve();
         }
     }
 }
