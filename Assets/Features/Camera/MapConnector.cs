@@ -14,7 +14,7 @@ namespace Features.Camera
 
         public void MapReload(MapReloaded _)
         {
-            _handler.Invoke(new LookAtCommand(4.5f, 4f));
+            _handler.Invoke(new LookAtCommand(4.5f, 4f, true));
         }
     }
 }

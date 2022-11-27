@@ -14,7 +14,7 @@ namespace Features.Camera
 
         public void FoundTreasure(TreasureFound status)
         {
-            _handler.Invoke(new LookAtCommand(status.X, status.Y));
+            _handler.Invoke(new LookAtCommand(status.X, status.Y, false));
         }
     }
 }

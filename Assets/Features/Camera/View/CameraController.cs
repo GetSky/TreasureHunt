@@ -16,12 +16,12 @@ namespace Features.Camera.View
             _input = input;
         }
 
-        public void LookAt(float x, float z)
+        public void LookAt(float x, float z, bool isImmediately = false)
         {
             var trn = transform;
             var position = trn.position;
             var deltaZ = position.y * Mathf.Tan(Mathf.Deg2Rad * (90 - trn.rotation.eulerAngles.x));
-            transform.DOMove(new Vector3(x, position.y, z - deltaZ), _duration);
+            transform.DOMove(new Vector3(x, position.y, z - deltaZ), isImmediately ? 0.0f : _duration);
         }
 
         private void Update()
