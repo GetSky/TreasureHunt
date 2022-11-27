@@ -15,7 +15,7 @@ namespace Features.Map
 
         public void Initialize()
         {
-            _factory.Create();
+            var dd = _factory.Create();
             _producer.Generate(10, 10, 90);
         }
     }

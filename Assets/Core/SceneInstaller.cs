@@ -21,9 +21,9 @@ namespace Core
 
             SectorInstaller.Install(Container, _groundPrefab);
             EndGameMenuInstaller.Install(Container, _endGameMenuPrefab);
-            MapInstaller.Install(Container);
             CameraInstaller.Install(Container, _cameraPrefab);
-            
+            MapInstaller.Install(Container);
+
             Container
                 .Bind(typeof(IInputCameraControl), typeof(IInputSectorControl))
                 .To<PlayerControllerService>()

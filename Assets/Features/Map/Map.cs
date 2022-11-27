@@ -19,6 +19,7 @@ namespace Features.Map
             GameStatusChangeEvents = new List<GameStatusChanged>();
             GameStatusChangeEvents.Add(new GameStatusChanged(_active));
             ResetEvents = new List<MapReloaded>();
+            ReloadMap();
         }
 
         public void Deactivate()
