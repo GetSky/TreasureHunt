@@ -14,7 +14,7 @@ namespace Features.Camera.Handler
         public void Invoke(LookAtCommand command)
         {
             var cameraModel = _repository.FindFirst();
-            cameraModel?.LookAt(command.X, command.Y);
+            cameraModel?.LookAt(command.X, command.Y, command.Immediately);
         }
     }
 }
