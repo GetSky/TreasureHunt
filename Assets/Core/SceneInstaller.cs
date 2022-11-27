@@ -1,3 +1,4 @@
+using Core.PlayerController;
 using Features.Camera;
 using Features.Camera.View;
 using Features.EndGameMenu;
@@ -23,12 +24,18 @@ namespace Core
             EndGameMenuInstaller.Install(Container, _endGameMenuPrefab);
             CameraInstaller.Install(Container, _cameraPrefab);
             MapInstaller.Install(Container);
-
-            Container
-                .Bind(typeof(IInputCameraControl), typeof(IInputSectorControl))
-                .To<PlayerControllerService>()
-                .AsSingle()
-                .NonLazy();
+            
+            var boundBinder = Container.Bind(typeof(IInputCameraControl), typeof(IInputSectorControl));
+            switch (Application.platform)
+            {
+                case RuntimePlatform.Android:
+                case RuntimePlatform.IPhonePlayer:
+                    boundBinder.To<TouchControllerService>().AsSingle().NonLazy();
+                    break;
+                default:
+                    boundBinder.To<MouseControllerService>().AsSingle().NonLazy();
+                    break;
+            }
         }
     }
 }

@@ -2,9 +2,9 @@
 using Features.Sector.View;
 using UnityEngine;
 
-namespace Core
+namespace Core.PlayerController
 {
-    public class PlayerControllerService : IInputCameraControl, IInputSectorControl
+    public class MouseControllerService : IInputCameraControl, IInputSectorControl
     {
         private const float SlipTolerance = 4f;
 
