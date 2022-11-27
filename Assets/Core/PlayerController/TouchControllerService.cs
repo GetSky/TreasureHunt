@@ -17,17 +17,28 @@ namespace Core.PlayerController
             if (Input.touchCount == 0) return diff;
 
             var mousePosition = Input.touches[0].position;
-            
-            if (Input.touches[0].phase == TouchPhase.Began) _startPosition = mousePosition;
-            else if (Input.touches[0].phase == TouchPhase.Moved)
-            {
-                diff = new Vector3(mousePosition.x - _startPosition.x, mousePosition.y - _startPosition.y);
-                if (_cameraMoved == false && diff.sqrMagnitude < SlipTolerance) diff = Vector3.zero;
-                if (diff != Vector3.zero) _cameraMoved = true;
-                _startPosition = mousePosition;
-            }
 
-            if (Input.touches[0].phase == TouchPhase.Ended) _cameraMoved = false;
+            switch (Input.touches[0].phase)
+            {
+                case TouchPhase.Began:
+                    _startPosition = mousePosition;
+                    break;
+                case TouchPhase.Moved:
+                {
+                    diff = new Vector3(mousePosition.x - _startPosition.x, mousePosition.y - _startPosition.y);
+                    if (_cameraMoved == false && diff.sqrMagnitude < SlipTolerance) diff = Vector3.zero;
+                    if (diff != Vector3.zero) _cameraMoved = true;
+                    _startPosition = mousePosition;
+                    break;
+                }
+                case TouchPhase.Ended:
+                    _cameraMoved = false;
+                    break;
+                case TouchPhase.Stationary:
+                case TouchPhase.Canceled:
+                default:
+                    break;
+            }
 
             return diff;
         }

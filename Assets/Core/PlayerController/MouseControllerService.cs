@@ -24,8 +24,7 @@ namespace Core.PlayerController
                 if (diff != Vector3.zero) _cameraMoved = true;
                 _startPosition = mousePosition;
             }
-
-            if (Input.GetMouseButtonUp(0)) _cameraMoved = false;
+            else if (Input.GetMouseButtonUp(0)) _cameraMoved = false;
 
             return diff;
         }
