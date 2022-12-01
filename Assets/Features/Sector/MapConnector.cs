@@ -20,7 +20,7 @@ namespace Features.Sector
             _handler.Invoke(new DeactivateSectorsCommand());
         }
 
-        public void ResetMap(MapReloaded status)
+        public void UnloadMap(MapUnloaded status)
         {
             _removeSectorsHandler.Invoke(new RemoveSectorsCommand());
         }

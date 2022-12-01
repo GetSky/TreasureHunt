@@ -23,9 +23,13 @@ namespace Features.Map.Repository
             map.GameStatusChangeEvents.Clear();
             foreach (var domainEvent in gameStatusEvents) _signalBus.Fire(domainEvent);
 
-            var resetEvents = map.ResetEvents.ToArray();
-            map.ResetEvents.Clear();
-            foreach (var domainEvent in resetEvents) _signalBus.Fire(domainEvent);
+            var unloadEvents = map.UnloadEvents.ToArray();
+            map.UnloadEvents.Clear();
+            foreach (var domainEvent in unloadEvents) _signalBus.Fire(domainEvent);
+            
+            var loadEvents = map.LoadEvents.ToArray();
+            map.UnloadEvents.Clear();
+            foreach (var domainEvent in loadEvents) _signalBus.Fire(domainEvent);
         }
 
         public void Clear()
