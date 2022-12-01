@@ -1,20 +1,29 @@
-﻿namespace Features.EndGameMenu.Handler
+﻿using Features.Map.Handler;
+
+namespace Features.EndGameMenu.Handler
 {
     public class ReloadMapHandler : IReloadMapHandler
     {
         private readonly IDeactivateHandler _deactivateHandler;
-        private readonly Map.Handler.IReloadMapHandler _mapHandler;
+        private readonly ILoadMapHandler _mapHandler;
+        private readonly IUnloadMapCommand _unloadMapCommand;
 
-        public ReloadMapHandler(IDeactivateHandler deactivateHandler, Map.Handler.IReloadMapHandler reloadMapHandler)
+        public ReloadMapHandler(
+            IDeactivateHandler deactivateHandler,
+            ILoadMapHandler loadMapHandler,
+            IUnloadMapCommand unloadMapCommand
+        )
         {
             _deactivateHandler = deactivateHandler;
-            _mapHandler = reloadMapHandler;
+            _mapHandler = loadMapHandler;
+            _unloadMapCommand = unloadMapCommand;
         }
 
         public void Invoke(ReloadMapCommand command)
         {
             _deactivateHandler.Invoke(new DeactivateCommand());
-            _mapHandler.Invoke(new Map.Handler.ReloadMapCommand());
+            _unloadMapCommand.Invoke(new UnloadMapCommand());
+            _mapHandler.Invoke(new LoadMapCommand());
         }
     }
 }

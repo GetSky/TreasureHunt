@@ -2,26 +2,22 @@
 
 namespace Features.Map.Handler
 {
-    public class ReloadMapHandler : IReloadMapHandler
+    public class LoadMapHandler : ILoadMapHandler
     {
         private readonly IMapRepository _repository;
         private readonly MapProducer _producer;
         private readonly IMapContext _context;
 
-        public ReloadMapHandler(IMapRepository repository, MapProducer producer, IMapContext context)
+        public LoadMapHandler(IMapRepository repository, MapProducer producer, IMapContext context)
         {
             _repository = repository;
             _producer = producer;
             _context = context;
         }
 
-        public void Invoke(ReloadMapCommand command)
+        public void Invoke(LoadMapCommand command)
         {
-            var map = _repository.FindCurrent();
-            map.ReloadMap();
-            _context.Save(map);
-
-            _producer.Generate(10, 10, 90);
+            var map = _producer.Generate(10, 10, 90);
             _context.Save(map);
         }
     }

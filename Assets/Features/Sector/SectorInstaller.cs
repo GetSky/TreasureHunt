@@ -58,8 +58,8 @@ namespace Features.Sector
                 .ToMethod<MapConnector>(connector => connector.GameStatusChange)
                 .FromResolve();
             Container
-                .BindSignal<MapReloaded>()
-                .ToMethod<MapConnector>(connector => connector.ResetMap)
+                .BindSignal<MapUnloaded>()
+                .ToMethod<MapConnector>(connector => connector.UnloadMap)
                 .FromResolve();
             Container
                 .BindSignal<CreateSectorCommand>()
