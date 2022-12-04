@@ -31,6 +31,7 @@ namespace Features.Sector
 
         public void OpenWithTreasureIn(Sector sector)
         {
+            Events.Add(new SectorOpen());
             if (_active == false) return;
 
             var domainEvent = Card.Execute(MeasureDistanceTo(sector), this);

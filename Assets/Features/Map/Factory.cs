@@ -18,7 +18,7 @@ namespace Features.Map
 
         public Map Create()
         {
-            var entity = new Map("map");
+            var entity = new Map("map", 6);
             _context.Save(entity);
 
             return entity;
