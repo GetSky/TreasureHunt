@@ -45,6 +45,10 @@ namespace Features.Sector.Repository
             {
                 switch (domainEvent)
                 {
+                    case SectorOpen @event:
+                        _signalBus.Fire(@event);
+                        break;
+
                     case HighlightSectorsAtDistanceCommand @event:
                         _signalBus.Fire(@event);
                         break;

@@ -46,6 +46,7 @@ namespace Features.Sector
 
         private void DeclareSignals()
         {
+            Container.DeclareSignal<SectorOpen>();
             Container.DeclareSignal<TreasureFound>();
             Container.DeclareSignal<CreateSectorCommand>();
             Container.DeclareSignal<HighlightSectorsAtDistanceCommand>();
