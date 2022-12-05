@@ -28,7 +28,7 @@ namespace Features.Map.Repository
             foreach (var domainEvent in unloadEvents) _signalBus.Fire(domainEvent);
             
             var loadEvents = map.LoadEvents.ToArray();
-            map.UnloadEvents.Clear();
+            map.LoadEvents.Clear();
             foreach (var domainEvent in loadEvents) _signalBus.Fire(domainEvent);
         }
 
