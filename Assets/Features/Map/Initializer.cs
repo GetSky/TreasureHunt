@@ -1,22 +1,23 @@
-﻿using Zenject;
+﻿using Features.Map.Handler;
+using Zenject;
 
 namespace Features.Map
 {
     public class Initializer : IInitializable
     {
         private readonly Factory _factory;
-        private readonly MapProducer _producer;
+        private readonly ILoadMapHandler _loadMapHandler;
 
-        public Initializer(Factory factory, MapProducer producer)
+        public Initializer(Factory factory, ILoadMapHandler loadMapHandler)
         {
             _factory = factory;
-            _producer = producer;
+            _loadMapHandler = loadMapHandler;
         }
 
         public void Initialize()
         {
-            var dd = _factory.Create();
-            _producer.Generate(10, 10, 90);
+            _factory.Create();
+            _loadMapHandler.Invoke(new LoadMapCommand());
         }
     }
 }

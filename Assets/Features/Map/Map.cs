@@ -10,7 +10,7 @@ namespace Features.Map
         public ICollection<MapUnloaded> UnloadEvents { get; }
         public ICollection<MapLoaded> LoadEvents { get; }
         public string Id { get; }
-        private TurnCounter _turnCounter;
+        private readonly TurnCounter _turnCounter;
         private bool _active = true;
 
         public Action<bool> OnChangedActiveStatus = delegate { };
@@ -23,7 +23,6 @@ namespace Features.Map
             GameStatusChangeEvents.Add(new GameStatusChanged(_active));
             UnloadEvents = new List<MapUnloaded>();
             LoadEvents = new List<MapLoaded>();
-            LoadEvents.Add(new MapLoaded());
         }
 
         public void Deactivate()
@@ -39,6 +38,7 @@ namespace Features.Map
             OnChangedActiveStatus.Invoke(_active);
             GameStatusChangeEvents.Add(new GameStatusChanged(_active));
             _turnCounter.Reset();
+            LoadEvents.Add(new MapLoaded());
         }
 
         public void DecreaseTurnCount()
