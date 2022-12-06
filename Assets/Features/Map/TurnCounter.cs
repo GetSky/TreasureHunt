@@ -2,7 +2,7 @@
 {
     public class TurnCounter
     {
-        private int _max;
+        private readonly int _max;
         private int _current;
 
         public TurnCounter(int current)
@@ -18,14 +18,8 @@
             return true;
         }
 
-        public bool RanOut()
-        {
-            return _current == 0;
-        }
+        public bool RanOut() => _current == 0;
 
-        public void Reset()
-        {
-            _current = _max;
-        }
+        public void Reset() => _current = _max;
     }
 }
