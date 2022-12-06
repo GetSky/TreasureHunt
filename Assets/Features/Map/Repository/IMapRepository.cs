@@ -2,6 +2,6 @@
 {
     public interface IMapRepository
     {
-        public Map FindCurrent();
+        public Entity.Map FindCurrent();
     }
 }

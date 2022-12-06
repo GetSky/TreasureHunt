@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Features.Map.Event;
 
-namespace Features.Map
+namespace Features.Map.Entity
 {
     public class Map
     {

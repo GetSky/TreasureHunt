@@ -1,4 +1,4 @@
-﻿namespace Features.Map
+﻿namespace Features.Map.Entity
 {
     public class TurnCounter
     {

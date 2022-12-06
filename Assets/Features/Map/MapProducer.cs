@@ -25,7 +25,7 @@ namespace Features.Map
             _repository = repository;
         }
 
-        public Map Generate(int rows, int columns, int countDistanceCard)
+        public Entity.Map Generate(int rows, int columns, int countDistanceCard)
         {
             var map = _repository.FindCurrent();
             var deck = CreateDeck(rows * columns, countDistanceCard);

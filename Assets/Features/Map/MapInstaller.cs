@@ -10,7 +10,7 @@ namespace Features.Map
     {
         public override void InstallBindings()
         {
-            Container.BindFactory<Map, Factory>().FromFactory<MapFactory>();
+            Container.BindFactory<Entity.Map, Factory>().FromFactory<MapFactory>();
             Container.Bind<MapProducer>().AsTransient().Lazy();
             Container.Bind<ILoadMapHandler>().To<LoadMapHandler>().AsSingle().Lazy();
             Container.Bind<IUnloadMapCommand>().To<UnloadMapHandler>().AsSingle().Lazy();
