@@ -2,7 +2,7 @@
 {
     public interface IMapContext
     {
-        public void Save(Map map);
+        public void Save(Entity.Map map);
 
         public void Clear();
     }

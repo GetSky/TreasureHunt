@@ -7,14 +7,14 @@ namespace Features.Map.Repository
     public class MemoryMapRepository : IMapContext, IMapRepository
     {
         private readonly SignalBus _signalBus;
-        private readonly Dictionary<string, Map> _maps = new Dictionary<string, Map>();
+        private readonly Dictionary<string, Entity.Map> _maps = new Dictionary<string, Entity.Map>();
 
         public MemoryMapRepository(SignalBus signalBus)
         {
             _signalBus = signalBus;
         }
 
-        public void Save(Map map)
+        public void Save(Entity.Map map)
         {
             Clear();
             _maps[map.Id] = map;
@@ -37,7 +37,7 @@ namespace Features.Map.Repository
             _maps.Clear();
         }
 
-        public Map FindCurrent()
+        public Entity.Map FindCurrent()
         {
             return _maps.Values.First();
         }

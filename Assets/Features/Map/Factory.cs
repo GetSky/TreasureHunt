@@ -3,11 +3,11 @@ using Zenject;
 
 namespace Features.Map
 {
-    public class Factory : PlaceholderFactory<Map>
+    public class Factory : PlaceholderFactory<Entity.Map>
     {
     }
 
-    public class MapFactory : IFactory<Map>
+    public class MapFactory : IFactory<Entity.Map>
     {
         private readonly IMapContext _context;
 
@@ -16,9 +16,9 @@ namespace Features.Map
             _context = context;
         }
 
-        public Map Create()
+        public Entity.Map Create()
         {
-            var entity = new Map("map", 6);
+            var entity = new Entity.Map("map", 6);
             _context.Save(entity);
 
             return entity;
