@@ -14,6 +14,7 @@ namespace Features.Map.Entity
         private bool _active = true;
 
         public Action<bool> OnChangedActiveStatus = delegate { };
+        public Action<int> OnTurnUpdated = delegate { };
 
         public Map(string id, int turnsCount)
         {
@@ -39,12 +40,14 @@ namespace Features.Map.Entity
             GameStatusChangeEvents.Add(new GameStatusChanged(_active));
             _turnCounter.Reset();
             LoadEvents.Add(new MapLoaded());
+            OnTurnUpdated.Invoke(_turnCounter.Count());
         }
 
         public void DecreaseTurnCount()
         {
             if (_turnCounter.Decrease() == false) return;
             if (_turnCounter.RanOut()) Deactivate();
+            OnTurnUpdated.Invoke(_turnCounter.Count());
         }
 
         public void UnloadMap()

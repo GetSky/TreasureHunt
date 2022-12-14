@@ -2,15 +2,23 @@ using Features.Map.Event;
 using Features.Map.Handler;
 using Features.Map.Repository;
 using Features.Sector.Event;
+using UnityEngine;
 using Zenject;
 
 namespace Features.Map
 {
-    public class MapInstaller : Installer<MapInstaller>
+    public class MapInstaller : Installer<GameObject, MapInstaller>
     {
+        private readonly GameObject _powerCountPrefab;
+
+        public MapInstaller(GameObject prefab)
+        {
+            _powerCountPrefab = prefab;
+        }
+
         public override void InstallBindings()
         {
-            Container.BindFactory<Entity.Map, Factory>().FromFactory<MapFactory>();
+            Container.Bind<Factory>().AsSingle().WithArguments(_powerCountPrefab).Lazy();
             Container.Bind<MapProducer>().AsTransient().Lazy();
             Container.Bind<ILoadMapHandler>().To<LoadMapHandler>().AsSingle().Lazy();
             Container.Bind<IUnloadMapCommand>().To<UnloadMapHandler>().AsSingle().Lazy();

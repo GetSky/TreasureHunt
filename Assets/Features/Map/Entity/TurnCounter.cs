@@ -21,5 +21,7 @@
         public bool RanOut() => _current == 0;
 
         public void Reset() => _current = _max;
+
+        public int Count() => _current;
     }
 }
