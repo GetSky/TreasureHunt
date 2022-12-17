@@ -19,12 +19,12 @@ namespace Features.Map
 
         public Entity.Map Create()
         {
-            var obj = _container.InstantiatePrefabForComponent<IPowerCountView>(_powerCountPrefab);
+            var obj = _container.InstantiatePrefabForComponent<IEnergyView>(_powerCountPrefab);
 
             var entity = new Entity.Map("map", 6);
             _context.Save(entity);
 
-            var model = new PowerModel(entity);
+            var model = new EnergyModel(entity);
             model.AddView(obj);
 
             return entity;

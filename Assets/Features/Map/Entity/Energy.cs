@@ -1,11 +1,11 @@
 ﻿namespace Features.Map.Entity
 {
-    public class TurnCounter
+    public class Energy
     {
         private readonly int _max;
         private int _current;
 
-        public TurnCounter(int current)
+        public Energy(int current)
         {
             _max = current;
             _current = _max;
