@@ -10,16 +10,16 @@ namespace Features.Map.Entity
         public ICollection<MapUnloaded> UnloadEvents { get; }
         public ICollection<MapLoaded> LoadEvents { get; }
         public string Id { get; }
-        private readonly TurnCounter _turnCounter;
+        private readonly Energy _energy;
         private bool _active = true;
 
         public Action<bool> OnChangedActiveStatus = delegate { };
-        public Action<int> OnTurnUpdated = delegate { };
+        public Action<int> OnEnergyUpdated = delegate { };
 
-        public Map(string id, int turnsCount)
+        public Map(string id, int energy)
         {
             Id = id;
-            _turnCounter = new TurnCounter(turnsCount);
+            _energy = new Energy(energy);
             GameStatusChangeEvents = new List<GameStatusChanged>();
             GameStatusChangeEvents.Add(new GameStatusChanged(_active));
             UnloadEvents = new List<MapUnloaded>();
@@ -38,16 +38,16 @@ namespace Features.Map.Entity
             _active = true;
             OnChangedActiveStatus.Invoke(_active);
             GameStatusChangeEvents.Add(new GameStatusChanged(_active));
-            _turnCounter.Reset();
+            _energy.Reset();
             LoadEvents.Add(new MapLoaded());
-            OnTurnUpdated.Invoke(_turnCounter.Count());
+            OnEnergyUpdated.Invoke(_energy.Count());
         }
 
         public void DecreaseTurnCount()
         {
-            if (_turnCounter.Decrease() == false) return;
-            if (_turnCounter.RanOut()) Deactivate();
-            OnTurnUpdated.Invoke(_turnCounter.Count());
+            if (_energy.Decrease() == false) return;
+            if (_energy.RanOut()) Deactivate();
+            OnEnergyUpdated.Invoke(_energy.Count());
         }
 
         public void UnloadMap()
