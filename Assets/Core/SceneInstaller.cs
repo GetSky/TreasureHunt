@@ -3,6 +3,7 @@ using Features.Camera;
 using Features.Camera.View;
 using Features.EndGameMenu;
 using Features.Map;
+using Features.Player;
 using Features.Sector;
 using Features.Sector.View;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Core
         [SerializeField] private GameObject _endGameMenuPrefab;
         [SerializeField] private GameObject _cameraPrefab;
         [SerializeField] private GameObject _powerCountPrefab;
+        [SerializeField] private GameObject _coinsCounterPrefab;
 
         public override void InstallBindings()
         {
@@ -25,7 +27,8 @@ namespace Core
             EndGameMenuInstaller.Install(Container, _endGameMenuPrefab);
             CameraInstaller.Install(Container, _cameraPrefab);
             MapInstaller.Install(Container, _powerCountPrefab);
-            
+            PlayerInstaller.Install(Container, _coinsCounterPrefab);
+
             var boundBinder = Container.Bind(typeof(IInputCameraControl), typeof(IInputSectorControl));
             switch (Application.platform)
             {
