@@ -15,7 +15,7 @@ namespace Features.Player
         }
 
         public void Initialize()
-        { 
+        {
             _container.InstantiatePrefab(_coinsCounterPrefab);
         }
     }
