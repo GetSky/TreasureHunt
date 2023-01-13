@@ -16,7 +16,7 @@ namespace Core
         [SerializeField] private GameObject _groundPrefab;
         [SerializeField] private GameObject _endGameMenuPrefab;
         [SerializeField] private GameObject _cameraPrefab;
-        [SerializeField] private GameObject _powerCountPrefab;
+        [SerializeField] private GameObject _energyCounterPrefab;
         [SerializeField] private GameObject _coinsCounterPrefab;
 
         public override void InstallBindings()
@@ -26,7 +26,7 @@ namespace Core
             SectorInstaller.Install(Container, _groundPrefab);
             EndGameMenuInstaller.Install(Container, _endGameMenuPrefab);
             CameraInstaller.Install(Container, _cameraPrefab);
-            MapInstaller.Install(Container, _powerCountPrefab);
+            MapInstaller.Install(Container, _energyCounterPrefab);
             PlayerInstaller.Install(Container, _coinsCounterPrefab);
 
             var boundBinder = Container.Bind(typeof(IInputCameraControl), typeof(IInputSectorControl));
