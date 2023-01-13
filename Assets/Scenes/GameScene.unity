@@ -457,7 +457,7 @@ MonoBehaviour:
   _groundPrefab: {fileID: 2698613763053794610, guid: 5d0ee28fbd651f74b830f5f2d70ecb54, type: 3}
   _endGameMenuPrefab: {fileID: 2647774507236475725, guid: 63b7857ce92c38c47825eeb51eb18401, type: 3}
   _cameraPrefab: {fileID: 6905129671139444022, guid: 0fa7a824d63823a4595547034e11c107, type: 3}
-  _powerCountPrefab: {fileID: 536198520363383509, guid: fef0bac24d57e9948ae2b655bd1e07eb, type: 3}
+  _energyCounterPrefab: {fileID: 536198520363383509, guid: fef0bac24d57e9948ae2b655bd1e07eb, type: 3}
   _coinsCounterPrefab: {fileID: 6627968330154227827, guid: 14e4c91af2997a542872eabb0a533453, type: 3}
 --- !u!1 &1575465786
 GameObject:
