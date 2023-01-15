@@ -20,7 +20,7 @@ namespace Features.Player
 
             Container
                 .Bind(typeof(IPlayerContext), typeof(IPlayerRepository))
-                .To<MemoryPlayerRepository>()
+                .To<PrefsPlayerRepository>()
                 .AsSingle()
                 .NonLazy();
         }
