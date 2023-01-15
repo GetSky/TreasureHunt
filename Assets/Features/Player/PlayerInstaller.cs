@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Features.Player.Repository;
+using UnityEngine;
 using Zenject;
 
 namespace Features.Player
@@ -15,6 +16,13 @@ namespace Features.Player
         public override void InstallBindings()
         {
             Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_coinsCounterPrefab);
+            Container.Bind<Factory>().AsSingle().WithArguments(_coinsCounterPrefab).Lazy();
+
+            Container
+                .Bind(typeof(IPlayerContext), typeof(IPlayerRepository))
+                .To<MemoryPlayerRepository>()
+                .AsSingle()
+                .NonLazy();
         }
     }
 }
