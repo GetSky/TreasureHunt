@@ -9,7 +9,7 @@ namespace Features.Player
         private readonly DiContainer _container;
         private readonly IPlayerContext _context;
         private readonly GameObject _coinsCounterPrefab;
-        
+
         public Factory(DiContainer container, IPlayerContext context, GameObject coinsCounterPrefab)
         {
             _container = container;
@@ -18,9 +18,9 @@ namespace Features.Player
         }
 
 
-        public Entity.Player Create()
+        public Entity.Player Create(string id, int coins)
         {
-            var entity = new Entity.Player();
+            var entity = new Entity.Player(id, coins);
             _context.Save(entity);
 
             return entity;
