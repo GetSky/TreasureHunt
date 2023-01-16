@@ -1,22 +1,23 @@
-﻿using UnityEngine;
+﻿using Features.Player.Repository;
 using Zenject;
 
 namespace Features.Player
 {
     public class Initializer : IInitializable
     {
-        private readonly DiContainer _container;
-        private readonly GameObject _coinsCounterPrefab;
+        private readonly Factory _factory;
+        private readonly IPlayerContext _context;
 
-        public Initializer(DiContainer container, GameObject coinsCounterPrefab)
+        public Initializer(Factory factory, IPlayerContext context)
         {
-            _container = container;
-            _coinsCounterPrefab = coinsCounterPrefab;
+            _factory = factory;
+            _context = context;
         }
 
         public void Initialize()
         {
-            _container.InstantiatePrefab(_coinsCounterPrefab);
+            var entity = _factory.Create("local", 0);
+            _context.Save(entity);
         }
     }
 }

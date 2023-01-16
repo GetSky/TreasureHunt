@@ -15,7 +15,7 @@ namespace Features.Player
 
         public override void InstallBindings()
         {
-            Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_coinsCounterPrefab);
+            Container.Bind<IInitializable>().To<Initializer>().AsSingle();
             Container.Bind<Factory>().AsSingle().WithArguments(_coinsCounterPrefab).Lazy();
 
             Container
