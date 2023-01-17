@@ -8,22 +8,25 @@ namespace Features.Player
     {
         private readonly DiContainer _container;
         private readonly IPlayerContext _context;
+        private readonly IPlayerRepository _repository;
         private readonly GameObject _coinsCounterPrefab;
 
         public Initializer(
             DiContainer container,
             IPlayerContext context,
+            IPlayerRepository repository,
             GameObject coinsCounterPrefab
         )
         {
             _container = container;
             _context = context;
+            _repository = repository;
             _coinsCounterPrefab = coinsCounterPrefab;
         }
 
         public void Initialize()
         {
-            var entity = new Entity.Player("local", 0);
+            var entity = _repository.FindCurrent();
             var view = _container.InstantiatePrefabForComponent<ICoinsView>(_coinsCounterPrefab);
             var model = new CoinsModel(entity);
             model.AddView(view);
