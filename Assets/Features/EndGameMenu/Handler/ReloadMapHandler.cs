@@ -6,23 +6,23 @@ namespace Features.EndGameMenu.Handler
     {
         private readonly IDeactivateHandler _deactivateHandler;
         private readonly ILoadMapHandler _mapHandler;
-        private readonly IUnloadMapCommand _unloadMapCommand;
+        private readonly IUnloadMapHandler _unloadMapHandler;
 
         public ReloadMapHandler(
             IDeactivateHandler deactivateHandler,
             ILoadMapHandler loadMapHandler,
-            IUnloadMapCommand unloadMapCommand
+            IUnloadMapHandler unloadMapHandler
         )
         {
             _deactivateHandler = deactivateHandler;
             _mapHandler = loadMapHandler;
-            _unloadMapCommand = unloadMapCommand;
+            _unloadMapHandler = unloadMapHandler;
         }
 
         public void Invoke(ReloadMapCommand command)
         {
             _deactivateHandler.Invoke(new DeactivateCommand());
-            _unloadMapCommand.Invoke(new UnloadMapCommand());
+            _unloadMapHandler.Invoke(new UnloadMapCommand());
             _mapHandler.Invoke(new LoadMapCommand());
         }
     }

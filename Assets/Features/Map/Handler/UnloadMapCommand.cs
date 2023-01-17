@@ -4,7 +4,7 @@
     {
     }
 
-    public interface IUnloadMapCommand
+    public interface IUnloadMapHandler
     {
         public void Invoke(UnloadMapCommand command);
     }
