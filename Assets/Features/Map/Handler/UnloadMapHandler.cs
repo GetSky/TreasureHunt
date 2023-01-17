@@ -2,7 +2,7 @@
 
 namespace Features.Map.Handler
 {
-    public class UnloadMapHandler : IUnloadMapCommand
+    public class UnloadMapHandler : IUnloadMapHandler
     {
         private readonly IMapRepository _repository;
         private readonly IMapContext _context;

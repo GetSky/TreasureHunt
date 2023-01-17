@@ -17,10 +17,9 @@ namespace Features.Player
 
         public override void InstallBindings()
         {
+            Container.Bind<Factory>().AsSingle().Lazy();
             Container.Bind<IRaiseCoinsHandler>().To<RaiseCoinsHandler>().AsSingle().Lazy();
 
-            Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_coinsCounterPrefab).Lazy();
-            Container.Bind<Factory>().AsSingle().Lazy();
             Container
                 .Bind(typeof(IPlayerContext), typeof(IPlayerRepository))
                 .To<PlayerPrefsRepository>()
@@ -30,6 +29,8 @@ namespace Features.Player
             Container.Bind<SectorConnector>().AsTransient().Lazy();
 
             Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
+
+            Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_coinsCounterPrefab).Lazy();
         }
     }
 }
