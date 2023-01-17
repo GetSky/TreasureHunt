@@ -21,16 +21,15 @@ namespace Features.Player
 
             Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_coinsCounterPrefab).Lazy();
             Container.Bind<Factory>().AsSingle().Lazy();
+            Container
+                .Bind(typeof(IPlayerContext), typeof(IPlayerRepository))
+                .To<PlayerPrefsRepository>()
+                .AsSingle()
+                .NonLazy();
 
             Container.Bind<SectorConnector>().AsTransient().Lazy();
 
             Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
-
-            Container
-                .Bind(typeof(IPlayerContext), typeof(IPlayerRepository))
-                .To<MemoryPlayerRepository>()
-                .AsSingle()
-                .NonLazy();
         }
     }
 }

@@ -9,16 +9,19 @@ namespace Features.Player
 
     public class CoinsModel
     {
+        private readonly Entity.Player _player;
         private readonly List<ICoinsView> _coinsViews = new List<ICoinsView>();
 
         public CoinsModel(Entity.Player player)
         {
+            _player = player;
             player.OnCoinsUpdate += OnCoinsUpdate;
         }
 
         public void AddView(ICoinsView view)
         {
             _coinsViews.Add(view);
+            view.UpdateCoins(_player.Coins);
         }
 
         private void OnCoinsUpdate(int count)
