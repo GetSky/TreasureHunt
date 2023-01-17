@@ -15,7 +15,7 @@ namespace Features.Player.View
 
         public void UpdateCoins(int count)
         {
-            throw new System.NotImplementedException();
+            input.GetComponent<TextMeshProUGUI>().SetText(count.ToString());
         }
     }
 }
