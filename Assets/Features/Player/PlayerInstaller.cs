@@ -1,4 +1,6 @@
-﻿using Features.Player.Repository;
+﻿using Features.Player.Handler;
+using Features.Player.Repository;
+using Features.Sector.Event;
 using UnityEngine;
 using Zenject;
 
@@ -15,12 +17,18 @@ namespace Features.Player
 
         public override void InstallBindings()
         {
-            Container.Bind<IInitializable>().To<Initializer>().AsSingle();
-            Container.Bind<Factory>().AsSingle().WithArguments(_coinsCounterPrefab).Lazy();
+            Container.Bind<IRaiseCoinsHandler>().To<RaiseCoinsHandler>().AsSingle().Lazy();
+
+            Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_coinsCounterPrefab).Lazy();
+            Container.Bind<Factory>().AsSingle().Lazy();
+
+            Container.Bind<SectorConnector>().AsTransient().Lazy();
+
+            Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
 
             Container
                 .Bind(typeof(IPlayerContext), typeof(IPlayerRepository))
-                .To<PrefsPlayerRepository>()
+                .To<MemoryPlayerRepository>()
                 .AsSingle()
                 .NonLazy();
         }

@@ -20,7 +20,9 @@ namespace Features.Player.Repository
 
         public Entity.Player FindCurrent()
         {
-            return _factory.Create(PlayerPrefs.GetString("id", "local"), PlayerPrefs.GetInt("coins", 0));
+            var id = PlayerPrefs.GetString("id", "local");
+            var coins = PlayerPrefs.GetInt("coins");
+            return _factory.Create(id, coins);
         }
     }
 }
