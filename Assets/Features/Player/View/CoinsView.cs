@@ -6,16 +6,12 @@ namespace Features.Player.View
     public class CoinsView : MonoBehaviour, ICoinsView
     {
         private int _count;
-        [SerializeField] private GameObject input;
-
-        public void Awake()
-        {
-            input.GetComponent<TextMeshProUGUI>().SetText("0");
-        }
+        [SerializeField] private TMP_Text _input;
 
         public void UpdateCoins(int count)
         {
-            input.GetComponent<TextMeshProUGUI>().SetText(count.ToString());
+            _count = count;
+            _input.SetText(count.ToString());
         }
     }
 }
