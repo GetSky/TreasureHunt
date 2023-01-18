@@ -6,6 +6,9 @@ namespace Features.Player.Repository
 {
     public class PlayerPrefsRepository : IPlayerContext, IPlayerRepository
     {
+        private const string PrefNameId = "local";
+        private const string PrefNameCoins = "coins";
+
         private readonly Factory _factory;
         private readonly Dictionary<string, Entity.Player> _players = new Dictionary<string, Entity.Player>();
 
@@ -18,19 +21,16 @@ namespace Features.Player.Repository
         {
             _players[player.Id] = player;
 
-            PlayerPrefs.SetInt("coins", player.Coins);
-            PlayerPrefs.SetString("id", player.Id);
+            PlayerPrefs.SetInt(PrefNameCoins, player.Coins);
+            PlayerPrefs.SetString(PrefNameId, player.Id);
             PlayerPrefs.Save();
         }
 
         public Entity.Player FindCurrent()
         {
-            if (_players.Count > 0) return _players.Values.First();
-
-            var id = PlayerPrefs.GetString("id", "local");
-            var coins = PlayerPrefs.GetInt("coins");
-
-            return _factory.Create(id, coins);
+            return _players.Count > 0
+                ? _players.Values.First()
+                : _factory.Create(PlayerPrefs.GetString(PrefNameId, "local"), PlayerPrefs.GetInt(PrefNameCoins));
         }
     }
 }
