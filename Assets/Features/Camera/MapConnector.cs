@@ -1,13 +1,14 @@
-﻿using Features.Camera.Handler;
+﻿using Core;
+using Features.Camera.Handler;
 using Features.Map.Event;
 
 namespace Features.Camera
 {
     public class MapConnector
     {
-        private readonly ILookAtHandler _handler;
+        private readonly IHandler<LookAtCommand> _handler;
 
-        public MapConnector(ILookAtHandler handler)
+        public MapConnector(IHandler<LookAtCommand> handler)
         {
             _handler = handler;
         }

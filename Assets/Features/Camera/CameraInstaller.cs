@@ -1,4 +1,5 @@
-﻿using Features.Camera.Handler;
+﻿using Core;
+using Features.Camera.Handler;
 using Features.Camera.Repository;
 using Features.Map.Event;
 using Features.Sector.Event;
@@ -21,7 +22,7 @@ namespace Features.Camera
         {
             Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_cameraPrefab);
 
-            Container.Bind<ILookAtHandler>().To<LookAtHandler>().AsSingle().Lazy();
+            Container.Bind<IHandler<LookAtCommand>>().To<LookAtHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(IModelContext), typeof(IModelRepository))
