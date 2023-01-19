@@ -1,3 +1,4 @@
+using Core;
 using Features.EndGameMenu.Handler;
 using Features.EndGameMenu.Repository;
 using Features.Map.Event;
@@ -19,9 +20,9 @@ namespace Features.EndGameMenu
         {
             Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_endGameMenuPrefab);
 
-            Container.Bind<IDeactivateHandler>().To<DeactivateHandler>().AsSingle().Lazy();
-            Container.Bind<IActivateCommand>().To<ActivateHandler>().AsSingle().Lazy();
-            Container.Bind<IReloadMapHandler>().To<ReloadMapHandler>().AsSingle().Lazy();
+            Container.Bind<IHandler<DeactivateCommand>>().To<DeactivateHandler>().AsSingle().Lazy();
+            Container.Bind<IHandler<ActivateCommand>>().To<ActivateHandler>().AsSingle().Lazy();
+            Container.Bind<IHandler<ReloadMapCommand>>().To<ReloadMapHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(IModelContext), typeof(IModelRepository))

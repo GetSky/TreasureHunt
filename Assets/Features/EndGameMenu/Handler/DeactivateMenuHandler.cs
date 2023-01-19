@@ -1,8 +1,9 @@
-﻿using Features.EndGameMenu.Repository;
+﻿using Core;
+using Features.EndGameMenu.Repository;
 
 namespace Features.EndGameMenu.Handler
 {
-    public class DeactivateHandler : IDeactivateHandler
+    public class DeactivateHandler : IHandler<DeactivateCommand>
     {
         private readonly IModelRepository _repo;
 

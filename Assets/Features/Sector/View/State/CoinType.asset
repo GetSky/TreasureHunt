@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d350eb980334fb3b163d4222d79fc3f, type: 3}
   m_Name: CoinType
   m_EditorClassIdentifier: 
-  _color: {r: 0.44201672, g: 0.6678878, b: 0.7264151, a: 0}
-  _text: M
+  _color: {r: 0.7254902, g: 0.72390276, b: 0.44313726, a: 0}
+  _text: $

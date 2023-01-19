@@ -1,17 +1,18 @@
-﻿using Features.EndGameMenu.Handler;
+﻿using Core;
+using Features.EndGameMenu.Handler;
 using Features.Map.Event;
 
 namespace Features.EndGameMenu
 {
     public class MapConnector
     {
-        private readonly IDeactivateHandler _deactivateHandler;
-        private readonly IActivateCommand _activateCommand;
+        private readonly IHandler<DeactivateCommand> _deactivateHandler;
+        private readonly IHandler<ActivateCommand> _activateHandler;
 
-        public MapConnector(IDeactivateHandler deactivateHandler, IActivateCommand activateCommand)
+        public MapConnector(IHandler<DeactivateCommand> deactivateHandler, IHandler<ActivateCommand> activateHandler)
         {
             _deactivateHandler = deactivateHandler;
-            _activateCommand = activateCommand;
+            _activateHandler = activateHandler;
         }
 
         public void GameStatusChange(GameStatusChanged status)
@@ -19,7 +20,7 @@ namespace Features.EndGameMenu
             if (status.Active)
                 _deactivateHandler.Invoke(new DeactivateCommand());
             else
-                _activateCommand.Invoke(new ActivateCommand());
+                _activateHandler.Invoke(new ActivateCommand());
         }
     }
 }
