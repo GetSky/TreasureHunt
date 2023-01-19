@@ -13,9 +13,4 @@
             Immediately = immediately;
         }
     }
-
-    public interface ILookAtHandler
-    {
-        public void Invoke(LookAtCommand command);
-    }
 }

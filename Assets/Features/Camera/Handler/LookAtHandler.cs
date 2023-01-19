@@ -1,8 +1,9 @@
-﻿using Features.Camera.Repository;
+﻿using Core;
+using Features.Camera.Repository;
 
 namespace Features.Camera.Handler
 {
-    public class LookAtHandler : ILookAtHandler
+    public class LookAtHandler : IHandler<LookAtCommand>
     {
         private readonly IModelRepository _repository;
 

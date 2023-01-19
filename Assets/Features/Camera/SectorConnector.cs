@@ -1,13 +1,14 @@
-﻿using Features.Camera.Handler;
+﻿using Core;
+using Features.Camera.Handler;
 using Features.Sector.Event;
 
 namespace Features.Camera
 {
     public class SectorConnector
     {
-        private readonly ILookAtHandler _handler;
+        private readonly IHandler<LookAtCommand> _handler;
 
-        public SectorConnector(ILookAtHandler handler)
+        public SectorConnector(IHandler<LookAtCommand> handler)
         {
             _handler = handler;
         }
