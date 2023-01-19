@@ -15,6 +15,7 @@ namespace Features.Sector.Card
             {
                 CardType.None => new NoneCard(),
                 CardType.Treasure => new TreasureCard(),
+                CardType.Coin => new CoinCard(10),
                 CardType.Distance => new DistanceCard(),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };

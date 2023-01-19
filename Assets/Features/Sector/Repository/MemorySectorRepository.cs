@@ -56,6 +56,10 @@ namespace Features.Sector.Repository
                     case TreasureFound @event:
                         _signalBus.Fire(@event);
                         break;
+                    
+                    case CoinFound @event:
+                        _signalBus.Fire(@event);
+                        break;
                 }
             }
 

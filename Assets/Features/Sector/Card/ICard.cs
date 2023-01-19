@@ -6,6 +6,7 @@ namespace Features.Sector.Card
     {
         None,
         Treasure,
+        Coin,
         Distance
     }
 

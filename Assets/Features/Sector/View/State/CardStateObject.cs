@@ -10,7 +10,8 @@ namespace Features.Sector.View.State
         Empty,
         Distance,
         TooFar,
-        Treasure
+        Treasure,
+        Coin
     }
 
     [Serializable]

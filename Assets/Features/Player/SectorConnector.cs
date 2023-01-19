@@ -1,4 +1,5 @@
 ﻿using Features.Player.Handler;
+using Features.Sector.Event;
 
 namespace Features.Player
 {
@@ -11,9 +12,14 @@ namespace Features.Player
             _raiseCoinsHandler = raiseCoinsHandler;
         }
 
-        public void TreasureFind()
+        public void TreasureFind(TreasureFound e)
         {
-            _raiseCoinsHandler.Invoke(new RaiseCoinsCommand());
+            _raiseCoinsHandler.Invoke(new RaiseCoinsCommand(100));
+        }
+
+        public void CoinFind(CoinFound e)
+        {
+            _raiseCoinsHandler.Invoke(new RaiseCoinsCommand(e.Count));         
         }
     }
 }
