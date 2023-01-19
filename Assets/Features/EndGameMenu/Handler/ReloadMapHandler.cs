@@ -1,15 +1,16 @@
-﻿using Features.Map.Handler;
+﻿using Core;
+using Features.Map.Handler;
 
 namespace Features.EndGameMenu.Handler
 {
-    public class ReloadMapHandler : IReloadMapHandler
+    public class ReloadMapHandler : IHandler<ReloadMapCommand>
     {
-        private readonly IDeactivateHandler _deactivateHandler;
+        private readonly IHandler<DeactivateCommand> _deactivateHandler;
         private readonly ILoadMapHandler _mapHandler;
         private readonly IUnloadMapHandler _unloadMapHandler;
 
         public ReloadMapHandler(
-            IDeactivateHandler deactivateHandler,
+            IHandler<DeactivateCommand> deactivateHandler,
             ILoadMapHandler loadMapHandler,
             IUnloadMapHandler unloadMapHandler
         )

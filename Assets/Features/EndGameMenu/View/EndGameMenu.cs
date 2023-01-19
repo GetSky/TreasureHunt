@@ -1,4 +1,5 @@
-﻿using Features.EndGameMenu.Handler;
+﻿using Core;
+using Features.EndGameMenu.Handler;
 using UnityEngine;
 using Zenject;
 using Button = UnityEngine.UI.Button;
@@ -10,10 +11,10 @@ namespace Features.EndGameMenu.View
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _exitButton;
 
-        private IReloadMapHandler _reloadMapHandler;
+        private IHandler<ReloadMapCommand> _reloadMapHandler;
 
         [Inject]
-        public void Construct(IReloadMapHandler reloadMapHandler)
+        public void Construct(IHandler<ReloadMapCommand> reloadMapHandler)
         {
             _reloadMapHandler = reloadMapHandler;
         }
