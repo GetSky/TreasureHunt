@@ -34,6 +34,7 @@ namespace Features.Sector
             {
                 NoneCard _ => State.Empty,
                 TreasureCard _ => State.Treasure,
+                CoinCard _ => State.Coin,
                 DistanceCard _ => card.Value() == -1 ? State.TooFar : State.Distance,
                 _ => State.Empty
             };

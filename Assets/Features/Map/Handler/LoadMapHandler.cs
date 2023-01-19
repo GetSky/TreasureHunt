@@ -17,7 +17,7 @@ namespace Features.Map.Handler
 
         public void Invoke(LoadMapCommand command)
         {
-            var map = _producer.Generate(10, 10, 90);
+            var map = _producer.Generate(10, 10, 70, 20);
             _context.Save(map);
         }
     }

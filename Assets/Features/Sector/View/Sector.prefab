@@ -79,6 +79,8 @@ MonoBehaviour:
     _object: {fileID: 11400000, guid: 357d24a94b48a654887d270cec9352b0, type: 2}
   - _state: 5
     _object: {fileID: 11400000, guid: 6e500d8a28b56fa4cbff83088548cb81, type: 2}
+  - _state: 6
+    _object: {fileID: 11400000, guid: d37c9c7a49d9633408ed524de7408edc, type: 2}
 --- !u!114 &4994700122075310470
 MonoBehaviour:
   m_ObjectHideFlags: 0

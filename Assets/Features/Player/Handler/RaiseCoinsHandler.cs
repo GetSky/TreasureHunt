@@ -16,7 +16,7 @@ namespace Features.Player.Handler
         public void Invoke(RaiseCoinsCommand command)
         {
             var entity = _repository.FindCurrent();
-            entity.RaiseCoins(100);
+            entity.RaiseCoins(command.Count);
             _context.Save(entity);
         }
     }

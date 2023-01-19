@@ -29,6 +29,7 @@ namespace Features.Player
             Container.Bind<SectorConnector>().AsTransient().Lazy();
 
             Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
+            Container.BindSignal<CoinFound>().ToMethod<SectorConnector>(c => c.CoinFind).FromResolve();
 
             Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_coinsCounterPrefab).Lazy();
         }
