@@ -3,9 +3,4 @@
     public class DeactivateSectorsCommand
     {
     }
-
-    public interface IDeactivateSectorsHandler
-    {
-        public void Invoke(DeactivateSectorsCommand command);
-    }
 }

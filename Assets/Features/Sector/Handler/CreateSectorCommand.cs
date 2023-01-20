@@ -13,9 +13,4 @@
             Type = type;
         }
     }
-
-    public interface ICreateSectorHandler
-    {
-        public void Invoke(CreateSectorCommand command);
-    }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Core;
 using DG.Tweening;
 using Features.Sector.Handler;
 using Features.Sector.View.State;
@@ -17,7 +18,7 @@ namespace Features.Sector.View
         [SerializeField] private CardState[] _states;
 
         private IInputSectorControl _input;
-        private ISectorOpenHandler _openHandler;
+        private IHandler<SectorOpenCommand> _openHandler;
         private Material _material;
         private TextMeshPro _distanceText;
         private Color _lightColor;
@@ -26,7 +27,7 @@ namespace Features.Sector.View
         private static readonly int IsOpen = Animator.StringToHash("isOpen");
 
         [Inject]
-        public void Construct(IInputSectorControl input, ISectorOpenHandler openHandler)
+        public void Construct(IInputSectorControl input, IHandler<SectorOpenCommand> openHandler)
         {
             _input = input;
             _openHandler = openHandler;

@@ -6,9 +6,4 @@
 
         public SectorOpenCommand(string id) => Id = id;
     }
-
-    public interface ISectorOpenHandler
-    {
-        public void Invoke(SectorOpenCommand command);
-    }
 }

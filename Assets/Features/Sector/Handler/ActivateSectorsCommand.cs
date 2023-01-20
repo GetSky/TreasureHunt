@@ -3,9 +3,4 @@
     public class ActivateSectorsCommand
     {
     }
-
-    public interface IActivateSectorsHandler
-    {
-        public void Invoke(ActivateSectorsCommand command);
-    }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Numerics;
+using Core;
 using Features.Sector.Card;
 
 namespace Features.Sector.Handler
 {
-    public class CreateSectorHandler : ICreateSectorHandler
+    public class CreateSectorHandler : IHandler<CreateSectorCommand>
     {
         private readonly Factory _factory;
 

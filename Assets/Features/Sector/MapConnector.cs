@@ -1,14 +1,15 @@
-﻿using Features.Map.Event;
+﻿using Core;
+using Features.Map.Event;
 using Features.Sector.Handler;
 
 namespace Features.Sector
 {
     public class MapConnector
     {
-        private readonly IDeactivateSectorsHandler _handler;
-        private readonly IRemoveSectorsHandler _removeSectorsHandler;
+        private readonly IHandler<DeactivateSectorsCommand> _handler;
+        private readonly IHandler<RemoveSectorsCommand> _removeSectorsHandler;
 
-        public MapConnector(IDeactivateSectorsHandler handler, IRemoveSectorsHandler removeSectorsHandler)
+        public MapConnector(IHandler<DeactivateSectorsCommand> handler, IHandler<RemoveSectorsCommand> removeSectorsHandler)
         {
             _handler = handler;
             _removeSectorsHandler = removeSectorsHandler;

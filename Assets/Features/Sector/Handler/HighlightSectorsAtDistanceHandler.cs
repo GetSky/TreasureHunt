@@ -1,8 +1,9 @@
-﻿using Features.Sector.Repository;
+﻿using Core;
+using Features.Sector.Repository;
 
 namespace Features.Sector.Handler
 {
-    public class HighlightSectorsAtDistanceHandler : IHighlightSectorsAtDistanceHandler
+    public class HighlightSectorsAtDistanceHandler : IHandler<HighlightSectorsAtDistanceCommand>
     {
         private readonly ISectorRepository _repository;
 
