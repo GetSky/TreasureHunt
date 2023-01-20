@@ -1,4 +1,5 @@
-﻿using Features.Map.Handler;
+﻿using Core;
+using Features.Map.Handler;
 using Zenject;
 
 namespace Features.Map
@@ -6,9 +7,9 @@ namespace Features.Map
     public class Initializer : IInitializable
     {
         private readonly Factory _factory;
-        private readonly ILoadMapHandler _loadMapHandler;
+        private readonly IHandler<LoadMapCommand> _loadMapHandler;
 
-        public Initializer(Factory factory, ILoadMapHandler loadMapHandler)
+        public Initializer(Factory factory, IHandler<LoadMapCommand> loadMapHandler)
         {
             _factory = factory;
             _loadMapHandler = loadMapHandler;

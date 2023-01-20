@@ -1,8 +1,9 @@
-﻿using Features.Map.Repository;
+﻿using Core;
+using Features.Map.Repository;
 
 namespace Features.Map.Handler
 {
-    public class DecreaseTurnCountHandler : IDecreaseTurnCountHandler
+    public class DecreaseTurnCountHandler : IHandler<DecreaseTurnCountCommand>
     {
         private readonly IMapRepository _repository;
         private readonly IMapContext _context;

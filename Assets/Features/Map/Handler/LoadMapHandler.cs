@@ -1,8 +1,9 @@
-﻿using Features.Map.Repository;
+﻿using Core;
+using Features.Map.Repository;
 
 namespace Features.Map.Handler
 {
-    public class LoadMapHandler : ILoadMapHandler
+    public class LoadMapHandler : IHandler<LoadMapCommand>
     {
         private readonly IMapRepository _repository;
         private readonly MapProducer _producer;
