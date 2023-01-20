@@ -1,3 +1,4 @@
+using Core;
 using Features.Map.Event;
 using Features.Map.Handler;
 using Features.Map.Repository;
@@ -20,10 +21,10 @@ namespace Features.Map
         {
             Container.Bind<Factory>().AsSingle().WithArguments(_powerCountPrefab).Lazy();
             Container.Bind<MapProducer>().AsTransient().Lazy();
-            Container.Bind<ILoadMapHandler>().To<LoadMapHandler>().AsSingle().Lazy();
-            Container.Bind<IUnloadMapHandler>().To<UnloadMapHandler>().AsSingle().Lazy();
-            Container.Bind<IDeactivateMapHandler>().To<DeactivateMapHandler>().AsSingle().Lazy();
-            Container.Bind<IDecreaseTurnCountHandler>().To<DecreaseTurnCountHandler>().AsSingle().Lazy();
+            Container.Bind<IHandler<LoadMapCommand>>().To<LoadMapHandler>().AsSingle().Lazy();
+            Container.Bind<IHandler<UnloadMapCommand>>().To<UnloadMapHandler>().AsSingle().Lazy();
+            Container.Bind<IHandler<DeactivateMapCommand>>().To<DeactivateMapHandler>().AsSingle().Lazy();
+            Container.Bind<IHandler<DecreaseTurnCountCommand>>().To<DecreaseTurnCountHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(IMapContext), typeof(IMapRepository))

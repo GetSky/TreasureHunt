@@ -1,13 +1,14 @@
-﻿using Features.Map.Handler;
+﻿using Core;
+using Features.Map.Handler;
 
 namespace Features.Map
 {
     public class SectorConnector
     {
-        private readonly IDeactivateMapHandler _deactivateHandler;
-        private readonly IDecreaseTurnCountHandler _turnCountHandler;
+        private readonly IHandler<DeactivateMapCommand> _deactivateHandler;
+        private readonly IHandler<DecreaseTurnCountCommand> _turnCountHandler;
 
-        public SectorConnector(IDeactivateMapHandler deactivateHandler, IDecreaseTurnCountHandler turnCountHandler)
+        public SectorConnector(IHandler<DeactivateMapCommand> deactivateHandler, IHandler<DecreaseTurnCountCommand> turnCountHandler)
         {
             _deactivateHandler = deactivateHandler;
             _turnCountHandler = turnCountHandler;

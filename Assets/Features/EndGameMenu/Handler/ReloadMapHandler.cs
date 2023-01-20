@@ -6,13 +6,13 @@ namespace Features.EndGameMenu.Handler
     public class ReloadMapHandler : IHandler<ReloadMapCommand>
     {
         private readonly IHandler<DeactivateCommand> _deactivateHandler;
-        private readonly ILoadMapHandler _mapHandler;
-        private readonly IUnloadMapHandler _unloadMapHandler;
+        private readonly IHandler<LoadMapCommand> _mapHandler;
+        private readonly IHandler<UnloadMapCommand> _unloadMapHandler;
 
         public ReloadMapHandler(
             IHandler<DeactivateCommand> deactivateHandler,
-            ILoadMapHandler loadMapHandler,
-            IUnloadMapHandler unloadMapHandler
+            IHandler<LoadMapCommand> loadMapHandler,
+            IHandler<UnloadMapCommand> unloadMapHandler
         )
         {
             _deactivateHandler = deactivateHandler;
