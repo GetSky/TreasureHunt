@@ -1,8 +1,9 @@
-﻿using Features.Sector.Repository;
+﻿using Core;
+using Features.Sector.Repository;
 
 namespace Features.Sector.Handler
 {
-    public class SectorOpenHandler : ISectorOpenHandler
+    public class SectorOpenHandler : IHandler<SectorOpenCommand>
     {
         private readonly ISectorRepository _sectorRepo;
         private readonly ISectorContext _sectorContext;

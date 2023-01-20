@@ -13,9 +13,4 @@ namespace Features.Sector.Handler
             Distance = distance;
         }
     }
-
-    public interface IHighlightSectorsAtDistanceHandler
-    {
-        public void Invoke(HighlightSectorsAtDistanceCommand command);
-    }
 }
