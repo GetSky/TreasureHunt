@@ -1,8 +1,9 @@
-﻿using Features.Player.Repository;
+﻿using Core;
+using Features.Player.Repository;
 
 namespace Features.Player.Handler
 {
-    public class RaiseCoinsHandler : IRaiseCoinsHandler
+    public class RaiseCoinsHandler : IHandler<RaiseCoinsCommand>
     {
         private readonly IPlayerRepository _repository;
         private readonly IPlayerContext _context;

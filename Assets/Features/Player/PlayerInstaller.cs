@@ -1,4 +1,5 @@
-﻿using Features.Player.Handler;
+﻿using Core;
+using Features.Player.Handler;
 using Features.Player.Repository;
 using Features.Sector.Event;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace Features.Player
         public override void InstallBindings()
         {
             Container.Bind<Factory>().AsSingle().Lazy();
-            Container.Bind<IRaiseCoinsHandler>().To<RaiseCoinsHandler>().AsSingle().Lazy();
+            Container.Bind<IHandler<RaiseCoinsCommand>>().To<RaiseCoinsHandler>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(IPlayerContext), typeof(IPlayerRepository))
