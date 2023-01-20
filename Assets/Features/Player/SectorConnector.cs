@@ -1,13 +1,14 @@
-﻿using Features.Player.Handler;
+﻿using Core;
+using Features.Player.Handler;
 using Features.Sector.Event;
 
 namespace Features.Player
 {
     public class SectorConnector
     {
-        private readonly IRaiseCoinsHandler _raiseCoinsHandler;
+        private readonly IHandler<RaiseCoinsCommand> _raiseCoinsHandler;
 
-        public SectorConnector(IRaiseCoinsHandler raiseCoinsHandler)
+        public SectorConnector(IHandler<RaiseCoinsCommand> raiseCoinsHandler)
         {
             _raiseCoinsHandler = raiseCoinsHandler;
         }

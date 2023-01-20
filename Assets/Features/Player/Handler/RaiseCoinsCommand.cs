@@ -9,9 +9,4 @@
             Count = count;
         }
     }
-
-    public interface IRaiseCoinsHandler
-    {
-        public void Invoke(RaiseCoinsCommand command);
-    }
 }
