@@ -50,6 +50,7 @@ namespace Features.Sector
             Container.DeclareSignal<SectorOpen>();
             Container.DeclareSignal<TreasureFound>();
             Container.DeclareSignal<CoinFound>();
+            Container.DeclareSignal<EnergyFound>();
             Container.DeclareSignal<CreateSectorCommand>();
             Container.DeclareSignal<HighlightSectorsAtDistanceCommand>();
         }
