@@ -11,6 +11,11 @@
             _current = _max;
         }
 
+        public void BoostBy(int count)
+        {
+            _current += count;
+        }
+
         public bool Decrease()
         {
             if (_current == 0) return false;
@@ -18,7 +23,7 @@
             return true;
         }
 
-        public bool RanOut() => _current == 0;
+        public bool IsRanOut() => _current == 0;
 
         public void Reset() => _current = _max;
 

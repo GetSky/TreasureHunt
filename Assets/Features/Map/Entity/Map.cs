@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Features.Map.Event;
+using Features.Map.Handler;
 
 namespace Features.Map.Entity
 {
@@ -46,7 +47,13 @@ namespace Features.Map.Entity
         public void DecreaseTurnCount()
         {
             if (_energy.Decrease() == false) return;
-            if (_energy.RanOut()) Deactivate();
+            if (_energy.IsRanOut()) Deactivate();
+            OnEnergyUpdated.Invoke(_energy.Count());
+        }
+
+        public void RaiseTurnCount(RaiseTurnCountCommand command)
+        {
+            _energy.BoostBy(command.Count);
             OnEnergyUpdated.Invoke(_energy.Count());
         }
 
