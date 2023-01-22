@@ -11,7 +11,8 @@ namespace Features.Sector.View.State
         Distance,
         TooFar,
         Treasure,
-        Coin
+        Coin,
+        Energy,
     }
 
     [Serializable]
