@@ -7,7 +7,8 @@ namespace Features.Sector.Card
         None,
         Treasure,
         Coin,
-        Distance
+        Distance,
+        Energy,
     }
 
     public interface ICard

@@ -2,17 +2,17 @@
 
 namespace Features.Sector.Card
 {
-    public class CoinCard : ICard
+    public class EnergyCard : ICard
     {
         private readonly int _count;
 
-        public CoinCard(int count)
+        public EnergyCard(int count)
         {
             _count = count;
         }
 
         public int Value() => _count;
 
-        public IDomainEvent Execute(int _, Sector sector) => new CoinFound(_count);
+        public IDomainEvent Execute(int _, Sector sector) => new EnergyFound(_count);
     }
 }

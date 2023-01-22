@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Features.Map.Entity;
 using Features.Sector.Card;
 using Features.Sector.View.State;
 
@@ -35,6 +36,7 @@ namespace Features.Sector
                 NoneCard _ => State.Empty,
                 TreasureCard _ => State.Treasure,
                 CoinCard _ => State.Coin,
+                EnergyCard _ => State.Energy,
                 DistanceCard _ => card.Value() == -1 ? State.TooFar : State.Distance,
                 _ => State.Empty
             };

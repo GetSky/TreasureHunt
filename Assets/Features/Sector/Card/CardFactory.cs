@@ -17,6 +17,7 @@ namespace Features.Sector.Card
                 CardType.Treasure => new TreasureCard(),
                 CardType.Coin => new CoinCard(10),
                 CardType.Distance => new DistanceCard(),
+                CardType.Energy => new EnergyCard(1),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
         }
