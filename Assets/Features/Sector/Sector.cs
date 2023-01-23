@@ -54,10 +54,7 @@ namespace Features.Sector
 
         public void Activate() => _active = true;
 
-        public void Destroy()
-        {
-            OnDestroyed();
-        }
+        public void Destroy() => OnDestroyed();
 
         private int MeasureDistanceTo(Sector sector)
         {
