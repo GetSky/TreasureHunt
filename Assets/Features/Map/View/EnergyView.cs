@@ -6,19 +6,17 @@ namespace Features.Map.View
 {
     public class EnergyView : MonoBehaviour, IEnergyView
     {
-        [SerializeField] private GameObject _energyIcon;
+        private Image[] _energy;
+
+        public void Awake()
+        {
+            _energy = gameObject.GetComponentsInChildren<Image>();
+        }
 
         public void UpdateEnergy(int count)
         {
-            var energy = gameObject.GetComponentsInChildren<Image>();
-            var diff = (energy.Length - 1) - count;
-
-            if (diff > 0)
-                for (var i = diff; i > 0; i--)
-                    Destroy(energy[energy.Length - i].gameObject);
-            else
-                for (var i = 1; i <= Math.Abs(diff); i++)
-                    Instantiate(_energyIcon, gameObject.transform, false);
+            for (var i = 0; i < _energy.Length; i++) 
+                _energy[i].gameObject.SetActive(i <= count);
         }
     }
 }
