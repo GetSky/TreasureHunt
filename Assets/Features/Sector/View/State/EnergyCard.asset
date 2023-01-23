@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d350eb980334fb3b163d4222d79fc3f, type: 3}
   m_Name: EnergyCard
   m_EditorClassIdentifier: 
-  _color: {r: 0.25792095, g: 0.41677624, b: 0.8679245, a: 0}
-  _text: M
+  _color: {r: 0.38431373, g: 0.7416261, b: 0.8784314, a: 0}
+  _text: E
