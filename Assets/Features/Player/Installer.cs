@@ -7,11 +7,11 @@ using Zenject;
 
 namespace Features.Player
 {
-    public class PlayerInstaller : Installer<GameObject, PlayerInstaller>
+    public class Installer : Installer<GameObject, Installer>
     {
         private readonly GameObject _coinsCounterPrefab;
 
-        public PlayerInstaller(GameObject coinsCounterPrefab)
+        public Installer(GameObject coinsCounterPrefab)
         {
             _coinsCounterPrefab = coinsCounterPrefab;
         }

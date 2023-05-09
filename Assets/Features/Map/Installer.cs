@@ -8,11 +8,11 @@ using Zenject;
 
 namespace Features.Map
 {
-    public class MapInstaller : Installer<GameObject, MapInstaller>
+    public class Installer : Installer<GameObject, Installer>
     {
         private readonly GameObject _powerCountPrefab;
 
-        public MapInstaller(GameObject prefab)
+        public Installer(GameObject prefab)
         {
             _powerCountPrefab = prefab;
         }

@@ -9,11 +9,11 @@ using Zenject;
 
 namespace Features.Sector
 {
-    public class SectorInstaller : Installer<GameObject, SectorInstaller>
+    public class Installer : Installer<GameObject, Installer>
     {
         private readonly GameObject _groundPrefab;
 
-        public SectorInstaller(GameObject prefab)
+        public Installer(GameObject prefab)
         {
             _groundPrefab = prefab;
         }

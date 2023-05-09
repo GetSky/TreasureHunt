@@ -1,10 +1,5 @@
 using Core.PlayerController;
-using Features.Camera;
 using Features.Camera.View;
-using Features.EndGameMenu;
-using Features.Map;
-using Features.Player;
-using Features.Sector;
 using Features.Sector.View;
 using UnityEngine;
 using Zenject;
@@ -23,11 +18,11 @@ namespace Core
         {
             SignalBusInstaller.Install(Container);
 
-            SectorInstaller.Install(Container, _groundPrefab);
-            EndGameMenuInstaller.Install(Container, _endGameMenuPrefab);
-            CameraInstaller.Install(Container, _cameraPrefab);
-            MapInstaller.Install(Container, _energyCounterPrefab);
-            PlayerInstaller.Install(Container, _coinsCounterPrefab);
+            Features.Sector.Installer.Install(Container, _groundPrefab);
+            Features.EndGameMenu.Installer.Install(Container, _endGameMenuPrefab);
+            Features.Camera.Installer.Install(Container, _cameraPrefab);
+            Features.Map.Installer.Install(Container, _energyCounterPrefab);
+            Features.Player.Installer.Install(Container, _coinsCounterPrefab);
 
             var boundBinder = Container.Bind(typeof(IInputCameraControl), typeof(IInputSectorControl));
             switch (Application.platform)
