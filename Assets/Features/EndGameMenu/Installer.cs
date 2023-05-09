@@ -7,11 +7,11 @@ using Zenject;
 
 namespace Features.EndGameMenu
 {
-    public class EndGameMenuInstaller : Installer<GameObject, EndGameMenuInstaller>
+    public class Installer : Installer<GameObject, Installer>
     {
         private readonly GameObject _endGameMenuPrefab;
 
-        public EndGameMenuInstaller(GameObject endGameMenuPrefab)
+        public Installer(GameObject endGameMenuPrefab)
         {
             _endGameMenuPrefab = endGameMenuPrefab;
         }

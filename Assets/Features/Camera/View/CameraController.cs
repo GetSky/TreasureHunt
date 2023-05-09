@@ -1,4 +1,6 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
+using Features.Camera.Adapters;
 using UnityEngine;
 using Zenject;
 
@@ -9,11 +11,13 @@ namespace Features.Camera.View
         [Range(0.1f, 2.0f)] [SerializeField] private float _speed = 1.0f;
         [Range(0.0f, 1.0f)] [SerializeField] private float _duration = 0.5f;
         private IInputCameraControl _input;
+        private ICameraPresenter _presenter;
 
         [Inject]
-        public void Construct(IInputCameraControl input)
+        public void Construct(IInputCameraControl input, ICameraPresenter presenter)
         {
             _input = input;
+            _presenter = presenter;
         }
 
         public void LookAt(float x, float z, bool isImmediately = false)
@@ -24,11 +28,6 @@ namespace Features.Camera.View
             transform.DOMove(new Vector3(x, position.y, z - deltaZ), isImmediately ? 0.0f : _duration);
         }
 
-        private void Update()
-        {
-            transform.position = CalculatePosition(_input.MousePosition(), transform.position);
-        }
-
         private Vector3 CalculatePosition(Vector3 diffPosition, Vector3 currentPosition)
         {
             return new Vector3(
@@ -36,6 +35,21 @@ namespace Features.Camera.View
                 currentPosition.y,
                 currentPosition.z - diffPosition.y / (100 / _speed)
             );
+        }
+
+        private void OnEnable()
+        {
+            _presenter.OnLookedAt += LookAt;
+        }
+
+        private void Update()
+        {
+            transform.position = CalculatePosition(_input.MousePosition(), transform.position);
+        }
+
+        private void OnDisable()
+        {
+            _presenter.OnLookedAt -= LookAt;
         }
     }
 }

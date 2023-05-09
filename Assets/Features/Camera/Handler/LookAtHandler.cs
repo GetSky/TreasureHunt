@@ -1,21 +1,20 @@
 ﻿using Core;
-using Features.Camera.Repository;
+using Features.Camera.Adapters;
 
 namespace Features.Camera.Handler
 {
     public class LookAtHandler : IHandler<LookAtCommand>
     {
-        private readonly IModelRepository _repository;
+        private readonly ICameraPresenter _presenter;
 
-        public LookAtHandler(IModelRepository repository)
+        public LookAtHandler(ICameraPresenter presenter)
         {
-            _repository = repository;
+            _presenter = presenter;
         }
 
         public void Invoke(LookAtCommand command)
         {
-            var cameraModel = _repository.FindFirst();
-            cameraModel?.LookAt(command.X, command.Y, command.Immediately);
+            _presenter.LookAt(command.X, command.Y, command.Immediately);
         }
     }
 }
