@@ -6,24 +6,24 @@ namespace Features.Sector
 {
     public class MapConnector
     {
-        private readonly IHandler<DeactivateSectorsCommand> _handler;
-        private readonly IHandler<RemoveSectorsCommand> _removeSectorsHandler;
+        private readonly IInteractor<DeactivateSectorsCommand> _interactor;
+        private readonly IInteractor<RemoveSectorsCommand> _removeSectorsInteractor;
 
-        public MapConnector(IHandler<DeactivateSectorsCommand> handler, IHandler<RemoveSectorsCommand> removeSectorsHandler)
+        public MapConnector(IInteractor<DeactivateSectorsCommand> interactor, IInteractor<RemoveSectorsCommand> removeSectorsInteractor)
         {
-            _handler = handler;
-            _removeSectorsHandler = removeSectorsHandler;
+            _interactor = interactor;
+            _removeSectorsInteractor = removeSectorsInteractor;
         }
 
         public void GameStatusChange(GameStatusChanged status)
         {
             if (status.Active) return;
-            _handler.Invoke(new DeactivateSectorsCommand());
+            _interactor.Execute(new DeactivateSectorsCommand());
         }
 
         public void UnloadMap(MapUnloaded status)
         {
-            _removeSectorsHandler.Invoke(new RemoveSectorsCommand());
+            _removeSectorsInteractor.Execute(new RemoveSectorsCommand());
         }
     }
 }

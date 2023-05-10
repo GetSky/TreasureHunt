@@ -6,21 +6,21 @@ namespace Features.EndGameMenu
 {
     public class MapConnector
     {
-        private readonly IHandler<DeactivateCommand> _deactivateHandler;
-        private readonly IHandler<ActivateCommand> _activateHandler;
+        private readonly IInteractor<DeactivateCommand> _deactivateInteractor;
+        private readonly IInteractor<ActivateCommand> _activateInteractor;
 
-        public MapConnector(IHandler<DeactivateCommand> deactivateHandler, IHandler<ActivateCommand> activateHandler)
+        public MapConnector(IInteractor<DeactivateCommand> deactivateInteractor, IInteractor<ActivateCommand> activateInteractor)
         {
-            _deactivateHandler = deactivateHandler;
-            _activateHandler = activateHandler;
+            _deactivateInteractor = deactivateInteractor;
+            _activateInteractor = activateInteractor;
         }
 
         public void GameStatusChange(GameStatusChanged status)
         {
             if (status.Active)
-                _deactivateHandler.Invoke(new DeactivateCommand());
+                _deactivateInteractor.Execute(new DeactivateCommand());
             else
-                _activateHandler.Invoke(new ActivateCommand());
+                _activateInteractor.Execute(new ActivateCommand());
         }
     }
 }

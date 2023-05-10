@@ -21,11 +21,11 @@ namespace Features.Map
         {
             Container.Bind<Factory>().AsSingle().WithArguments(_powerCountPrefab).Lazy();
             Container.Bind<MapProducer>().AsTransient().Lazy();
-            Container.Bind<IHandler<LoadMapCommand>>().To<LoadMapHandler>().AsSingle().Lazy();
-            Container.Bind<IHandler<UnloadMapCommand>>().To<UnloadMapHandler>().AsSingle().Lazy();
-            Container.Bind<IHandler<DeactivateMapCommand>>().To<DeactivateMapHandler>().AsSingle().Lazy();
-            Container.Bind<IHandler<DecreaseTurnCountCommand>>().To<DecreaseTurnCountHandler>().AsSingle().Lazy();
-            Container.Bind<IHandler<RaiseTurnCountCommand>>().To<RaiseTurnCountHandler>().AsSingle().Lazy();
+            Container.Bind<IInteractor<LoadMapCommand>>().To<LoadMapInteractor>().AsSingle().Lazy();
+            Container.Bind<IInteractor<UnloadMapCommand>>().To<UnloadMapInteractor>().AsSingle().Lazy();
+            Container.Bind<IInteractor<DeactivateMapCommand>>().To<DeactivateMapInteractor>().AsSingle().Lazy();
+            Container.Bind<IInteractor<DecreaseTurnCountCommand>>().To<DecreaseTurnCountInteractor>().AsSingle().Lazy();
+            Container.Bind<IInteractor<RaiseTurnCountCommand>>().To<RaiseTurnCountInteractor>().AsSingle().Lazy();
 
             Container
                 .Bind(typeof(IMapContext), typeof(IMapRepository))

@@ -3,16 +3,16 @@ using Features.EndGameMenu.Repository;
 
 namespace Features.EndGameMenu.Handler
 {
-    public class DeactivateHandler : IHandler<DeactivateCommand>
+    public class DeactivateInteractor : IInteractor<DeactivateCommand>
     {
         private readonly IModelRepository _repo;
 
-        public DeactivateHandler(IModelRepository repo)
+        public DeactivateInteractor(IModelRepository repo)
         {
             _repo = repo;
         }
 
-        public void Invoke(DeactivateCommand command)
+        public void Execute(DeactivateCommand command)
         {
             _repo.FindFirst().ChangeActiveStatus(false);
         }

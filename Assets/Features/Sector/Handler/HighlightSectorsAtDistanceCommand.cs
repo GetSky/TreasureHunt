@@ -1,8 +1,9 @@
-﻿using Features.Sector.Event;
+﻿using Core;
+using Features.Sector.Event;
 
 namespace Features.Sector.Handler
 {
-    public class HighlightSectorsAtDistanceCommand : IDomainEvent
+    public class HighlightSectorsAtDistanceCommand : IDomainEvent, ICommand
     {
         public string Id { get; }
         public int Distance { get; }

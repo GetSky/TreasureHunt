@@ -1,15 +1,15 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Features.Camera.Adapters;
 using UnityEngine;
 using Zenject;
 
 namespace Features.Camera.View
 {
-    public class CameraController : MonoBehaviour
+    public class CameraControl : MonoBehaviour
     {
         [Range(0.1f, 2.0f)] [SerializeField] private float _speed = 1.0f;
         [Range(0.0f, 1.0f)] [SerializeField] private float _duration = 0.5f;
+
         private IInputCameraControl _input;
         private ICameraPresenter _presenter;
 
@@ -20,7 +20,7 @@ namespace Features.Camera.View
             _presenter = presenter;
         }
 
-        public void LookAt(float x, float z, bool isImmediately = false)
+        private void LookAt(float x, float z, bool isImmediately = false)
         {
             var trn = transform;
             var position = trn.position;

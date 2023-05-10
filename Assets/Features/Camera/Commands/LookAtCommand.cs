@@ -1,6 +1,8 @@
-﻿namespace Features.Camera.Handler
+﻿using Core;
+
+namespace Features.Camera.Commands
 {
-    public class LookAtCommand
+    public class LookAtCommand : ICommand
     {
         public float X { get; }
         public float Y { get; }

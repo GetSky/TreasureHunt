@@ -7,18 +7,18 @@ namespace Features.Map
     public class Initializer : IInitializable
     {
         private readonly Factory _factory;
-        private readonly IHandler<LoadMapCommand> _loadMapHandler;
+        private readonly IInteractor<LoadMapCommand> _loadMapInteractor;
 
-        public Initializer(Factory factory, IHandler<LoadMapCommand> loadMapHandler)
+        public Initializer(Factory factory, IInteractor<LoadMapCommand> loadMapInteractor)
         {
             _factory = factory;
-            _loadMapHandler = loadMapHandler;
+            _loadMapInteractor = loadMapInteractor;
         }
 
         public void Initialize()
         {
             _factory.Create();
-            _loadMapHandler.Invoke(new LoadMapCommand());
+            _loadMapInteractor.Execute(new LoadMapCommand());
         }
     }
 }

@@ -6,21 +6,21 @@ namespace Features.Player
 {
     public class SectorConnector
     {
-        private readonly IHandler<RaiseCoinsCommand> _raiseCoinsHandler;
+        private readonly IInteractor<RaiseCoinsCommand> _raiseCoinsInteractor;
 
-        public SectorConnector(IHandler<RaiseCoinsCommand> raiseCoinsHandler)
+        public SectorConnector(IInteractor<RaiseCoinsCommand> raiseCoinsInteractor)
         {
-            _raiseCoinsHandler = raiseCoinsHandler;
+            _raiseCoinsInteractor = raiseCoinsInteractor;
         }
 
         public void TreasureFind(TreasureFound e)
         {
-            _raiseCoinsHandler.Invoke(new RaiseCoinsCommand(100));
+            _raiseCoinsInteractor.Execute(new RaiseCoinsCommand(100));
         }
 
         public void CoinFind(CoinFound e)
         {
-            _raiseCoinsHandler.Invoke(new RaiseCoinsCommand(e.Count));         
+            _raiseCoinsInteractor.Execute(new RaiseCoinsCommand(e.Count));         
         }
     }
 }

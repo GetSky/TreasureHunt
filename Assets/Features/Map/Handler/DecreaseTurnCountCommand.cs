@@ -1,6 +1,8 @@
-﻿namespace Features.Map.Handler
+﻿using Core;
+
+namespace Features.Map.Handler
 {
-    public class DecreaseTurnCountCommand
+    public class DecreaseTurnCountCommand : ICommand
     {
     }
 }

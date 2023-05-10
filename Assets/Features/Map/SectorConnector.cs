@@ -6,24 +6,24 @@ namespace Features.Map
 {
     public class SectorConnector
     {
-        private readonly IHandler<DeactivateMapCommand> _deactivateHandler;
-        private readonly IHandler<DecreaseTurnCountCommand> _turnCountHandler;
-        private readonly IHandler<RaiseTurnCountCommand> _raiseTurnCountHandler;
+        private readonly IInteractor<DeactivateMapCommand> _deactivateInteractor;
+        private readonly IInteractor<DecreaseTurnCountCommand> _turnCountInteractor;
+        private readonly IInteractor<RaiseTurnCountCommand> _raiseTurnCountInteractor;
 
         public SectorConnector(
-            IHandler<DeactivateMapCommand> deactivateHandler,
-            IHandler<DecreaseTurnCountCommand> turnCountHandler,
-            IHandler<RaiseTurnCountCommand> raiseTurnCountHandler
+            IInteractor<DeactivateMapCommand> deactivateInteractor,
+            IInteractor<DecreaseTurnCountCommand> turnCountInteractor,
+            IInteractor<RaiseTurnCountCommand> raiseTurnCountInteractor
         )
         {
-            _deactivateHandler = deactivateHandler;
-            _turnCountHandler = turnCountHandler;
-            _raiseTurnCountHandler = raiseTurnCountHandler;
+            _deactivateInteractor = deactivateInteractor;
+            _turnCountInteractor = turnCountInteractor;
+            _raiseTurnCountInteractor = raiseTurnCountInteractor;
         }
 
-        public void TreasureFind() => _deactivateHandler.Invoke(new DeactivateMapCommand());
-        public void SectorOpen() => _turnCountHandler.Invoke(new DecreaseTurnCountCommand());
+        public void TreasureFind() => _deactivateInteractor.Execute(new DeactivateMapCommand());
+        public void SectorOpen() => _turnCountInteractor.Execute(new DecreaseTurnCountCommand());
 
-        public void EnergyFound(EnergyFound e) => _raiseTurnCountHandler.Invoke(new RaiseTurnCountCommand(e.Count));
+        public void EnergyFound(EnergyFound e) => _raiseTurnCountInteractor.Execute(new RaiseTurnCountCommand(e.Count));
     }
 }

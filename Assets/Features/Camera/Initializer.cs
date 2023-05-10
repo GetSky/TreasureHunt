@@ -16,7 +16,7 @@ namespace Features.Camera
 
         public void Initialize()
         {
-            _container.InstantiatePrefabForComponent<View.CameraController>(_cameraPrefab);
+            _container.InstantiatePrefabForComponent<View.CameraControl>(_cameraPrefab);
         }
     }
 }
