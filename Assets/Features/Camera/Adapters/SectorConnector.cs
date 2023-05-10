@@ -2,7 +2,7 @@
 using Features.Camera.Commands;
 using Features.Sector.Event;
 
-namespace Features.Camera
+namespace Features.Camera.Adapters
 {
     public class SectorConnector
     {
