@@ -1,6 +1,7 @@
 ﻿using Core;
 using Features.Camera.Adapters;
-using Features.Camera.Handler;
+using Features.Camera.Commands;
+using Features.Camera.UseCases;
 using Features.Map.Event;
 using Features.Sector.Event;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace Features.Camera
 
             Container.Bind<ICameraPresenter>().To<CameraPresenter>().AsSingle().Lazy();
 
-            Container.Bind<IHandler<LookAtCommand>>().To<LookAtHandler>().AsSingle().Lazy();
+            Container.Bind<IInteractor<LookAtCommand>>().To<LookAtInteractor>().AsSingle().Lazy();
 
             Container.Bind<SectorConnector>().AsTransient().Lazy();
             Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();

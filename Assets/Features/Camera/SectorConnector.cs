@@ -1,21 +1,21 @@
 ﻿using Core;
-using Features.Camera.Handler;
+using Features.Camera.Commands;
 using Features.Sector.Event;
 
 namespace Features.Camera
 {
     public class SectorConnector
     {
-        private readonly IHandler<LookAtCommand> _handler;
+        private readonly IInteractor<LookAtCommand> _interactor;
 
-        public SectorConnector(IHandler<LookAtCommand> handler)
+        public SectorConnector(IInteractor<LookAtCommand> interactor)
         {
-            _handler = handler;
+            _interactor = interactor;
         }
 
         public void FoundTreasure(TreasureFound status)
         {
-            _handler.Invoke(new LookAtCommand(status.X, status.Y, false));
+            _interactor.Execute(new LookAtCommand(status.X, status.Y, false));
         }
     }
 }

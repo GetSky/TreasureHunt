@@ -18,7 +18,7 @@ namespace Features.Sector.View
         [SerializeField] private CardState[] _states;
 
         private IInputSectorControl _input;
-        private IHandler<SectorOpenCommand> _openHandler;
+        private IInteractor<SectorOpenCommand> _openInteractor;
         private Material _material;
         private TextMeshPro _distanceText;
         private Color _lightColor;
@@ -27,10 +27,10 @@ namespace Features.Sector.View
         private static readonly int IsOpen = Animator.StringToHash("isOpen");
 
         [Inject]
-        public void Construct(IInputSectorControl input, IHandler<SectorOpenCommand> openHandler)
+        public void Construct(IInputSectorControl input, IInteractor<SectorOpenCommand> openInteractor)
         {
             _input = input;
-            _openHandler = openHandler;
+            _openInteractor = openInteractor;
         }
 
         private void Awake()
@@ -47,7 +47,7 @@ namespace Features.Sector.View
         private void OnMouseUp()
         {
             if (_input.IsPressOnSector() == false) return;
-            _openHandler.Invoke(new SectorOpenCommand(UniqueCode()));
+            _openInteractor.Execute(new SectorOpenCommand(UniqueCode()));
         }
 
         public void UpdateSymbol(State.State state, int value)

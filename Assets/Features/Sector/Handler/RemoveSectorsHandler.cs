@@ -3,18 +3,18 @@ using Features.Sector.Repository;
 
 namespace Features.Sector.Handler
 {
-    public class RemoveSectorsHandler : IHandler<RemoveSectorsCommand>
+    public class RemoveSectorsInteractor : IInteractor<RemoveSectorsCommand>
     {
         private readonly ISectorContext _context;
         private readonly ISectorRepository _repository;
 
-        public RemoveSectorsHandler(ISectorContext context, ISectorRepository repository)
+        public RemoveSectorsInteractor(ISectorContext context, ISectorRepository repository)
         {
             _context = context;
             _repository = repository;
         }
 
-        public void Invoke(RemoveSectorsCommand command)
+        public void Execute(RemoveSectorsCommand command)
         {
             foreach (var sector in _repository.FindInactive())
             {

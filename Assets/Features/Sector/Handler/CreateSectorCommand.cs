@@ -1,6 +1,8 @@
-﻿namespace Features.Sector.Handler
+﻿using Core;
+
+namespace Features.Sector.Handler
 {
-    public class CreateSectorCommand
+    public class CreateSectorCommand : ICommand
     {
         public float X { get; }
         public float Z { get; }

@@ -3,18 +3,18 @@ using Features.Sector.Repository;
 
 namespace Features.Sector.Handler
 {
-    public class SectorOpenHandler : IHandler<SectorOpenCommand>
+    public class SectorOpenInteractor : IInteractor<SectorOpenCommand>
     {
         private readonly ISectorRepository _sectorRepo;
         private readonly ISectorContext _sectorContext;
 
-        public SectorOpenHandler(ISectorRepository sectorRepo, ISectorContext sectorContext)
+        public SectorOpenInteractor(ISectorRepository sectorRepo, ISectorContext sectorContext)
         {
             _sectorRepo = sectorRepo;
             _sectorContext = sectorContext;
         }
 
-        public void Invoke(SectorOpenCommand command)
+        public void Execute(SectorOpenCommand command)
         {
             var sector = _sectorRepo.FindById(command.Id);
             var treasure = _sectorRepo.FindTreasure();

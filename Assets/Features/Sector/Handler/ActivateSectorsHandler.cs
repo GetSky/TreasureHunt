@@ -3,18 +3,18 @@ using Features.Sector.Repository;
 
 namespace Features.Sector.Handler
 {
-    public class ActivateSectorsHandler : IHandler<ActivateSectorsCommand>
+    public class ActivateSectorsInteractor : IInteractor<ActivateSectorsCommand>
     {
         private readonly ISectorRepository _sectorRepo;
         private readonly ISectorContext _context;
 
-        public ActivateSectorsHandler(ISectorRepository sectorRepo, ISectorContext context)
+        public ActivateSectorsInteractor(ISectorRepository sectorRepo, ISectorContext context)
         {
             _sectorRepo = sectorRepo;
             _context = context;
         }
 
-        public void Invoke(ActivateSectorsCommand command)
+        public void Execute(ActivateSectorsCommand command)
         {
             foreach (var sector in _sectorRepo.FindAll())
             {

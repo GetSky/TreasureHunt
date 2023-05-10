@@ -5,16 +5,16 @@ using Features.Sector.Card;
 
 namespace Features.Sector.Handler
 {
-    public class CreateSectorHandler : IHandler<CreateSectorCommand>
+    public class CreateSectorInteractor : IInteractor<CreateSectorCommand>
     {
         private readonly Factory _factory;
 
-        public CreateSectorHandler(Factory factory)
+        public CreateSectorInteractor(Factory factory)
         {
             _factory = factory;
         }
 
-        public void Invoke(CreateSectorCommand command)
+        public void Execute(CreateSectorCommand command)
         {
             if (Enum.TryParse(command.Type, true, out CardType card) == false) return;
             _factory.Create(new Vector2(command.X, command.Z), card);

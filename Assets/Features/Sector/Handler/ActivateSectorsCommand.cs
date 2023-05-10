@@ -1,6 +1,8 @@
-﻿namespace Features.Sector.Handler
+﻿using Core;
+
+namespace Features.Sector.Handler
 {
-    public class ActivateSectorsCommand
+    public class ActivateSectorsCommand : ICommand
     {
     }
 }

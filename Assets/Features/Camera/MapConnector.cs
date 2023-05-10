@@ -1,21 +1,21 @@
 ﻿using Core;
-using Features.Camera.Handler;
+using Features.Camera.Commands;
 using Features.Map.Event;
 
 namespace Features.Camera
 {
     public class MapConnector
     {
-        private readonly IHandler<LookAtCommand> _handler;
+        private readonly IInteractor<LookAtCommand> _interactor;
 
-        public MapConnector(IHandler<LookAtCommand> handler)
+        public MapConnector(IInteractor<LookAtCommand> interactor)
         {
-            _handler = handler;
+            _interactor = interactor;
         }
 
         public void MapReload(MapLoaded _)
         {
-            _handler.Invoke(new LookAtCommand(4.5f, 4f, true));
+            _interactor.Execute(new LookAtCommand(4.5f, 4f, true));
         }
     }
 }

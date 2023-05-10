@@ -1,6 +1,8 @@
-﻿namespace Features.Map.Handler
+﻿using Core;
+
+namespace Features.Map.Handler
 {
-    public class RaiseTurnCountCommand
+    public class RaiseTurnCountCommand : ICommand
     {
         public int Count { get; }
 

@@ -1,6 +1,8 @@
-﻿namespace Features.EndGameMenu.Handler
+﻿using Core;
+
+namespace Features.EndGameMenu.Handler
 {
-    public class DeactivateCommand
+    public class DeactivateCommand : ICommand
     {
     }
 }

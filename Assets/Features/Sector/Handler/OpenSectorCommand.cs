@@ -1,6 +1,8 @@
-﻿namespace Features.Sector.Handler
+﻿using Core;
+
+namespace Features.Sector.Handler
 {
-    public class SectorOpenCommand
+    public class SectorOpenCommand : ICommand
     {
         public string Id { get; }
 

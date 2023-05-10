@@ -3,28 +3,28 @@ using Features.Map.Handler;
 
 namespace Features.EndGameMenu.Handler
 {
-    public class ReloadMapHandler : IHandler<ReloadMapCommand>
+    public class ReloadMapInteractor : IInteractor<ReloadMapCommand>
     {
-        private readonly IHandler<DeactivateCommand> _deactivateHandler;
-        private readonly IHandler<LoadMapCommand> _mapHandler;
-        private readonly IHandler<UnloadMapCommand> _unloadMapHandler;
+        private readonly IInteractor<DeactivateCommand> _deactivateInteractor;
+        private readonly IInteractor<LoadMapCommand> _mapInteractor;
+        private readonly IInteractor<UnloadMapCommand> _unloadMapInteractor;
 
-        public ReloadMapHandler(
-            IHandler<DeactivateCommand> deactivateHandler,
-            IHandler<LoadMapCommand> loadMapHandler,
-            IHandler<UnloadMapCommand> unloadMapHandler
+        public ReloadMapInteractor(
+            IInteractor<DeactivateCommand> deactivateInteractor,
+            IInteractor<LoadMapCommand> loadMapInteractor,
+            IInteractor<UnloadMapCommand> unloadMapInteractor
         )
         {
-            _deactivateHandler = deactivateHandler;
-            _mapHandler = loadMapHandler;
-            _unloadMapHandler = unloadMapHandler;
+            _deactivateInteractor = deactivateInteractor;
+            _mapInteractor = loadMapInteractor;
+            _unloadMapInteractor = unloadMapInteractor;
         }
 
-        public void Invoke(ReloadMapCommand command)
+        public void Execute(ReloadMapCommand command)
         {
-            _deactivateHandler.Invoke(new DeactivateCommand());
-            _unloadMapHandler.Invoke(new UnloadMapCommand());
-            _mapHandler.Invoke(new LoadMapCommand());
+            _deactivateInteractor.Execute(new DeactivateCommand());
+            _unloadMapInteractor.Execute(new UnloadMapCommand());
+            _mapInteractor.Execute(new LoadMapCommand());
         }
     }
 }

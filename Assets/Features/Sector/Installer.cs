@@ -33,14 +33,14 @@ namespace Features.Sector
 
         private void InstallHandlers()
         {
-            Container.Bind<IHandler<SectorOpenCommand>>().To<SectorOpenHandler>().AsSingle().Lazy();
-            Container.Bind<IHandler<DeactivateSectorsCommand>>().To<DeactivateSectorsHandler>().AsSingle().Lazy();
-            Container.Bind<IHandler<RemoveSectorsCommand>>().To<RemoveSectorsHandler>().AsSingle().Lazy();
-            Container.Bind<IHandler<ActivateSectorsCommand>>().To<ActivateSectorsHandler>().AsSingle().Lazy();
-            Container.Bind<IHandler<CreateSectorCommand>>().To<CreateSectorHandler>().AsSingle().Lazy();
+            Container.Bind<IInteractor<SectorOpenCommand>>().To<SectorOpenInteractor>().AsSingle().Lazy();
+            Container.Bind<IInteractor<DeactivateSectorsCommand>>().To<DeactivateSectorsInteractor>().AsSingle().Lazy();
+            Container.Bind<IInteractor<RemoveSectorsCommand>>().To<RemoveSectorsInteractor>().AsSingle().Lazy();
+            Container.Bind<IInteractor<ActivateSectorsCommand>>().To<ActivateSectorsInteractor>().AsSingle().Lazy();
+            Container.Bind<IInteractor<CreateSectorCommand>>().To<CreateSectorInteractor>().AsSingle().Lazy();
             Container
-                .Bind<IHandler<HighlightSectorsAtDistanceCommand>>()
-                .To<HighlightSectorsAtDistanceHandler>()
+                .Bind<IInteractor<HighlightSectorsAtDistanceCommand>>()
+                .To<HighlightSectorsAtDistanceInteractor>()
                 .AsSingle()
                 .Lazy();
         }
@@ -67,11 +67,11 @@ namespace Features.Sector
                 .FromResolve();
             Container
                 .BindSignal<CreateSectorCommand>()
-                .ToMethod<IHandler<CreateSectorCommand>>(handler => handler.Invoke)
+                .ToMethod<IInteractor<CreateSectorCommand>>(handler => handler.Execute)
                 .FromResolve();
             Container
                 .BindSignal<HighlightSectorsAtDistanceCommand>()
-                .ToMethod<IHandler<HighlightSectorsAtDistanceCommand>>(handler => handler.Invoke)
+                .ToMethod<IInteractor<HighlightSectorsAtDistanceCommand>>(handler => handler.Execute)
                 .FromResolve();
         }
 

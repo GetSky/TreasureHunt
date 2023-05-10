@@ -1,6 +1,8 @@
-﻿namespace Features.Player.Handler
+﻿using Core;
+
+namespace Features.Player.Handler
 {
-    public class RaiseCoinsCommand
+    public class RaiseCoinsCommand : ICommand
     {
         public int Count { get; }
 
