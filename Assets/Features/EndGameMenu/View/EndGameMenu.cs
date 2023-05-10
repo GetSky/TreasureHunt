@@ -1,27 +1,39 @@
 ﻿using Core;
-using Features.EndGameMenu.Handler;
+using Features.EndGameMenu.Adapters;
+using Features.EndGameMenu.Commands;
 using UnityEngine;
 using Zenject;
 using Button = UnityEngine.UI.Button;
 
 namespace Features.EndGameMenu.View
 {
-    public class EndGameMenu : MonoBehaviour, IEndGameMenuView
+    public class EndGameMenu : MonoBehaviour
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _exitButton;
 
-        private IInteractor<ReloadMapCommand> _reloadMapInteractor;
+        private IEndGamePresenter _presenter;
 
         [Inject]
-        public void Construct(IInteractor<ReloadMapCommand> reloadMapInteractor)
+        public void Construct(IEndGamePresenter presenter)
         {
-            _reloadMapInteractor = reloadMapInteractor;
+            _presenter = presenter;
+            _presenter.OnChangedStatus += SetVisible;
         }
 
         public void SetVisible(bool active)
         {
             gameObject.SetActive(active);
+        }
+
+        private void OnClickPlay()
+        {
+            _presenter.ReloadMap();
+        }
+
+        private static void OnClickExit()
+        {
+            Application.Quit();
         }
 
         private void OnEnable()
@@ -34,16 +46,6 @@ namespace Features.EndGameMenu.View
         {
             _playButton.onClick.RemoveListener(OnClickPlay);
             _exitButton.onClick.RemoveListener(OnClickExit);
-        }
-
-        private void OnClickPlay()
-        {
-            _reloadMapInteractor.Execute(new ReloadMapCommand());
-        }
-
-        private static void OnClickExit()
-        {
-            Application.Quit();
         }
     }
 }

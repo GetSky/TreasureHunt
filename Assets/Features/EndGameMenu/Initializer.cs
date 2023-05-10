@@ -1,5 +1,4 @@
-﻿using Features.EndGameMenu.Repository;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace Features.EndGameMenu
@@ -8,21 +7,16 @@ namespace Features.EndGameMenu
     {
         private readonly DiContainer _container;
         private readonly GameObject _endGameMenuPrefab;
-        private readonly IModelContext _context;
 
-        public Initializer(DiContainer container, GameObject endGameMenuPrefab, IModelContext context)
+        public Initializer(DiContainer container, GameObject endGameMenuPrefab)
         {
             _container = container;
             _endGameMenuPrefab = endGameMenuPrefab;
-            _context = context;
         }
 
         public void Initialize()
         {
-            var endMenu = _container.InstantiatePrefabForComponent<View.EndGameMenu>(_endGameMenuPrefab);
-            var model = new MenuModel();
-            model.AddView(endMenu);
-            _context.Save(model);
+            _container.InstantiatePrefabForComponent<View.EndGameMenu>(_endGameMenuPrefab);
         }
     }
 }
