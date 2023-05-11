@@ -16,7 +16,7 @@ namespace Features.EndGameMenu
 
         public void Initialize()
         {
-            _container.InstantiatePrefabForComponent<View.EndGameMenu>(_endGameMenuPrefab);
+            _container.InstantiatePrefab(_endGameMenuPrefab);
         }
     }
 }
