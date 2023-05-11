@@ -1,6 +1,6 @@
 ﻿using Core;
 
-namespace Features.Map.Handler
+namespace Features.Map.Commands
 {
     public class DecreaseTurnCountCommand : ICommand
     {

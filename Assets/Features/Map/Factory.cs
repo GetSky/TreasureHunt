@@ -1,4 +1,4 @@
-﻿using Features.Map.Repository;
+﻿using Features.Map.Entity;
 using UnityEngine;
 using Zenject;
 
@@ -19,14 +19,9 @@ namespace Features.Map
 
         public Entity.Map Create()
         {
-            var obj = _container.InstantiatePrefabForComponent<IEnergyView>(_powerCountPrefab);
-
+            _container.InstantiatePrefab(_powerCountPrefab);
             var entity = new Entity.Map("map", 6);
             _context.Save(entity);
-
-            var model = new EnergyModel(entity);
-            model.AddView(obj);
-
             return entity;
         }
     }

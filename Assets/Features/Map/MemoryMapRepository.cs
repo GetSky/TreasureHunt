@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Features.Map.Entity;
 using Zenject;
 
-namespace Features.Map.Repository
+namespace Features.Map
 {
     public class MemoryMapRepository : IMapContext, IMapRepository
     {
         private readonly SignalBus _signalBus;
-        private readonly Dictionary<string, Entity.Map> _maps = new Dictionary<string, Entity.Map>();
+        private readonly Dictionary<string, Entity.Map> _maps = new();
 
         public MemoryMapRepository(SignalBus signalBus)
         {

@@ -1,7 +1,8 @@
 ﻿using Core;
-using Features.Map.Repository;
+using Features.Map.Commands;
+using Features.Map.Entity;
 
-namespace Features.Map.Handler
+namespace Features.Map.UseCases
 {
     public class DeactivateMapInteractor : IInteractor<DeactivateMapCommand>
     {

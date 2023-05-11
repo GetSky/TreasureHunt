@@ -1,7 +1,9 @@
 using Core;
+using Features.Map.Adapters;
+using Features.Map.Commands;
+using Features.Map.Entity;
 using Features.Map.Event;
-using Features.Map.Handler;
-using Features.Map.Repository;
+using Features.Map.UseCases;
 using Features.Sector.Event;
 using UnityEngine;
 using Zenject;
@@ -27,6 +29,12 @@ namespace Features.Map
             Container.Bind<IInteractor<DecreaseTurnCountCommand>>().To<DecreaseTurnCountInteractor>().AsSingle().Lazy();
             Container.Bind<IInteractor<RaiseTurnCountCommand>>().To<RaiseTurnCountInteractor>().AsSingle().Lazy();
 
+            Container
+                .Bind(typeof(IEnergyPresenter), typeof(IEnergyPresenterBoundary))
+                .To<EnergyPresenter>()
+                .AsSingle()
+                .NonLazy();           
+            
             Container
                 .Bind(typeof(IMapContext), typeof(IMapRepository))
                 .To<MemoryMapRepository>()

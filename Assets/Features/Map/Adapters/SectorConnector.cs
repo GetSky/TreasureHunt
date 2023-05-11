@@ -1,8 +1,8 @@
 ﻿using Core;
-using Features.Map.Handler;
+using Features.Map.Commands;
 using Features.Sector.Event;
 
-namespace Features.Map
+namespace Features.Map.Adapters
 {
     public class SectorConnector
     {
