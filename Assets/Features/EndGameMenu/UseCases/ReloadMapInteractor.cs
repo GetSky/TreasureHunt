@@ -1,6 +1,6 @@
 ﻿using Core;
 using Features.EndGameMenu.Commands;
-using Features.Map.Handler;
+using Features.Map.Commands;
 
 namespace Features.EndGameMenu.UseCases
 {

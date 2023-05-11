@@ -1,24 +1,27 @@
 ﻿using Core;
-using Features.Map.Repository;
+using Features.Map.Adapters;
+using Features.Map.Commands;
+using Features.Map.Entity;
 
-namespace Features.Map.Handler
+namespace Features.Map.UseCases
 {
     public class LoadMapInteractor : IInteractor<LoadMapCommand>
     {
-        private readonly IMapRepository _repository;
         private readonly MapProducer _producer;
         private readonly IMapContext _context;
+        private readonly IEnergyPresenterBoundary _presenter;
 
-        public LoadMapInteractor(IMapRepository repository, MapProducer producer, IMapContext context)
+        public LoadMapInteractor(MapProducer producer, IMapContext context, IEnergyPresenterBoundary presenter)
         {
-            _repository = repository;
             _producer = producer;
             _context = context;
+            _presenter = presenter;
         }
 
         public void Execute(LoadMapCommand command)
         {
             var map = _producer.Generate(10, 10, 65, 20, 5);
+            _presenter.UpdateEnergy(6);
             _context.Save(map);
         }
     }

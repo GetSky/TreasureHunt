@@ -1,4 +1,4 @@
-﻿namespace Features.Map.Repository
+﻿namespace Features.Map.Entity
 {
     public interface IMapContext
     {

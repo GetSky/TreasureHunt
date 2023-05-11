@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using Features.Map.Repository;
+using Features.Map.Entity;
 using Features.Sector.Handler;
 using Zenject;
 using Random = System.Random;
 
-namespace Features.Map
+namespace Features.Map.Adapters
 {
     public enum CardType
     {

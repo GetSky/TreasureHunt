@@ -1,5 +1,5 @@
 ﻿using Core;
-using Features.Map.Handler;
+using Features.Map.Commands;
 using Zenject;
 
 namespace Features.Map

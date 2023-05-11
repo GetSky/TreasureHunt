@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Features.Map.Commands;
 using Features.Map.Event;
-using Features.Map.Handler;
 
 namespace Features.Map.Entity
 {
@@ -15,7 +15,6 @@ namespace Features.Map.Entity
         private bool _active = true;
 
         public Action<bool> OnChangedActiveStatus = delegate { };
-        public Action<int> OnEnergyUpdated = delegate { };
 
         public Map(string id, int energy)
         {
@@ -41,20 +40,19 @@ namespace Features.Map.Entity
             GameStatusChangeEvents.Add(new GameStatusChanged(_active));
             _energy.Reset();
             LoadEvents.Add(new MapLoaded());
-            OnEnergyUpdated.Invoke(_energy.Count());
         }
 
-        public void DecreaseTurnCount()
+        public int DecreaseTurnCount()
         {
-            if (_energy.Decrease() == false) return;
+            if (_energy.Decrease() == false) return _energy.Count();
             if (_energy.IsRanOut()) Deactivate();
-            OnEnergyUpdated.Invoke(_energy.Count());
+            return _energy.Count();
         }
 
-        public void RaiseTurnCount(RaiseTurnCountCommand command)
+        public int RaiseTurnCount(RaiseTurnCountCommand command)
         {
             _energy.BoostBy(command.Count);
-            OnEnergyUpdated.Invoke(_energy.Count());
+            return _energy.Count();
         }
 
         public void UnloadMap()
