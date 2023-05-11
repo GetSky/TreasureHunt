@@ -13,6 +13,6 @@ namespace Features.Sector.Card
 
         public int Value() => _count;
 
-        public IDomainEvent Execute(int _, Sector sector) => new EnergyFound(_count);
+        public IDomainEvent Execute(int _, Entities.Sector sector) => new EnergyFound(_count);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Core;
 
-namespace Features.Sector.Handler
+namespace Features.Sector.Commands
 {
     public class RemoveSectorsCommand : ICommand
     {

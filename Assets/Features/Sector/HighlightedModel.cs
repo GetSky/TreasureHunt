@@ -4,10 +4,10 @@ namespace Features.Sector
 {
     public class HighlightedModel
     {
-        private readonly Sector _sector;
+        private readonly Entities.Sector _sector;
         private readonly List<IHighlightedView> _symbolView = new List<IHighlightedView>();
 
-        public HighlightedModel(Sector sector)
+        public HighlightedModel(Entities.Sector sector)
         {
             _sector = sector;
             _sector.OnHighlighted += OnHighlighted;

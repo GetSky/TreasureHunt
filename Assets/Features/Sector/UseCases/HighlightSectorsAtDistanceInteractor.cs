@@ -1,7 +1,9 @@
 ﻿using Core;
+using Features.Sector.Commands;
+using Features.Sector.Handler;
 using Features.Sector.Repository;
 
-namespace Features.Sector.Handler
+namespace Features.Sector.UseCases
 {
     public class HighlightSectorsAtDistanceInteractor : IInteractor<HighlightSectorsAtDistanceCommand>
     {

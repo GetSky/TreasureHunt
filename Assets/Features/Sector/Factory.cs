@@ -10,24 +10,21 @@ namespace Features.Sector
     {
         private readonly DiContainer _container;
         private readonly Card.Factory _cardFactory;
-        private readonly ISectorContext _context;
         private readonly GameObject _prefab;
 
-        public Factory(DiContainer container, Card.Factory cardFactory, ISectorContext context, GameObject prefab)
+        public Factory(DiContainer container, Card.Factory cardFactory, GameObject prefab)
         {
             _container = container;
             _cardFactory = cardFactory;
-            _context = context;
             _prefab = prefab;
         }
 
-        public Sector Create(Vector2 position, CardType type)
+        public Entities.Sector Create(Vector2 position, CardType type)
         {
             var obj = _container.InstantiatePrefabForComponent<View.Sector>(_prefab);
             obj.transform.position = new Vector3(position.X, 0, position.Y);
 
-            var entity = new Sector(obj.UniqueCode(), position, _cardFactory.Create(type));
-            _context.Save(entity);
+            var entity = new Entities.Sector(obj.UniqueCode(), position, _cardFactory.Create(type));
 
             var symbolModel = new SymbolModel(entity);
             symbolModel.AddView(obj);

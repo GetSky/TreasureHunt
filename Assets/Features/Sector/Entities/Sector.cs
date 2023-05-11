@@ -4,7 +4,7 @@ using System.Numerics;
 using Features.Sector.Card;
 using Features.Sector.Event;
 
-namespace Features.Sector
+namespace Features.Sector.Entities
 {
     public class Sector
     {
