@@ -1,11 +1,12 @@
-﻿namespace Features.Player
+﻿using Features.Player.Entity;
+
+namespace Features.Player
 {
     public class Factory
     {
         public Entity.Player Create(string id, int coins)
         {
-            var entity = new Entity.Player(id, coins);
-            return entity;
+            return new Entity.Player(id, new CoinCounter(coins));
         }
     }
 }

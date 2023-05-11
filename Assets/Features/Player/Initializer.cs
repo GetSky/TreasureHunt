@@ -1,4 +1,4 @@
-﻿using Features.Player.Repository;
+﻿using Features.Player.Entity;
 using UnityEngine;
 using Zenject;
 
@@ -27,9 +27,7 @@ namespace Features.Player
         public void Initialize()
         {
             var entity = _repository.FindCurrent();
-            var view = _container.InstantiatePrefabForComponent<ICoinsView>(_coinsCounterPrefab);
-            var model = new CoinsModel(entity);
-            model.AddView(view);
+            _container.InstantiatePrefab(_coinsCounterPrefab);
             _context.Save(entity);
         }
     }

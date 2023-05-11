@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Features.Player.Entity;
 using UnityEngine;
 
-namespace Features.Player.Repository
+namespace Features.Player
 {
     public class PlayerPrefsRepository : IPlayerContext, IPlayerRepository
     {
@@ -10,7 +9,6 @@ namespace Features.Player.Repository
         private const string PrefNameCoins = "coins";
 
         private readonly Factory _factory;
-        private readonly Dictionary<string, Entity.Player> _players = new Dictionary<string, Entity.Player>();
 
         public PlayerPrefsRepository(Factory factory)
         {
@@ -19,18 +17,14 @@ namespace Features.Player.Repository
 
         public void Save(Entity.Player player)
         {
-            _players[player.Id] = player;
-
-            PlayerPrefs.SetInt(PrefNameCoins, player.Coins);
+            PlayerPrefs.SetInt(PrefNameCoins, player.CountCoins());
             PlayerPrefs.SetString(PrefNameId, player.Id);
             PlayerPrefs.Save();
         }
 
         public Entity.Player FindCurrent()
         {
-            return _players.Count > 0
-                ? _players.Values.First()
-                : _factory.Create(PlayerPrefs.GetString(PrefNameId, "local"), PlayerPrefs.GetInt(PrefNameCoins));
+            return _factory.Create(PlayerPrefs.GetString(PrefNameId), PlayerPrefs.GetInt(PrefNameCoins));
         }
     }
 }

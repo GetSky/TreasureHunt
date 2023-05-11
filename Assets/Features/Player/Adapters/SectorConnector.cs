@@ -1,8 +1,8 @@
 ﻿using Core;
-using Features.Player.Handler;
+using Features.Player.Commands;
 using Features.Sector.Event;
 
-namespace Features.Player
+namespace Features.Player.Adapters
 {
     public class SectorConnector
     {

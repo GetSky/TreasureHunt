@@ -1,6 +1,6 @@
 ﻿using Core;
 
-namespace Features.Player.Handler
+namespace Features.Player.Commands
 {
     public class RaiseCoinsCommand : ICommand
     {
