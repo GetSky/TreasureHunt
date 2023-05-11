@@ -1,7 +1,6 @@
 ﻿using Core;
 using Features.Sector.Commands;
 using Features.Sector.Entities;
-using Features.Sector.Handler;
 using Features.Sector.Repository;
 
 namespace Features.Sector.UseCases
