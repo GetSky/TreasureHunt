@@ -1,5 +1,5 @@
-﻿using Features.Sector.Event;
-using Features.Sector.Handler;
+﻿using Features.Sector.Commands;
+using Features.Sector.Event;
 
 namespace Features.Sector.Card
 {
@@ -11,7 +11,7 @@ namespace Features.Sector.Card
 
         public int Value() => _distanceToTreasure <= MaxDistanceToView ? _distanceToTreasure : NullValue;
 
-        public IDomainEvent Execute(int value, Sector sector)
+        public IDomainEvent Execute(int value, Entities.Sector sector)
         {
             _distanceToTreasure = value;
             return Value() > 0 ? new HighlightSectorsAtDistanceCommand(sector.Id, Value()) : null;

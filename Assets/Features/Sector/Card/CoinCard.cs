@@ -13,6 +13,6 @@ namespace Features.Sector.Card
 
         public int Value() => _count;
 
-        public IDomainEvent Execute(int _, Sector sector) => new CoinFound(_count);
+        public IDomainEvent Execute(int _, Entities.Sector sector) => new CoinFound(_count);
     }
 }

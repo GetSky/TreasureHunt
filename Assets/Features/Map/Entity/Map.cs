@@ -14,8 +14,6 @@ namespace Features.Map.Entity
         private readonly Energy _energy;
         private bool _active = true;
 
-        public Action<bool> OnChangedActiveStatus = delegate { };
-
         public Map(string id, int energy)
         {
             Id = id;
@@ -29,14 +27,12 @@ namespace Features.Map.Entity
         public void Deactivate()
         {
             _active = false;
-            OnChangedActiveStatus.Invoke(_active);
             GameStatusChangeEvents.Add(new GameStatusChanged(_active));
         }
 
         public void Activate()
         {
             _active = true;
-            OnChangedActiveStatus.Invoke(_active);
             GameStatusChangeEvents.Add(new GameStatusChanged(_active));
             _energy.Reset();
             LoadEvents.Add(new MapLoaded());

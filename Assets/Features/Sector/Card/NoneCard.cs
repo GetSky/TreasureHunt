@@ -8,6 +8,6 @@ namespace Features.Sector.Card
 
         public int Value() => NullValue;
 
-        public IDomainEvent Execute(int value, Sector sector) => null;
+        public IDomainEvent Execute(int value, Entities.Sector sector) => null;
     }
 }

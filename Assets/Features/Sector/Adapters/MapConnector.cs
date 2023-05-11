@@ -1,8 +1,8 @@
 ﻿using Core;
 using Features.Map.Event;
-using Features.Sector.Handler;
+using Features.Sector.Commands;
 
-namespace Features.Sector
+namespace Features.Sector.Adapters
 {
     public class MapConnector
     {

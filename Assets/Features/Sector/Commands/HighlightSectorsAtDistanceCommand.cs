@@ -1,7 +1,7 @@
 ﻿using Core;
 using Features.Sector.Event;
 
-namespace Features.Sector.Handler
+namespace Features.Sector.Commands
 {
     public class HighlightSectorsAtDistanceCommand : IDomainEvent, ICommand
     {

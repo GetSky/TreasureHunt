@@ -1,9 +1,13 @@
 using Core;
 using Features.Map.Event;
+using Features.Sector.Adapters;
 using Features.Sector.Card;
+using Features.Sector.Commands;
+using Features.Sector.Entities;
 using Features.Sector.Event;
 using Features.Sector.Handler;
 using Features.Sector.Repository;
+using Features.Sector.UseCases;
 using UnityEngine;
 using Zenject;
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Features.Map.Entity;
 using Features.Sector.Card;
 using Features.Sector.View.State;
 
@@ -7,10 +6,10 @@ namespace Features.Sector
 {
     public class SymbolModel
     {
-        private readonly Sector _sector;
-        private readonly List<ISymbolView> _symbolView = new List<ISymbolView>();
+        private readonly Entities.Sector _sector;
+        private readonly List<ISymbolView> _symbolView = new();
 
-        public SymbolModel(Sector sector)
+        public SymbolModel(Entities.Sector sector)
         {
             _sector = sector;
             _sector.OnOpened += OnOpened;

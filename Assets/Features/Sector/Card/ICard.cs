@@ -13,7 +13,7 @@ namespace Features.Sector.Card
 
     public interface ICard
     {
-        public IDomainEvent Execute(int distance, Sector inSector);
+        public IDomainEvent Execute(int distance, Entities.Sector inSector);
         public int Value();
     }
 }

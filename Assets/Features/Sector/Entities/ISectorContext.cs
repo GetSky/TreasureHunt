@@ -1,4 +1,4 @@
-﻿namespace Features.Sector.Repository
+﻿namespace Features.Sector.Entities
 {
     public interface ISectorContext
     {

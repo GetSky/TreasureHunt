@@ -8,6 +8,6 @@ namespace Features.Sector.Card
 
         public int Value() => NullValue;
 
-        public IDomainEvent Execute(int _, Sector sector) => new TreasureFound(sector.Position.X, sector.Position.Y);
+        public IDomainEvent Execute(int _, Entities.Sector sector) => new TreasureFound(sector.Position.X, sector.Position.Y);
     }
 }
