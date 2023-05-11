@@ -1,6 +1,8 @@
 ﻿using Core;
-using Features.Player.Handler;
-using Features.Player.Repository;
+using Features.Player.Adapters;
+using Features.Player.Commands;
+using Features.Player.Entity;
+using Features.Player.UseCases;
 using Features.Sector.Event;
 using UnityEngine;
 using Zenject;
@@ -20,6 +22,13 @@ namespace Features.Player
         {
             Container.Bind<Factory>().AsSingle().Lazy();
             Container.Bind<IInteractor<RaiseCoinsCommand>>().To<RaiseCoinsInteractor>().AsSingle().Lazy();
+            Container.Bind<IInteractor<RequestCountCoinsCommand>>().To<RequestCoinsInteractor>().AsSingle().Lazy();
+
+            Container
+                .Bind(typeof(ICoinPresenterBoundary), typeof(ICoinPresenter))
+                .To<CoinPresenter>()
+                .AsSingle()
+                .Lazy();
 
             Container
                 .Bind(typeof(IPlayerContext), typeof(IPlayerRepository))

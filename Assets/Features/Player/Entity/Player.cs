@@ -1,24 +1,25 @@
-﻿using System;
-
-namespace Features.Player.Entity
+﻿namespace Features.Player.Entity
 {
     public class Player
     {
         public string Id { get; }
-        public int Coins { get; private set; }
-        public Action<int> OnCoinsUpdate = delegate { };
+        private readonly CoinCounter _coins;
 
-        public Player(string id, int coins)
+        public Player(string id, CoinCounter coins)
         {
             Id = id;
-            Coins = coins;
+            _coins = coins;
         }
 
         public int RaiseCoins(int count)
         {
-            Coins += count;
-            OnCoinsUpdate(Coins);
-            return Coins;
+            _coins.Raise(count);
+            return _coins.Count;
+        }
+
+        public int CountCoins()
+        {
+            return _coins.Count;
         }
     }
 }
