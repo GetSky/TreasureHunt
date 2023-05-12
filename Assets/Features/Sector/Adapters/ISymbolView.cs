@@ -1,6 +1,6 @@
 ﻿using Features.Sector.View.State;
 
-namespace Features.Sector
+namespace Features.Sector.Adapters
 {
     public interface ISymbolView
     {

@@ -1,5 +1,5 @@
-﻿using Features.Sector.Card;
-using Features.Sector.Repository;
+﻿using Features.Sector.Adapters;
+using Features.Sector.Card;
 using UnityEngine;
 using Zenject;
 using Vector2 = System.Numerics.Vector2;
@@ -26,11 +26,9 @@ namespace Features.Sector
 
             var entity = new Entities.Sector(obj.UniqueCode(), position, _cardFactory.Create(type));
 
-            var symbolModel = new SymbolModel(entity);
-            symbolModel.AddView(obj);
+            var symbolModel = new SymbolPresenter(entity, obj);
 
-            var highlightedModel = new HighlightedModel(entity);
-            highlightedModel.AddView(obj);
+            var highlightedPresenter = new HighlightedPresenter(entity, obj);
 
             return entity;
         }
