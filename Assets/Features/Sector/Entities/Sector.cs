@@ -6,12 +6,21 @@ using Features.Sector.Event;
 
 namespace Features.Sector.Entities
 {
+    public enum State
+    {
+        Quiet,
+        Open,
+        Highlight,
+        Destroy
+    }
+
     public class Sector
     {
         public ICollection<IDomainEvent> Events { get; }
         public string Id { get; }
         public Vector2 Position { get; }
         public ICard Card { get; }
+        public State State { get; }
 
         private bool _active = true;
 
@@ -21,12 +30,13 @@ namespace Features.Sector.Entities
         public Action OnStopHighlighted = delegate { };
 
 
-        public Sector(string id, Vector2 position, ICard card)
+        public Sector(string id, Vector2 position, ICard card, State state = State.Quiet)
         {
             Events = new List<IDomainEvent>();
             Id = id;
             Position = position;
             Card = card;
+            State = state;
         }
 
         public void OpenWithTreasureIn(Sector sector)

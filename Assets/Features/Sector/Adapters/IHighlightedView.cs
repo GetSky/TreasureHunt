@@ -1,4 +1,4 @@
-﻿namespace Features.Sector
+﻿namespace Features.Sector.Adapters
 {
     public interface IHighlightedView
     {

@@ -2,28 +2,25 @@
 using Features.Sector.Card;
 using Features.Sector.View.State;
 
-namespace Features.Sector
+namespace Features.Sector.Adapters
 {
-    public class SymbolModel
+    public class SymbolPresenter
     {
         private readonly Entities.Sector _sector;
-        private readonly List<ISymbolView> _symbolView = new();
+        private readonly ISymbolView _view;
 
-        public SymbolModel(Entities.Sector sector)
+        public SymbolPresenter(Entities.Sector sector, ISymbolView symbolView)
         {
             _sector = sector;
+            _view = symbolView;
             _sector.OnOpened += OnOpened;
             _sector.OnDestroyed += OnDestroyed;
         }
 
-        public void AddView(ISymbolView symbolView)
-        {
-            _symbolView.Add(symbolView);
-        }
-
         private void OnDestroyed()
         {
-            foreach (var view in _symbolView) view.DestroyView();
+            _view.DestroyView();
+
             _sector.OnOpened -= OnOpened;
             _sector.OnDestroyed -= OnDestroyed;
         }
@@ -40,7 +37,7 @@ namespace Features.Sector
                 _ => State.Empty
             };
 
-            foreach (var view in _symbolView) view.UpdateSymbol(state, card.Value());
+            _view.UpdateSymbol(state, card.Value());
 
             _sector.OnOpened -= OnOpened;
         }
