@@ -1,9 +1,9 @@
 ﻿using Core;
+using Features.OldSector.Event;
 using Features.Player.Adapters;
 using Features.Player.Commands;
 using Features.Player.Entity;
 using Features.Player.UseCases;
-using Features.Sector.Event;
 using UnityEngine;
 using Zenject;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Features.Map.Entity;
-using Features.Sector.Commands;
+using Features.OldSector.Commands;
 using Zenject;
 using Random = System.Random;
 

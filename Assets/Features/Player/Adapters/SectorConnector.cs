@@ -1,6 +1,6 @@
 ﻿using Core;
+using Features.OldSector.Event;
 using Features.Player.Commands;
-using Features.Sector.Event;
 
 namespace Features.Player.Adapters
 {

@@ -1,6 +1,6 @@
 ﻿using Core;
 using Features.Camera.Commands;
-using Features.Sector.Event;
+using Features.OldSector.Event;
 
 namespace Features.Camera.Adapters
 {

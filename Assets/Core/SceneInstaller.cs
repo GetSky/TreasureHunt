@@ -1,8 +1,10 @@
 using Core.PlayerController;
 using Features.Camera.View;
+using Features.OldSector.View;
 using Features.Sector.View;
 using UnityEngine;
 using Zenject;
+using Installer = Features.OldSector.Installer;
 
 namespace Core
 {
@@ -18,7 +20,7 @@ namespace Core
         {
             SignalBusInstaller.Install(Container);
 
-            Features.Sector.Installer.Install(Container, _groundPrefab);
+            Installer.Install(Container, _groundPrefab);
             Features.EndGameMenu.Installer.Install(Container, _endGameMenuPrefab);
             Features.Camera.Installer.Install(Container, _cameraPrefab);
             Features.Map.Installer.Install(Container, _energyCounterPrefab);
