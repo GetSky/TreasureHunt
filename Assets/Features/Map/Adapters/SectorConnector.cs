@@ -1,6 +1,6 @@
 ﻿using Core;
 using Features.Map.Commands;
-using Features.Sector.Event;
+using Features.OldSector.Event;
 
 namespace Features.Map.Adapters
 {

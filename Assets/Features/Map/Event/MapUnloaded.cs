@@ -1,6 +1,6 @@
 ﻿namespace Features.Map.Event
 {
-    public class MapUnloaded : Sector.Event.IDomainEvent
+    public class MapUnloaded : OldSector.Event.IDomainEvent
     {
     }
 }
