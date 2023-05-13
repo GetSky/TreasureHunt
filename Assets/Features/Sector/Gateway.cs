@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using Zenject;
 
 namespace Features.Sector
 {
-    public class SectorAPI
+    public class Gateway
     {
-        public SectorAPI()
+        public Gateway()
         {
             Debug.Log("Sector API start...");
         }

@@ -11,27 +11,28 @@ namespace Features.Sector
 
         {
             Container
-                .Bind<SectorAPI>()
+                .Bind<Gateway>()
                 .FromSubContainerResolve()
                 .ByNewGameObjectMethod(InstallGateway)
-                .WithGameObjectName("Sector API Gateway")
+                .WithGameObjectName("Sectors")
                 .AsSingle()
                 .NonLazy();
         }
 
         private void InstallGateway(DiContainer subContainer)
         {
-            subContainer.Bind<SectorAPI>().AsSingle();
+            subContainer.Bind<Gateway>().AsSingle();
 
             subContainer.BindInterfacesAndSelfTo<SectorTick>().AsSingle().NonLazy();
 
             subContainer
-                .Bind<Sector>()
+                .BindFactory<Sector, Factory>()
                 .FromSubContainerResolve()
-                .ByMethod(InstallGreeter).AsTransient().Lazy();
+                .ByMethod(InstallSector)
+                .AsSingle();
         }
 
-        private void InstallGreeter(DiContainer subContainer)
+        private void InstallSector(DiContainer subContainer)
         {
             subContainer.Bind<Sector>().AsSingle();
             subContainer.Bind<SectorPresenter>().AsSingle();
