@@ -10,19 +10,25 @@ namespace Features.Sector
         public override void InstallBindings()
 
         {
-            Container.BindInterfacesAndSelfTo<SectorAPI>().FromSubContainerResolve().ByMethod(InstallGateway).AsSingle();
+            Container
+                .Bind<SectorAPI>()
+                .FromSubContainerResolve()
+                .ByNewGameObjectMethod(InstallGateway)
+                .WithGameObjectName("Sector API Gateway")
+                .AsSingle()
+                .NonLazy();
         }
 
         private void InstallGateway(DiContainer subContainer)
         {
             subContainer.Bind<SectorAPI>().AsSingle();
 
-            subContainer.BindInterfacesAndSelfTo<SectorTick>().AsSingle();
+            subContainer.BindInterfacesAndSelfTo<SectorTick>().AsSingle().NonLazy();
 
             subContainer
                 .Bind<Sector>()
                 .FromSubContainerResolve()
-                .ByMethod(InstallGreeter).AsTransient();
+                .ByMethod(InstallGreeter).AsTransient().Lazy();
         }
 
         private void InstallGreeter(DiContainer subContainer)

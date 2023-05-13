@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Features.Sector
 {
-    public class SectorAPI : Kernel
+    public class SectorAPI
     {
         public SectorAPI()
         {
