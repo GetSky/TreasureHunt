@@ -1,31 +1,26 @@
-﻿using Features.Sector.Adapters;
+﻿using System;
 
 namespace Features.Sector.Domain
 {
     public class Sector
     {
+        public event Action OnHighlighted = delegate { };
+        public event Action OnStopHighlighted = delegate { };
         public string Id { get; }
-        private readonly SectorPresenter _presenter;
 
-        public bool IsHighlight { get; private set; }
-
-        public Sector(string id, SectorPresenter presenter)
+        public Sector(string id)
         {
             Id = id;
-            _presenter = presenter;
-            IsHighlight = false;
         }
 
         public void Highlight()
         {
-            IsHighlight = true;
-            _presenter.ChangeHighlight(IsHighlight);
+            OnHighlighted();
         }
 
         public void Unhighlight()
         {
-            IsHighlight = false;
-            _presenter.ChangeHighlight(IsHighlight);
+            OnStopHighlighted();
         }
     }
 }

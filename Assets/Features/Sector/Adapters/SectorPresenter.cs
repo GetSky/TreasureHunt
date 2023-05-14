@@ -4,11 +4,16 @@ namespace Features.Sector.Adapters
 {
     public class SectorPresenter
     {
+        private readonly Domain.Sector _sector;
+
         public event Action<bool> OnChangedHighlight;
 
-        public void ChangeHighlight(bool isHighlight)
+        public SectorPresenter(Domain.Sector sector)
         {
-            OnChangedHighlight?.Invoke(isHighlight);
+            _sector = sector;
+
+            _sector.OnHighlighted += () => OnChangedHighlight?.Invoke(true);
+            _sector.OnStopHighlighted += () => OnChangedHighlight?.Invoke(false);
         }
     }
 }

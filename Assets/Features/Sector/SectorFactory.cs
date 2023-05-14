@@ -1,7 +1,5 @@
 ﻿using System.Globalization;
 using Features.Sector.Adapters;
-using Features.Sector.Domain;
-using Features.Sector.View;
 using UnityEngine;
 using Zenject;
 
@@ -20,20 +18,22 @@ namespace Features.Sector
 
         public Domain.Sector Create(float x, float z)
         {
-            var sub = _container.CreateSubContainer();
+            var subContainer = _container.CreateSubContainer();
+            var id = x.ToString(CultureInfo.CurrentCulture) + z.ToString(CultureInfo.CurrentCulture);
+            var entity = new Domain.Sector(id);
 
-            sub.Bind<Domain.Sector>().AsSingle();
-            sub.Bind<SectorPresenter>().AsSingle();
+            subContainer.Bind<Domain.Sector>().FromInstance(entity).AsSingle();
 
-            var obj = sub.InstantiatePrefabForComponent<SectorView>(_prefab);
-            obj.transform.position = new Vector3(x, 0.0f, z);
-
-            var entity = new Domain.Sector(
-                x.ToString(CultureInfo.CurrentCulture) + z.ToString(CultureInfo.CurrentCulture),
-                sub.Resolve<SectorPresenter>()
-            );
+            CreateView(subContainer, x, z);
 
             return entity;
+        }
+
+        private void CreateView(DiContainer container, float x, float z)
+        {
+            container.Bind<SectorPresenter>().AsSingle();
+            var gameObject = container.InstantiatePrefab(_prefab);
+            gameObject.transform.position = new Vector3(x, 0.0f, z);
         }
     }
 }

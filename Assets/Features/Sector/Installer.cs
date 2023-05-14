@@ -28,9 +28,9 @@ namespace Features.Sector
             subContainer.BindInterfacesAndSelfTo<SectorTick>().AsSingle().NonLazy();
 
             subContainer.Bind<SectorFactory>().AsSingle().WithArguments(subContainer, _prefab);
-            subContainer.Bind<ISectorRepository>().To<MemoryRepository>().AsSingle();
+            subContainer.Bind<ISectorRepository>().To<SectorMemoryRepository>().AsSingle();
 
-            subContainer.Bind<IInteractor<CreateSectorCommand>>().To<CreateSectorInteractor>().AsSingle();
+            subContainer.Bind<IInteractor<CreateSectorCommand>>().To<CreateSectorInteractor>().AsTransient();
         }
     }
 }

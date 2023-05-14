@@ -3,7 +3,7 @@ using Features.Sector.Domain;
 
 namespace Features.Sector
 {
-    public class MemoryRepository : ISectorRepository
+    public class SectorMemoryRepository : ISectorRepository
     {
         private readonly Dictionary<string, Domain.Sector> _sectors = new();
 
