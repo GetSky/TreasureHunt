@@ -7,6 +7,7 @@ namespace Features.Sector.Adapters
         private readonly Domain.Sector _sector;
 
         public event Action<bool> OnChangedHighlight;
+        public event Action OnDestroyed;
 
         public SectorPresenter(Domain.Sector sector)
         {
@@ -14,6 +15,7 @@ namespace Features.Sector.Adapters
 
             _sector.OnHighlighted += () => OnChangedHighlight?.Invoke(true);
             _sector.OnStopHighlighted += () => OnChangedHighlight?.Invoke(false);
+            _sector.OnDestroyed += () => OnDestroyed?.Invoke();
         }
     }
 }
