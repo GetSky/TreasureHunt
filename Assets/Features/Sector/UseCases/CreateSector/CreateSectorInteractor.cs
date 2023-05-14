@@ -17,7 +17,6 @@ namespace Features.Sector.UseCases.CreateSector
         {
             var sector = _factory.Create(command.X, command.Z);
             _repository.Add(sector);
-            sector.Highlight();
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using Core;
-using Features.OldSector.Event;
-
-namespace Features.OldSector.Commands
+﻿namespace Features.Sector.UseCases.HighlightSectorsAtDistance
 {
-    public class HighlightSectorsAtDistanceCommand : IDomainEvent, ICommand, Sector.UseCases.ICommand
+    public class HighlightSectorsAtDistanceCommand : ICommand
     {
         public string Id { get; }
         public int Distance { get; }

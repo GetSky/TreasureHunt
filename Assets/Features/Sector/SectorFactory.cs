@@ -2,6 +2,8 @@
 using Features.Sector.Adapters;
 using UnityEngine;
 using Zenject;
+using Vector2 = System.Numerics.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Features.Sector
 {
@@ -20,7 +22,7 @@ namespace Features.Sector
         {
             var subContainer = _container.CreateSubContainer();
             var id = x.ToString(CultureInfo.CurrentCulture) + z.ToString(CultureInfo.CurrentCulture);
-            var entity = new Domain.Sector(id);
+            var entity = new Domain.Sector(id, new Vector2(x, z));
 
             subContainer.Bind<Domain.Sector>().FromInstance(entity).AsSingle();
 
