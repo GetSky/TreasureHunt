@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Features.Sector
+namespace Features.Sector.Adapters
 {
     public class SectorPresenter
     {

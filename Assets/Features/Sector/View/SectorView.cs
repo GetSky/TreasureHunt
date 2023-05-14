@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Features.Sector.Adapters;
+using UnityEngine;
 using Zenject;
 
-namespace Features.Sector
+namespace Features.Sector.View
 {
     public class SectorView : MonoBehaviour
     {
