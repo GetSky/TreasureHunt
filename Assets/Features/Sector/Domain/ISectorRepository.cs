@@ -8,5 +8,6 @@ namespace Features.Sector.Domain
         public Sector FindById(string id);
         public void Add(Sector sector);
         Sector FindTreasure();
+        void Clear();
     }
 }

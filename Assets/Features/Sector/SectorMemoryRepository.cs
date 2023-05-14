@@ -16,14 +16,13 @@ namespace Features.Sector
             return entity;
         }
 
-        public void Add(Domain.Sector sector)
-        {
-            _sectors.Add(sector.Id, sector);
-        }
+        public void Add(Domain.Sector sector) => _sectors.Add(sector.Id, sector);
 
         public Domain.Sector FindTreasure()
         {
             return _sectors.First(sector => sector.Value.HasTreasure()).Value;
         }
+
+        public void Clear() => _sectors.Clear();
     }
 }
