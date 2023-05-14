@@ -2,7 +2,7 @@
 
 namespace Features.Sector
 {
-    public class Factory : PlaceholderFactory<Sector>
+    public class Factory : PlaceholderFactory<Domain.Sector>
     {
     }
 }

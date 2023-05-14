@@ -5,15 +5,15 @@ namespace Features.Sector
 {
     public class SectorTick : ITickable
     {
-        private readonly Factory _factory;
+        private readonly SectorFactory _factory;
         
-        private Sector _sector;
+        private Domain.Sector _sector;
 
-        public SectorTick(Factory factory)
+        public SectorTick(SectorFactory factory)
         {
             _factory = factory;
         }
-        
+
         public void Tick()
         {
             if (Input.GetKeyDown(KeyCode.P)) _sector = _factory.Create();

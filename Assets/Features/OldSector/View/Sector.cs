@@ -3,13 +3,12 @@ using Core;
 using DG.Tweening;
 using Features.OldSector.Adapters;
 using Features.OldSector.Commands;
-using Features.OldSector.View;
 using Features.Sector.View.State;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Features.Sector.View
+namespace Features.OldSector.View
 {
     public class Sector : MonoBehaviour, ISymbolView, IHighlightedView
     {
@@ -39,9 +38,9 @@ namespace Features.Sector.View
         {
             _distanceText = GetComponentInChildren<TextMeshPro>();
             _material = _meshRenderer.material;
-            _material.color = _states.First(cardState => cardState.State == State.State.Shirt).Object.Color;
-            _lightColor = _states.First(cardState => cardState.State == State.State.Light).Object.Color;
-            _shitColor = _states.First(cardState => cardState.State == State.State.Shirt).Object.Color;
+            _material.color = _states.First(cardState => cardState.State == State.Shirt).Object.Color;
+            _lightColor = _states.First(cardState => cardState.State == State.Light).Object.Color;
+            _shitColor = _states.First(cardState => cardState.State == State.Shirt).Object.Color;
         }
 
         public string UniqueCode() => transform.position + gameObject.name;
@@ -52,11 +51,11 @@ namespace Features.Sector.View
             _openInteractor.Execute(new SectorOpenCommand(UniqueCode()));
         }
 
-        public void UpdateSymbol(State.State state, int value)
+        public void UpdateSymbol(Features.Sector.View.State.State state, int value)
         {
             StopHighlight();
             _isOpened = true;
-            if (state == State.State.Treasure)
+            if (state == Features.Sector.View.State.State.Treasure)
             {
                 _chest.SetActive(true);
                 _chest.GetComponent<Animator>().SetBool(IsOpen, true);

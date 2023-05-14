@@ -6,7 +6,12 @@ namespace Features.Sector
     {
         public Gateway()
         {
-            Debug.Log("Sector API start...");
+            Debug.Log("Sector gateway start...");
+        }
+
+        public void Schedule(ICommand command)
+        {
+            
         }
     }
 }

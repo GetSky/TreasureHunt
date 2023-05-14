@@ -25,8 +25,10 @@ namespace Features.Sector
 
             subContainer.BindInterfacesAndSelfTo<SectorTick>().AsSingle().NonLazy();
 
+            subContainer.Bind<SectorFactory>().AsSingle();
+
             subContainer
-                .BindFactory<Sector, Factory>()
+                .BindFactory<Domain.Sector, Factory>()
                 .FromSubContainerResolve()
                 .ByMethod(InstallSector)
                 .AsSingle();
@@ -34,7 +36,7 @@ namespace Features.Sector
 
         private void InstallSector(DiContainer subContainer)
         {
-            subContainer.Bind<Sector>().AsSingle();
+            subContainer.Bind<Domain.Sector>().AsSingle();
             subContainer.Bind<SectorPresenter>().AsSingle();
             subContainer.InstantiatePrefabForComponent<SectorView>(_prefab);
         }

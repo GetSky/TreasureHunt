@@ -21,7 +21,7 @@ namespace Features.OldSector
 
         public Entities.Sector Create(Vector2 position, CardType type)
         {
-            var obj = _container.InstantiatePrefabForComponent<Sector.View.Sector>(_prefab);
+            var obj = _container.InstantiatePrefabForComponent<View.Sector>(_prefab);
             obj.transform.position = new Vector3(position.X, 0, position.Y);
 
             var entity = new Entities.Sector(obj.UniqueCode(), position, _cardFactory.Create(type));

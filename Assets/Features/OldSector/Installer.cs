@@ -6,7 +6,6 @@ using Features.OldSector.Commands;
 using Features.OldSector.Entities;
 using Features.OldSector.Event;
 using Features.OldSector.UseCases;
-using Features.Sector;
 using UnityEngine;
 using Zenject;
 
