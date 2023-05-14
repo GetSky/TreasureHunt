@@ -14,6 +14,7 @@ namespace Features.Sector.UseCases.RemoveSectors
         public void Execute(RemoveSectorsCommand command)
         {
             foreach (var sector in _repository.FindAll()) sector.Destroy();
+            _repository.Clear();
         }
     }
 }
