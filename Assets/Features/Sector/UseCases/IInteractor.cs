@@ -1,4 +1,4 @@
-﻿namespace Features.Sector
+﻿namespace Features.Sector.UseCases
 {
     public interface IInteractor<in T> where T : ICommand
     {

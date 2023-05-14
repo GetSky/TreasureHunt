@@ -1,17 +1,39 @@
-﻿namespace Features.Sector
+﻿using System.Globalization;
+using Features.Sector.Adapters;
+using Features.Sector.Domain;
+using Features.Sector.View;
+using UnityEngine;
+using Zenject;
+
+namespace Features.Sector
 {
     public class SectorFactory
     {
-        private readonly Factory _factory;
+        private readonly DiContainer _container;
+        private readonly GameObject _prefab;
 
-        public SectorFactory(Factory factory)
+        public SectorFactory(DiContainer container, GameObject prefab)
         {
-            _factory = factory;
+            _container = container;
+            _prefab = prefab;
         }
 
-        public Domain.Sector Create()
+        public Domain.Sector Create(float x, float z)
         {
-            return _factory.Create();
+            var sub = _container.CreateSubContainer();
+
+            sub.Bind<Domain.Sector>().AsSingle();
+            sub.Bind<SectorPresenter>().AsSingle();
+
+            var obj = sub.InstantiatePrefabForComponent<SectorView>(_prefab);
+            obj.transform.position = new Vector3(x, 0.0f, z);
+
+            var entity = new Domain.Sector(
+                x.ToString(CultureInfo.CurrentCulture) + z.ToString(CultureInfo.CurrentCulture),
+                sub.Resolve<SectorPresenter>()
+            );
+
+            return entity;
         }
     }
 }

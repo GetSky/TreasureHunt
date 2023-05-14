@@ -1,13 +1,17 @@
-﻿namespace Features.Sector.Domain
+﻿using Features.Sector.Adapters;
+
+namespace Features.Sector.Domain
 {
     public class Sector
     {
+        public string Id { get; }
         private readonly SectorPresenter _presenter;
 
         public bool IsHighlight { get; private set; }
 
-        public Sector(SectorPresenter presenter)
+        public Sector(string id, SectorPresenter presenter)
         {
+            Id = id;
             _presenter = presenter;
             IsHighlight = false;
         }

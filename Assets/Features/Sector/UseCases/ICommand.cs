@@ -1,4 +1,4 @@
-﻿namespace Features.Sector
+﻿namespace Features.Sector.UseCases
 {
     public interface ICommand
     {

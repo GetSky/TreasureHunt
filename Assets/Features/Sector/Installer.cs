@@ -1,3 +1,6 @@
+using Features.Sector.Domain;
+using Features.Sector.UseCases;
+using Features.Sector.UseCases.CreateSector;
 using UnityEngine;
 using Zenject;
 
@@ -22,23 +25,12 @@ namespace Features.Sector
         private void InstallGateway(DiContainer subContainer)
         {
             subContainer.Bind<Gateway>().AsSingle();
-
             subContainer.BindInterfacesAndSelfTo<SectorTick>().AsSingle().NonLazy();
 
-            subContainer.Bind<SectorFactory>().AsSingle();
+            subContainer.Bind<SectorFactory>().AsSingle().WithArguments(subContainer, _prefab);
+            subContainer.Bind<ISectorRepository>().To<MemoryRepository>().AsSingle();
 
-            subContainer
-                .BindFactory<Domain.Sector, Factory>()
-                .FromSubContainerResolve()
-                .ByMethod(InstallSector)
-                .AsSingle();
-        }
-
-        private void InstallSector(DiContainer subContainer)
-        {
-            subContainer.Bind<Domain.Sector>().AsSingle();
-            subContainer.Bind<SectorPresenter>().AsSingle();
-            subContainer.InstantiatePrefabForComponent<SectorView>(_prefab);
+            subContainer.Bind<IInteractor<CreateSectorCommand>>().To<CreateSectorInteractor>().AsSingle();
         }
     }
 }
