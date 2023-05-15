@@ -10,7 +10,7 @@ namespace Features.Sector.Domain
         public event Action OnHighlighted = delegate { };
         public event Action OnStopHighlighted = delegate { };
         public event Action OnDestroyed = delegate { };
-        public event Action OnOpened = delegate { };
+        public event Action<IEffect> OnOpened = delegate { };
 
         public string Id { get; }
         public Vector2 Position { get; }
@@ -58,7 +58,7 @@ namespace Features.Sector.Domain
         {
             if (_active == false) return null;
 
-            OnOpened.Invoke();
+            OnOpened.Invoke(Effect);
             return Effect.Call(this, sector);
         }
 

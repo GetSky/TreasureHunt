@@ -1,6 +1,6 @@
 ﻿using Core;
 using Features.Map.Commands;
-using Features.OldSector.Event;
+using Features.Sector.Domain.Events;
 
 namespace Features.Map.Adapters
 {
@@ -24,6 +24,6 @@ namespace Features.Map.Adapters
         public void TreasureFind() => _deactivateInteractor.Execute(new DeactivateMapCommand());
         public void SectorOpen() => _turnCountInteractor.Execute(new DecreaseTurnCountCommand());
 
-        public void EnergyFound(EnergyFound e) => _raiseTurnCountInteractor.Execute(new RaiseTurnCountCommand(e.Count));
+        public void EnergyFound(EnergyDiscovered e) => _raiseTurnCountInteractor.Execute(new RaiseTurnCountCommand(e.Grade));
     }
 }

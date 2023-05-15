@@ -1,6 +1,6 @@
 ﻿using Core;
 using Features.Camera.Commands;
-using Features.OldSector.Event;
+using Features.Sector.Domain.Events;
 
 namespace Features.Camera.Adapters
 {
@@ -13,7 +13,7 @@ namespace Features.Camera.Adapters
             _interactor = interactor;
         }
 
-        public void FoundTreasure(TreasureFound status)
+        public void FoundTreasure(TreasureDiscovered status)
         {
             _interactor.Execute(new LookAtCommand(status.X, status.Y, false));
         }

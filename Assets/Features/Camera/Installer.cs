@@ -3,7 +3,7 @@ using Features.Camera.Adapters;
 using Features.Camera.Commands;
 using Features.Camera.UseCases;
 using Features.Map.Event;
-using Features.OldSector.Event;
+using Features.Sector.Domain.Events;
 using UnityEngine;
 using Zenject;
 
@@ -27,7 +27,7 @@ namespace Features.Camera
             Container.Bind<IInteractor<LookAtCommand>>().To<LookAtInteractor>().AsSingle().Lazy();
 
             Container.Bind<SectorConnector>().AsTransient().Lazy();
-            Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();
+            Container.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();
 
             Container.Bind<MapConnector>().AsTransient().Lazy();
             Container.BindSignal<MapLoaded>().ToMethod<MapConnector>(c => c.MapReload).FromResolve();

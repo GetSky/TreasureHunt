@@ -1,6 +1,6 @@
 ﻿using Core;
-using Features.OldSector.Event;
 using Features.Player.Commands;
+using Features.Sector.Domain.Events;
 
 namespace Features.Player.Adapters
 {
@@ -13,14 +13,14 @@ namespace Features.Player.Adapters
             _raiseCoinsInteractor = raiseCoinsInteractor;
         }
 
-        public void TreasureFind(TreasureFound e)
+        public void TreasureFind(TreasureDiscovered e)
         {
             _raiseCoinsInteractor.Execute(new RaiseCoinsCommand(100));
         }
 
-        public void CoinFind(CoinFound e)
+        public void CoinFind(CoinDiscovered e)
         {
-            _raiseCoinsInteractor.Execute(new RaiseCoinsCommand(e.Count));         
+            _raiseCoinsInteractor.Execute(new RaiseCoinsCommand(e.Grade));         
         }
     }
 }

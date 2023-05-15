@@ -1,4 +1,6 @@
-﻿using Features.Sector.Domain;
+﻿using System;
+using Features.Map.Adapters;
+using Features.Sector.Domain;
 
 namespace Features.Sector.UseCases.CreateSector
 {
@@ -15,7 +17,8 @@ namespace Features.Sector.UseCases.CreateSector
 
         public void Execute(CreateSectorCommand command)
         {
-            var sector = _factory.Create(command.X, command.Z);
+            if (Enum.TryParse(command.Type, true, out EffectType effectType) == false) return;
+            var sector = _factory.Create(command.X, command.Z, effectType);
             _repository.Add(sector);
         }
     }

@@ -4,7 +4,7 @@ using Features.Map.Commands;
 using Features.Map.Entity;
 using Features.Map.Event;
 using Features.Map.UseCases;
-using Features.OldSector.Event;
+using Features.Sector.Domain.Events;
 using UnityEngine;
 using Zenject;
 
@@ -43,9 +43,9 @@ namespace Features.Map
 
             Container.Bind<SectorConnector>().AsTransient().Lazy();
 
-            Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
-            Container.BindSignal<EnergyFound>().ToMethod<SectorConnector>(c => c.EnergyFound).FromResolve();
-            Container.BindSignal<SectorOpen>().ToMethod<SectorConnector>(c => c.SectorOpen).FromResolve();
+            Container.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
+            Container.BindSignal<EnergyDiscovered>().ToMethod<SectorConnector>(c => c.EnergyFound).FromResolve();
+            Container.BindSignal<SectorOpened>().ToMethod<SectorConnector>(c => c.SectorOpen).FromResolve();
 
             Container.DeclareSignal<GameStatusChanged>().OptionalSubscriber();
             Container.DeclareSignal<MapLoaded>().OptionalSubscriber();

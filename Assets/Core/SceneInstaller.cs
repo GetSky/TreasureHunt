@@ -1,16 +1,13 @@
 using Core.PlayerController;
 using Features.Camera.View;
-using Features.OldSector.View;
-using Features.Sector.View;
 using UnityEngine;
 using Zenject;
-using Installer = Features.OldSector.Installer;
+using IInputSectorControl = Features.Sector.View.IInputSectorControl;
 
 namespace Core
 {
     public class SceneInstaller : MonoInstaller
     {
-        [SerializeField] private GameObject _groundPrefab;
         [SerializeField] private GameObject _endGameMenuPrefab;
         [SerializeField] private GameObject _cameraPrefab;
         [SerializeField] private GameObject _energyCounterPrefab;
@@ -19,8 +16,7 @@ namespace Core
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
-
-            Installer.Install(Container, _groundPrefab);
+            
             Features.EndGameMenu.Installer.Install(Container, _endGameMenuPrefab);
             Features.Camera.Installer.Install(Container, _cameraPrefab);
             Features.Map.Installer.Install(Container, _energyCounterPrefab);

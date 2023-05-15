@@ -1,9 +1,9 @@
 ﻿using Core;
-using Features.OldSector.Event;
 using Features.Player.Adapters;
 using Features.Player.Commands;
 using Features.Player.Entity;
 using Features.Player.UseCases;
+using Features.Sector.Domain.Events;
 using UnityEngine;
 using Zenject;
 
@@ -38,8 +38,8 @@ namespace Features.Player
 
             Container.Bind<SectorConnector>().AsTransient().Lazy();
 
-            Container.BindSignal<TreasureFound>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
-            Container.BindSignal<CoinFound>().ToMethod<SectorConnector>(c => c.CoinFind).FromResolve();
+            Container.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
+            Container.BindSignal<CoinDiscovered>().ToMethod<SectorConnector>(c => c.CoinFind).FromResolve();
 
             Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_coinsCounterPrefab).Lazy();
         }

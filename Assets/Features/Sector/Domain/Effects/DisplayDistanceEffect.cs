@@ -11,6 +11,8 @@ namespace Features.Sector.Domain.Effects
             _grade = grade;
         }
 
+        public int Value() => _grade + 1;
+
         public IDomainEvent Call(Sector openSector, Sector treasureSector)
         {
             var distance = openSector.MeasureDistanceTo(treasureSector);
