@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Linq;
 using Features.Sector.Adapters;
 using Features.Sector.UseCases.OpenSector;
@@ -14,13 +15,14 @@ namespace Features.Sector.View
         [SerializeField] private GameObject _chest;
         [SerializeField] private CardState[] _states;
 
-        private IInputSectorControl _input;
-        private TextMeshPro _distanceText;
-
-        private static readonly int IsOpen = Animator.StringToHash("isOpen");
-        private Gateway _sectorGateway;
         private SectorPresenter _presenter;
         private HighlightComponent _highlightComponent;
+        private IInputSectorControl _input;
+        private TextMeshPro _distanceText;
+        private Gateway _sectorGateway;
+
+        private static readonly int IsOpen = Animator.StringToHash("isOpen");
+
         private bool _isOpened;
 
         [Inject]
@@ -29,22 +31,29 @@ namespace Features.Sector.View
             _input = input;
             _presenter = presenter;
             _sectorGateway = sectorGateway;
-
-            _presenter.OnChangedHighlight += isHighlight =>
-            {
-                if (_isOpened) return;
-                if (isHighlight) _highlightComponent.Highlight();
-                else _highlightComponent.StopHighlight();
-            };
-            _presenter.OnDestroyed += () => Destroy(gameObject);
-            _presenter.OnOpened += UpdateSymbol;
-
-            _highlightComponent = GetComponentInChildren<HighlightComponent>();
         }
 
         private void Awake()
         {
             _distanceText = GetComponentInChildren<TextMeshPro>();
+            _highlightComponent = GetComponentInChildren<HighlightComponent>();
+
+            _presenter.OnDestroyed += () => Destroy(gameObject);
+        }
+
+        private void OnEnable()
+        {
+            _presenter.OnChangedHighlight += ChangeHighlight;
+            _presenter.OnOpened += UpdateSymbol;
+        }
+
+        private void ChangeHighlight(bool isHighlight)
+        {
+            if (_isOpened) return;
+            if (isHighlight)
+                _highlightComponent.Highlight();
+            else
+                _highlightComponent.StopHighlight();
         }
 
         private void OnMouseUp()
@@ -70,6 +79,12 @@ namespace Features.Sector.View
             var stateObject = _states.First(cardState => cardState.State == state).Object;
             _distanceText.SetText(stateObject.Text(value));
             _highlightComponent.SetColor(stateObject.Color);
+        }
+
+        private void OnDisable()
+        {
+            _presenter.OnOpened -= UpdateSymbol;
+            _presenter.OnChangedHighlight -= ChangeHighlight;
         }
     }
 }
