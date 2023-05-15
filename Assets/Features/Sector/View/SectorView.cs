@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.Linq;
-using DG.Tweening;
 using Features.Sector.Adapters;
 using Features.Sector.UseCases.OpenSector;
 using Features.Sector.View.State;
@@ -12,22 +11,17 @@ namespace Features.Sector.View
 {
     public class SectorView : MonoBehaviour
     {
-        [SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private GameObject _chest;
-        [SerializeField] private float _animationDuration = 0.5f;
-        [SerializeField] private float _animationDelay = 2.0f;
         [SerializeField] private CardState[] _states;
 
         private IInputSectorControl _input;
-        private Material _material;
         private TextMeshPro _distanceText;
-        private Color _lightColor;
-        private Color _shitColor;
-        private bool _isOpened;
 
         private static readonly int IsOpen = Animator.StringToHash("isOpen");
         private Gateway _sectorGateway;
         private SectorPresenter _presenter;
+        private HighlightComponent _highlightComponent;
+        private bool _isOpened;
 
         [Inject]
         public void Construct(SectorPresenter presenter, Gateway sectorGateway, IInputSectorControl input)
@@ -38,22 +32,19 @@ namespace Features.Sector.View
 
             _presenter.OnChangedHighlight += isHighlight =>
             {
-                if (isHighlight) Highlight();
-                else StopHighlight();
+                if (_isOpened) return;
+                if (isHighlight) _highlightComponent.Highlight();
+                else _highlightComponent.StopHighlight();
             };
-
-            _presenter.OnDestroyed += DestroyView;
-
+            _presenter.OnDestroyed += () => Destroy(gameObject);
             _presenter.OnOpened += UpdateSymbol;
+
+            _highlightComponent = GetComponentInChildren<HighlightComponent>();
         }
 
         private void Awake()
         {
             _distanceText = GetComponentInChildren<TextMeshPro>();
-            _material = _meshRenderer.material;
-            _material.color = _states.First(cardState => cardState.State == State.State.Shirt).Object.Color;
-            _lightColor = _states.First(cardState => cardState.State == State.State.Light).Object.Color;
-            _shitColor = _states.First(cardState => cardState.State == State.State.Shirt).Object.Color;
         }
 
         private void OnMouseUp()
@@ -65,11 +56,11 @@ namespace Features.Sector.View
             _sectorGateway.Schedule(new OpenSectorCommand(id));
         }
 
-        public void UpdateSymbol(Features.Sector.View.State.State state, int value)
+        private void UpdateSymbol(Features.Sector.View.State.State state, int value)
         {
-            StopHighlight();
-
+            _highlightComponent.StopHighlight();
             _isOpened = true;
+
             if (state == Features.Sector.View.State.State.Treasure)
             {
                 _chest.SetActive(true);
@@ -78,29 +69,7 @@ namespace Features.Sector.View
 
             var stateObject = _states.First(cardState => cardState.State == state).Object;
             _distanceText.SetText(stateObject.Text(value));
-            _material.DOColor(stateObject.Color, _animationDuration);
-        }
-
-        public void DestroyView()
-        {
-            Destroy(gameObject);
-        }
-
-        public void Highlight()
-        {
-            if (_isOpened) return;
-
-            StopHighlight();
-            _material.DOColor(_lightColor, _animationDuration);
-            _material.DOColor(_shitColor, _animationDuration).SetDelay(_animationDelay + _animationDuration);
-        }
-
-        public void StopHighlight()
-        {
-            if (_isOpened) return;
-
-            _material.DOKill();
-            _material.DOColor(_shitColor, _animationDuration);
+            _highlightComponent.SetColor(stateObject.Color);
         }
     }
 }
