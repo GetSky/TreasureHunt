@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Features.Map.Entity;
-using Features.OldSector.Commands;
-using Zenject;
+using Features.Sector;
+using Features.Sector.UseCases.CreateSector;
 using Random = System.Random;
 
 namespace Features.Map.Adapters
@@ -18,12 +18,12 @@ namespace Features.Map.Adapters
 
     public class MapProducer
     {
-        private readonly SignalBus _signalBus;
+        private readonly Gateway _sectorGateway;
         private readonly IMapRepository _repository;
 
-        public MapProducer(SignalBus signalBus, IMapRepository repository)
+        public MapProducer(Gateway sectorGateway, IMapRepository repository)
         {
-            _signalBus = signalBus;
+            _sectorGateway = sectorGateway;
             _repository = repository;
         }
 
@@ -35,7 +35,7 @@ namespace Features.Map.Adapters
             for (var x = 0; x < rows; x++)
             {
                 for (var z = 0; z < columns; z++)
-                    _signalBus.Fire(new CreateSectorCommand(x, z, deck[idx++].ToString()));
+                    _sectorGateway.Schedule(new CreateSectorCommand(x, z, deck[idx++].ToString()));
             }
 
             map.Activate();

@@ -13,7 +13,7 @@ namespace Features.Sector.Domain.Effects
 
         public IDomainEvent Call(Sector openSector, Sector treasureSector)
         {
-            return new EnergyDiscovered(openSector.Position.X, openSector.Position.Y, _grade);
+            return new CoinDiscovered(openSector.Position.X, openSector.Position.Y, _grade);
         }
     }
 }

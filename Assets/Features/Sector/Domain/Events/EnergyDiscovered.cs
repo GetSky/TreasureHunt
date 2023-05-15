@@ -2,7 +2,7 @@
 {
     public class EnergyDiscovered : IDomainEvent
     {
-        private int Grade { get; }
+        public int Grade { get; }
         public float X { get; }
         public float Y { get; }
 

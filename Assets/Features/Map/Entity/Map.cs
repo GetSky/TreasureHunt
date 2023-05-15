@@ -56,6 +56,6 @@ namespace Features.Map.Entity
             if (_active) return;
 
             UnloadEvents.Add(new MapUnloaded());
-        }
+        } 
     }
 }

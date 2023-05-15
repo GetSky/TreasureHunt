@@ -1,5 +1,8 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Features.Sector.Adapters;
+using Features.Sector.Domain;
+using Features.Sector.Domain.Effects;
 using UnityEngine;
 using Zenject;
 using Vector2 = System.Numerics.Vector2;
@@ -18,11 +21,22 @@ namespace Features.Sector
             _prefab = prefab;
         }
 
-        public Domain.Sector Create(float x, float z)
+        public Domain.Sector Create(float x, float z, EffectType type)
         {
             var subContainer = _container.CreateSubContainer();
             var id = x.ToString(CultureInfo.CurrentCulture) + z.ToString(CultureInfo.CurrentCulture);
-            var entity = new Domain.Sector(id, new Vector2(x, z));
+
+            IEffect effect = type switch
+            {
+                EffectType.None => new NoneEffect(),
+                EffectType.Treasure => new TreasureEffect(1),
+                EffectType.Coin => new CoinEffect(10),
+                EffectType.Distance => new DisplayDistanceEffect(5),
+                EffectType.Energy => new EnergyEffect(2),
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+
+            var entity = new Domain.Sector(id, new Vector2(x, z), effect);
 
             subContainer.Bind<Domain.Sector>().FromInstance(entity).AsSingle();
 
