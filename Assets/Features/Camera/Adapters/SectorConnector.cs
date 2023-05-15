@@ -1,5 +1,6 @@
 ﻿using Core;
 using Features.Camera.Commands;
+using Features.Sector.Domain.Effects.Events;
 using Features.Sector.Domain.Events;
 
 namespace Features.Camera.Adapters

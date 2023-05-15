@@ -1,7 +1,7 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Linq;
 using Features.Sector.Adapters;
+using Features.Sector.Domain;
 using Features.Sector.UseCases.OpenSector;
 using Features.Sector.View.State;
 using TMPro;
@@ -65,18 +65,18 @@ namespace Features.Sector.View
             _sectorGateway.Schedule(new OpenSectorCommand(id));
         }
 
-        private void UpdateSymbol(Features.Sector.View.State.State state, int value)
+        private void UpdateSymbol(EffectStateType state, int value)
         {
             _highlightComponent.StopHighlight();
             _isOpened = true;
 
-            if (state == Features.Sector.View.State.State.Treasure)
+            if (state == EffectStateType.Treasure)
             {
                 _chest.SetActive(true);
                 _chest.GetComponent<Animator>().SetBool(IsOpen, true);
             }
 
-            var stateObject = _states.First(cardState => cardState.State == state).Object;
+            var stateObject = _states.First(cardState => cardState.State.ToString() == state.ToString()).Object;
             _distanceText.SetText(stateObject.Text(value));
             _highlightComponent.SetColor(stateObject.Color);
         }

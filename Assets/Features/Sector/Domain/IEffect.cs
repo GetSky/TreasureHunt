@@ -1,4 +1,6 @@
-﻿namespace Features.Sector.Domain
+﻿using Features.Sector.Domain.Effects;
+
+namespace Features.Sector.Domain
 {
     public enum EffectType
     {
@@ -8,8 +10,9 @@
         Distance,
         Energy,
     }
+
     public interface IEffect
     {
-        public IDomainEvent Call(Sector openSector, Sector treasureSector);
+        public IEventDomainEvent Call(Sector openSector, Sector treasureSector);
     }
 }

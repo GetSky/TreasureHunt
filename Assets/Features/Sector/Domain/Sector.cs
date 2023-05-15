@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Numerics;
 using Features.Sector.Domain.Effects;
-using Features.Sector.Domain.Events;
 
 namespace Features.Sector.Domain
 {
@@ -10,7 +9,7 @@ namespace Features.Sector.Domain
         public event Action OnHighlighted = delegate { };
         public event Action OnStopHighlighted = delegate { };
         public event Action OnDestroyed = delegate { };
-        public event Action<IEffect> OnOpened = delegate { };
+        public event Action<EffectState> OnOpened = delegate { };
 
         public string Id { get; }
         public Vector2 Position { get; }
@@ -57,9 +56,11 @@ namespace Features.Sector.Domain
         public IDomainEvent OpenWithTreasureIn(Sector sector)
         {
             if (_active == false) return null;
+            
+            var domainEvent = Effect.Call(this, sector);
+            OnOpened.Invoke(domainEvent.EffectState);
 
-            OnOpened.Invoke(Effect);
-            return Effect.Call(this, sector);
+            return domainEvent;
         }
 
         public bool HasTreasure() => Effect is TreasureEffect;

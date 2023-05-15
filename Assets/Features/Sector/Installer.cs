@@ -1,5 +1,6 @@
 using Features.Map.Event;
 using Features.Sector.Domain;
+using Features.Sector.Domain.Effects.Events;
 using Features.Sector.Domain.Events;
 using Features.Sector.EventHandlers;
 using Features.Sector.UseCases;
@@ -30,6 +31,7 @@ namespace Features.Sector
                 .NonLazy();
 
             Container.DeclareSignal<SectorOpened>().OptionalSubscriber();
+            Container.DeclareSignal<EmptyDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<HintDistanceDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<EnergyDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<CoinDiscovered>().OptionalSubscriber();

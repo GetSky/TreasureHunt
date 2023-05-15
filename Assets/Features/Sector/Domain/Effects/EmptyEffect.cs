@@ -2,21 +2,14 @@
 
 namespace Features.Sector.Domain.Effects
 {
-    public class EnergyEffect : IEffect
+    public class EmptyEffect : IEffect
     {
-        private readonly int _grade;
-
-        public EnergyEffect(int grade)
-        {
-            _grade = grade;
-        }
-
         public IEventDomainEvent Call(Sector openSector, Sector treasureSector)
         {
-            return new EnergyDiscovered(
+            return new EmptyDiscovered(
                 openSector.Position.X,
                 openSector.Position.Y,
-                new EffectState(EffectStateType.Energy, _grade, _grade)
+                new EffectState(EffectStateType.Empty, 0, 0)
             );
         }
     }

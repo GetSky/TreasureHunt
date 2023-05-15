@@ -1,5 +1,6 @@
 ﻿using Core;
 using Features.Player.Commands;
+using Features.Sector.Domain.Effects.Events;
 using Features.Sector.Domain.Events;
 
 namespace Features.Player.Adapters
@@ -20,7 +21,7 @@ namespace Features.Player.Adapters
 
         public void CoinFind(CoinDiscovered e)
         {
-            _raiseCoinsInteractor.Execute(new RaiseCoinsCommand(e.Grade));         
+            _raiseCoinsInteractor.Execute(new RaiseCoinsCommand(e.EffectState.Grade));         
         }
     }
 }
