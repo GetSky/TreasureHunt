@@ -1,8 +1,8 @@
-﻿using Features.Sector.Domain.Events;
+﻿using Features.Sector.Domain.Effects.Events;
 
 namespace Features.Sector.Domain.Effects
 {
-    class TreasureEffect : IEffect
+    public class TreasureEffect : IEffect
     {
         private readonly int _grade;
 
@@ -11,9 +11,13 @@ namespace Features.Sector.Domain.Effects
             _grade = grade;
         }
 
-        public IDomainEvent Call(Sector openSector, Sector _)
+        public IEventDomainEvent Call(Sector openSector, Sector _)
         {
-            return new TreasureDiscovered(openSector.Position.X, openSector.Position.Y, _grade);
+            return new TreasureDiscovered(
+                openSector.Position.X,
+                openSector.Position.Y,
+                new EffectState(EffectStateType.Treasure, _grade, _grade)
+            );
         }
     }
 }

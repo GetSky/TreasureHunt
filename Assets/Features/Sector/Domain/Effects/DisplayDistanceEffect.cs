@@ -1,4 +1,4 @@
-﻿using Features.Sector.Domain.Events;
+﻿using Features.Sector.Domain.Effects.Events;
 
 namespace Features.Sector.Domain.Effects
 {
@@ -13,12 +13,16 @@ namespace Features.Sector.Domain.Effects
 
         public int Value() => _grade + 1;
 
-        public IDomainEvent Call(Sector openSector, Sector treasureSector)
+        public IEventDomainEvent Call(Sector openSector, Sector treasureSector)
         {
             var distance = openSector.MeasureDistanceTo(treasureSector);
+            var state = distance > _grade + 1
+                ? new EffectState(EffectStateType.TooFar, _grade, 0)
+                : new EffectState(EffectStateType.Distance, _grade, distance);
+
             return new HintDistanceDiscovered(
                 openSector.Id,
-                distance > _grade + 1 ? 0 : distance
+                state
             );
         }
     }

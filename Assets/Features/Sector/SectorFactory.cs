@@ -28,7 +28,7 @@ namespace Features.Sector
 
             IEffect effect = type switch
             {
-                EffectType.None => new NoneEffect(),
+                EffectType.None => new EmptyEffect(),
                 EffectType.Treasure => new TreasureEffect(1),
                 EffectType.Coin => new CoinEffect(10),
                 EffectType.Distance => new DisplayDistanceEffect(5),

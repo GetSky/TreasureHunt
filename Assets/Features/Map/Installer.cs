@@ -4,6 +4,7 @@ using Features.Map.Commands;
 using Features.Map.Entity;
 using Features.Map.Event;
 using Features.Map.UseCases;
+using Features.Sector.Domain.Effects.Events;
 using Features.Sector.Domain.Events;
 using UnityEngine;
 using Zenject;
