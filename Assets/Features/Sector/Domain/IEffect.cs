@@ -8,6 +8,7 @@ namespace Features.Sector.Domain
         Treasure,
         Coin,
         Distance,
+        Direction,
         Energy,
     }
 

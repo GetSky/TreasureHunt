@@ -7,6 +7,7 @@ using Features.Sector.UseCases;
 using Features.Sector.UseCases.ActivateSectors;
 using Features.Sector.UseCases.CreateSector;
 using Features.Sector.UseCases.DeactivateSectors;
+using Features.Sector.UseCases.HighlightSectorsAtDirection;
 using Features.Sector.UseCases.HighlightSectorsAtDistance;
 using Features.Sector.UseCases.OpenSector;
 using Features.Sector.UseCases.RemoveSectors;
@@ -33,6 +34,7 @@ namespace Features.Sector
             Container.DeclareSignal<SectorOpened>().OptionalSubscriber();
             Container.DeclareSignal<EmptyDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<HintDistanceDiscovered>().OptionalSubscriber();
+            Container.DeclareSignal<HintDirectionDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<EnergyDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<CoinDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<TreasureDiscovered>().OptionalSubscriber();
@@ -58,15 +60,24 @@ namespace Features.Sector
             subContainer.Bind<IInteractor<OpenSectorCommand>>().To<OpenSectorInteractor>().AsTransient();
 
             subContainer
+                .Bind<IInteractor<HighlightSectorsAtDirectionCommand>>()
+                .To<HighlightSectorsAsDirectionInteractor>()
+                .AsTransient();
+
+            subContainer
                 .BindSignal<HintDistanceDiscovered>()
                 .ToMethod<HintDistanceDiscoveredHandler>((handler, discovered) => handler.Execute(discovered))
+                .FromNew();
+            subContainer
+                .BindSignal<HintDirectionDiscovered>()
+                .ToMethod<HintDirectionHandler>((handler, discovered) => handler.Execute(discovered))
                 .FromNew();
 
             subContainer
                 .BindSignal<GameStatusChanged>()
                 .ToMethod<GameStatusChangedHandler>((handler, discovered) => handler.Execute(discovered))
                 .FromNew();
-            
+
             subContainer
                 .BindSignal<MapUnloaded>()
                 .ToMethod<MapUploadedHandler>((handler, discovered) => handler.Execute(discovered))

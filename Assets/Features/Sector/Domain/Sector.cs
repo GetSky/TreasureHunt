@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Numerics;
 using Features.Sector.Domain.Effects;
 using Features.Sector.Domain.Events;
+using Vector2 = System.Numerics.Vector2;
 
 namespace Features.Sector.Domain
 {
@@ -51,6 +51,14 @@ namespace Features.Sector.Domain
             else OnStopHighlighted.Invoke();
         }
 
+        public void HighlightInDirection(Sector sector, int angle)
+        {
+            if (_active == false) return;
+
+            if (FindAngleBetween(angle, sector.MeasureDirectionTo(this)) <= 30) OnHighlighted.Invoke();
+            else OnStopHighlighted.Invoke();
+        }
+
         public int MeasureDistanceTo(Sector sector)
         {
             return (int)Math.Round(
@@ -58,18 +66,24 @@ namespace Features.Sector.Domain
             );
         }
 
+        public float MeasureDirectionTo(Sector sector)
+        {
+            var angle = Math.Atan2(sector.Position.Y - Position.Y, sector.Position.X - Position.X) * 180 / Math.PI;
+            return (float)(angle < 0 ? angle + 360 : angle);
+        }
+
         public IEnumerable<IDomainEvent> OpenWithTreasureIn(Sector sector)
         {
             if (_active == false) return null;
 
             var domainEvents = new List<IDomainEvent>();
-            
+
             var effectEvent = Effect.Call(this, sector);
             if (effectEvent is null) return domainEvents;
-            
+
             domainEvents.Add(effectEvent);
             OnOpened.Invoke(effectEvent.EffectState);
-            
+
             if (Opened == false) domainEvents.Add(new SectorOpened());
             Opened = true;
 
@@ -77,5 +91,16 @@ namespace Features.Sector.Domain
         }
 
         public bool HasTreasure() => Effect is TreasureEffect;
+
+        private static float FindAngleBetween(float first, float second)
+        {
+            var angleToDirection = first - second;
+            var directionToAngle = second - first;
+
+            var start = first > second ? angleToDirection : directionToAngle;
+            var end = (first > second ? directionToAngle : angleToDirection) + 360;
+
+            return start > end ? end : start;
+        }
     }
 }

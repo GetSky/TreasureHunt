@@ -33,6 +33,7 @@ namespace Features.Sector
                 EffectType.Coin => new CoinEffect(10),
                 EffectType.Distance => new DisplayDistanceEffect(5),
                 EffectType.Energy => new EnergyEffect(2),
+                EffectType.Direction => new DisplayDirectionEffect(1),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
 
