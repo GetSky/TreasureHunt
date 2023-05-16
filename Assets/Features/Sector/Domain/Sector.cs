@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 using Features.Sector.Domain.Effects;
+using Features.Sector.Domain.Events;
 
 namespace Features.Sector.Domain
 {
@@ -13,6 +15,8 @@ namespace Features.Sector.Domain
 
         public string Id { get; }
         public Vector2 Position { get; }
+        public bool Opened { get; private set; }
+
         private IEffect Effect { get; }
 
         private bool _active = true;
@@ -22,6 +26,7 @@ namespace Features.Sector.Domain
             Id = id;
             Position = position;
             Effect = effect;
+            Opened = false;
         }
 
         public void Deactivate()
@@ -53,14 +58,22 @@ namespace Features.Sector.Domain
             );
         }
 
-        public IDomainEvent OpenWithTreasureIn(Sector sector)
+        public IEnumerable<IDomainEvent> OpenWithTreasureIn(Sector sector)
         {
             if (_active == false) return null;
-            
-            var domainEvent = Effect.Call(this, sector);
-            OnOpened.Invoke(domainEvent.EffectState);
 
-            return domainEvent;
+            var domainEvents = new List<IDomainEvent>();
+            
+            var effectEvent = Effect.Call(this, sector);
+            if (effectEvent is null) return domainEvents;
+            
+            domainEvents.Add(effectEvent);
+            OnOpened.Invoke(effectEvent.EffectState);
+            
+            if (Opened == false) domainEvents.Add(new SectorOpened());
+            Opened = true;
+
+            return domainEvents;
         }
 
         public bool HasTreasure() => Effect is TreasureEffect;

@@ -13,6 +13,8 @@ namespace Features.Sector.Domain.Effects
 
         public IEventDomainEvent Call(Sector openSector, Sector _)
         {
+            if (openSector.Opened) return null;
+
             return new TreasureDiscovered(
                 openSector.Position.X,
                 openSector.Position.Y,

@@ -1,6 +1,4 @@
 ﻿using Features.Sector.Domain;
-using Features.Sector.Domain.Events;
-using UnityEngine;
 using Zenject;
 
 namespace Features.Sector.UseCases.OpenSector
@@ -22,10 +20,8 @@ namespace Features.Sector.UseCases.OpenSector
             var sectorWithTreasure = _repository.FindTreasure();
             if (sectorWithTreasure is null || openSector is null) return;
 
-            var domainEvent = openSector.OpenWithTreasureIn(sectorWithTreasure);
-            _bus.Fire(new SectorOpened());
-
-            if (domainEvent is not null) _bus.Fire((object)domainEvent);
+            var events = openSector.OpenWithTreasureIn(sectorWithTreasure);
+            foreach (var domainEvent in events) _bus.Fire((object)domainEvent);
         }
     }
 }

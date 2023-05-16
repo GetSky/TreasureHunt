@@ -13,6 +13,8 @@ namespace Features.Sector.Domain.Effects
 
         public IEventDomainEvent Call(Sector openSector, Sector treasureSector)
         {
+            if (openSector.Opened) return null;
+
             return new EnergyDiscovered(
                 openSector.Position.X,
                 openSector.Position.Y,
