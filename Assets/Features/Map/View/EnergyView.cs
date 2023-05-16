@@ -1,6 +1,4 @@
-﻿using System;
-using Features.EndGameMenu.Adapters;
-using Features.Map.Adapters;
+﻿using Features.Map.Adapters;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
