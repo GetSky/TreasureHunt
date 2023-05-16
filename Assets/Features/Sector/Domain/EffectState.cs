@@ -4,6 +4,7 @@
     {
         Empty,
         Distance,
+        Direction,
         TooFar,
         Treasure,
         Coin,

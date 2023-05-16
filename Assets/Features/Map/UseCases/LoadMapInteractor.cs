@@ -20,7 +20,7 @@ namespace Features.Map.UseCases
 
         public void Execute(LoadMapCommand command)
         {
-            var map = _producer.Generate(10, 10, 65, 20, 5);
+            var map = _producer.Generate(10, 10, 10, 20, 5, 65);
             _presenter.UpdateEnergy(6);
             _context.Save(map);
         }

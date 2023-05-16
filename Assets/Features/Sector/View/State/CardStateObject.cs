@@ -9,6 +9,7 @@ namespace Features.Sector.View.State
         Light,
         Empty,
         Distance,
+        Direction,
         TooFar,
         Treasure,
         Coin,

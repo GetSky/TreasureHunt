@@ -65,7 +65,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chest: {fileID: 7492954003659893925}
-  _animationDuration: 0.5
   _states:
   - _state: 0
     _object: {fileID: 11400000, guid: 6f0f30fce62c9be4296a902bf27f1dda, type: 2}
@@ -75,14 +74,16 @@ MonoBehaviour:
     _object: {fileID: 11400000, guid: d1a2a8a10293dcb40b8f96819093f942, type: 2}
   - _state: 3
     _object: {fileID: 11400000, guid: 20f3b13dcabc0c7469b6e5fb27018898, type: 2}
-  - _state: 4
-    _object: {fileID: 11400000, guid: aa11bfae07dde894991d21fbab2525fb, type: 2}
   - _state: 5
-    _object: {fileID: 11400000, guid: 5b3612c7754369b44b84eecb11f78aaf, type: 2}
+    _object: {fileID: 11400000, guid: aa11bfae07dde894991d21fbab2525fb, type: 2}
   - _state: 6
-    _object: {fileID: 11400000, guid: c2309baf2ab413547b7661ca57eb8502, type: 2}
+    _object: {fileID: 11400000, guid: 5b3612c7754369b44b84eecb11f78aaf, type: 2}
   - _state: 7
+    _object: {fileID: 11400000, guid: c2309baf2ab413547b7661ca57eb8502, type: 2}
+  - _state: 8
     _object: {fileID: 11400000, guid: d4a67f9c11b5f1746b03010e2e965fb3, type: 2}
+  - _state: 4
+    _object: {fileID: 11400000, guid: 671d94f69c0eb4740ad14494733a039b, type: 2}
 --- !u!23 &1824129638018739129
 MeshRenderer:
   m_ObjectHideFlags: 0
