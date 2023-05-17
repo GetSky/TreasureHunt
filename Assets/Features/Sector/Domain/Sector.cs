@@ -43,6 +43,12 @@ namespace Features.Sector.Domain
             OnDestroyed();
         }
 
+        public IDomainEvent Click()
+        {
+            if (_active == false || Opened) return null;
+            return new SectorClicked(Position.X, Position.Y);
+        }
+
         public void HighlightInRadius(Sector center, int radius)
         {
             if (_active == false) return;

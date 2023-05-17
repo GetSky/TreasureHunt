@@ -19,7 +19,7 @@ namespace Features.Sector.EventHandlers
             _deactivateInteractor = deactivateInteractor;
         }
 
-        public void Execute(GameStatusChanged domainEvent)
+        public void Handle(GameStatusChanged domainEvent)
         {
             if (domainEvent.Active) _activateInteractor.Execute(new ActivateSectorsCommand());
             else _deactivateInteractor.Execute(new DeactivateSectorsCommand());

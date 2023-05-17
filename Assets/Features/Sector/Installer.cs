@@ -5,6 +5,7 @@ using Features.Sector.Domain.Events;
 using Features.Sector.EventHandlers;
 using Features.Sector.UseCases;
 using Features.Sector.UseCases.ActivateSectors;
+using Features.Sector.UseCases.ClickOnSector;
 using Features.Sector.UseCases.CreateSector;
 using Features.Sector.UseCases.DeactivateSectors;
 using Features.Sector.UseCases.HighlightSectorsAtDirection;
@@ -32,6 +33,7 @@ namespace Features.Sector
                 .NonLazy();
 
             Container.DeclareSignal<SectorOpened>().OptionalSubscriber();
+            Container.DeclareSignal<SectorClicked>().OptionalSubscriber();
             Container.DeclareSignal<EmptyDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<HintDistanceDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<HintDirectionDiscovered>().OptionalSubscriber();
@@ -58,6 +60,7 @@ namespace Features.Sector
 
             subContainer.Bind<IInteractor<RemoveSectorsCommand>>().To<RemoveSectorsInteractor>().AsTransient();
             subContainer.Bind<IInteractor<OpenSectorCommand>>().To<OpenSectorInteractor>().AsTransient();
+            subContainer.Bind<IInteractor<ClickOnSectorCommand>>().To<ClickOnSectorInteractor>().AsTransient();
 
             subContainer
                 .Bind<IInteractor<HighlightSectorsAtDirectionCommand>>()
@@ -66,21 +69,27 @@ namespace Features.Sector
 
             subContainer
                 .BindSignal<HintDistanceDiscovered>()
-                .ToMethod<HintDistanceDiscoveredHandler>((handler, discovered) => handler.Execute(discovered))
+                .ToMethod<HintDistanceDiscoveredHandler>((handler, domainEvent) => handler.Handle(domainEvent))
                 .FromNew();
+
             subContainer
                 .BindSignal<HintDirectionDiscovered>()
-                .ToMethod<HintDirectionHandler>((handler, discovered) => handler.Execute(discovered))
+                .ToMethod<HintDirectionHandler>((handler, domainEvent) => handler.Handle(domainEvent))
                 .FromNew();
 
             subContainer
                 .BindSignal<GameStatusChanged>()
-                .ToMethod<GameStatusChangedHandler>((handler, discovered) => handler.Execute(discovered))
+                .ToMethod<GameStatusChangedHandler>((handler, domainEvent) => handler.Handle(domainEvent))
                 .FromNew();
 
             subContainer
                 .BindSignal<MapUnloaded>()
-                .ToMethod<MapUploadedHandler>((handler, discovered) => handler.Execute(discovered))
+                .ToMethod<MapUploadedHandler>((handler, domainEvent) => handler.Handle(domainEvent))
+                .FromNew();
+
+            subContainer
+                .BindSignal<SectorClicked>()
+                .ToMethod<SectorClickedHandler>((handler, domainEvent) => handler.Handle(domainEvent))
                 .FromNew();
         }
     }

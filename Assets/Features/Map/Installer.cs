@@ -44,9 +44,9 @@ namespace Features.Map
 
             Container.Bind<SectorConnector>().AsTransient().Lazy();
 
-            Container.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.TreasureFind).FromResolve();
+            Container.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.DeactivateMap).FromResolve();
             Container.BindSignal<EnergyDiscovered>().ToMethod<SectorConnector>(c => c.EnergyFound).FromResolve();
-            Container.BindSignal<SectorOpened>().ToMethod<SectorConnector>(c => c.SectorOpen).FromResolve();
+            Container.BindSignal<SectorClicked>().ToMethod<SectorConnector>(c => c.TurnCount).FromResolve();
 
             Container.DeclareSignal<GameStatusChanged>().OptionalSubscriber();
             Container.DeclareSignal<MapLoaded>().OptionalSubscriber();
