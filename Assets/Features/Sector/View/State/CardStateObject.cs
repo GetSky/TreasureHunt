@@ -10,6 +10,7 @@ namespace Features.Sector.View.State
         Empty,
         Distance,
         Direction,
+        RandomOpen,
         TooFar,
         Treasure,
         Coin,

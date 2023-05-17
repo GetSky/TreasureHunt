@@ -40,6 +40,7 @@ namespace Features.Sector
             Container.DeclareSignal<EnergyDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<CoinDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<TreasureDiscovered>().OptionalSubscriber();
+            Container.DeclareSignal<RandomSectorsDiscovered>().OptionalSubscriber();
         }
 
         private void InstallGateway(DiContainer subContainer)
@@ -90,6 +91,11 @@ namespace Features.Sector
             subContainer
                 .BindSignal<SectorClicked>()
                 .ToMethod<SectorClickedHandler>((handler, domainEvent) => handler.Handle(domainEvent))
+                .FromNew();
+
+            subContainer
+                .BindSignal<RandomSectorsDiscovered>()
+                .ToMethod<RandomSectorsDiscoveredHandler>((handler, domainEvent) => handler.Handle(domainEvent))
                 .FromNew();
         }
     }

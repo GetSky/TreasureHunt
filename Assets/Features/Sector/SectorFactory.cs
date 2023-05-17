@@ -34,6 +34,7 @@ namespace Features.Sector
                 EffectType.Distance => new DisplayDistanceEffect(5),
                 EffectType.Energy => new EnergyEffect(2),
                 EffectType.Direction => new DisplayDirectionEffect(1),
+                EffectType.RandomOpen => new RandomSectorsEffect(1),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
 
