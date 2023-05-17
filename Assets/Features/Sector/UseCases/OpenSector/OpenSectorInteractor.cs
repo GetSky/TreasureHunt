@@ -16,7 +16,7 @@ namespace Features.Sector.UseCases.OpenSector
 
         public void Execute(OpenSectorCommand command)
         {
-            var openSector = _repository.FindById(command.Id);
+            var openSector = _repository.FindByXZ(command.X, command.Z);
             var sectorWithTreasure = _repository.FindTreasure();
             if (sectorWithTreasure is null || openSector is null) return;
 

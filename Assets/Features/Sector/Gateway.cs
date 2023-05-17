@@ -1,4 +1,5 @@
 ﻿using Features.Sector.UseCases;
+using Features.Sector.UseCases.ClickOnSector;
 using Features.Sector.UseCases.CreateSector;
 using Features.Sector.UseCases.OpenSector;
 using UnityEngine;
@@ -8,9 +9,9 @@ namespace Features.Sector
     public class Gateway
     {
         private readonly IInteractor<CreateSectorCommand> _interactor;
-        private readonly IInteractor<OpenSectorCommand> _interactorO;
+        private readonly IInteractor<ClickOnSectorCommand> _interactorO;
 
-        public Gateway(IInteractor<CreateSectorCommand> interactor, IInteractor<OpenSectorCommand> interactorO)
+        public Gateway(IInteractor<CreateSectorCommand> interactor, IInteractor<ClickOnSectorCommand> interactorO)
         {
             _interactor = interactor;
             _interactorO = interactorO;
@@ -24,7 +25,7 @@ namespace Features.Sector
                 case CreateSectorCommand sectorCommand:
                     _interactor.Execute(sectorCommand);
                     break;
-                case OpenSectorCommand sectorCommand:
+                case ClickOnSectorCommand sectorCommand:
                     _interactorO.Execute(sectorCommand);
                     break;
             }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Features.Sector.Domain;
 
@@ -9,6 +10,15 @@ namespace Features.Sector
         private readonly Dictionary<string, Domain.Sector> _sectors = new();
 
         public IEnumerable<Domain.Sector> FindAll() => _sectors.Values.ToArray();
+
+        public Domain.Sector FindByXZ(float x, float z)
+        {
+            _sectors.TryGetValue(
+                x.ToString(CultureInfo.InvariantCulture) + z.ToString(CultureInfo.InvariantCulture),
+                out var entity
+            );
+            return entity;
+        }
 
         public Domain.Sector FindById(string id)
         {

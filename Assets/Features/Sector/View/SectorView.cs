@@ -2,6 +2,7 @@
 using System.Linq;
 using Features.Sector.Adapters;
 using Features.Sector.Domain;
+using Features.Sector.UseCases.ClickOnSector;
 using Features.Sector.UseCases.OpenSector;
 using Features.Sector.View.State;
 using TMPro;
@@ -61,8 +62,7 @@ namespace Features.Sector.View
             if (_input.IsPressOnSector() == false) return;
 
             var position = transform.position;
-            var id = position.x.ToString(CultureInfo.CurrentCulture) + position.z.ToString(CultureInfo.CurrentCulture);
-            _sectorGateway.Schedule(new OpenSectorCommand(id));
+            _sectorGateway.Schedule(new ClickOnSectorCommand(position.x, position.z));
         }
 
         private void UpdateSymbol(EffectStateType state, int value)

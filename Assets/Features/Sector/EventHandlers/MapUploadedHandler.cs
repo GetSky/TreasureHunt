@@ -13,7 +13,7 @@ namespace Features.Sector.EventHandlers
             _interactor = interactor;
         }
 
-        public void Execute(MapUnloaded _)
+        public void Handle(MapUnloaded _)
         {
             _interactor.Execute(new RemoveSectorsCommand());
         }

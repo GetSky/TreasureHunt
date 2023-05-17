@@ -14,7 +14,7 @@ namespace Features.Sector.EventHandlers
             _interactor = interactor;
         }
 
-        public void Execute(HintDistanceDiscovered domainEvent)
+        public void Handle(HintDistanceDiscovered domainEvent)
         {
             _interactor.Execute(
                 new HighlightSectorsAtDistanceCommand(domainEvent.OpenSectorId, domainEvent.EffectState.Value)

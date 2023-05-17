@@ -1,9 +1,15 @@
 ﻿namespace Features.Sector.UseCases.OpenSector
 {
-    public class OpenSectorCommand : ICommand
+    public class OpenSectorCommand : ICommand, Core.ICommand
     {
-        public string Id { get; }
+        public float X { get; }
 
-        public OpenSectorCommand(string id) => Id = id;
+        public float Z { get; }
+
+        public OpenSectorCommand(float x, float z)
+        {
+            X = x;
+            Z = z;
+        }
     }
 }

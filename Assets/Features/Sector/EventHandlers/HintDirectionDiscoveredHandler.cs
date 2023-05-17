@@ -13,7 +13,7 @@ namespace Features.Sector.EventHandlers
             _interactor = interactor;
         }
 
-        public void Execute(HintDirectionDiscovered domainEvent)
+        public void Handle(HintDirectionDiscovered domainEvent)
         {
             _interactor.Execute(
                 new HighlightSectorsAtDirectionCommand(domainEvent.OpenSectorId, domainEvent.EffectState.Value)
