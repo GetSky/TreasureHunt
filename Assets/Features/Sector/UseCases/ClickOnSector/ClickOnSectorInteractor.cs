@@ -17,7 +17,9 @@ namespace Features.Sector.UseCases.ClickOnSector
         public void Execute(ClickOnSectorCommand command)
         {
             var sector = _repository.FindByXZ(command.X, command.Z);
-            if (sector is not null) _bus.Fire((object)sector.Click());
+            var domainEvent = sector?.Click();
+            if (domainEvent is null) return;
+            _bus.Fire((object)sector.Click());
         }
     }
 }
