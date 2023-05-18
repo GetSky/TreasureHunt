@@ -21,7 +21,9 @@ namespace Features.Sector.UseCases.OpenSector
             if (sectorWithTreasure is null || openSector is null) return;
 
             var events = openSector.OpenWithTreasureIn(sectorWithTreasure);
-            foreach (var domainEvent in events) _bus.Fire((object)domainEvent);
+            foreach (var domainEvent in events)
+                if (domainEvent is not null)
+                    _bus.Fire((object)domainEvent);
         }
     }
 }

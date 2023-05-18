@@ -71,6 +71,15 @@ namespace Features.Sector.Domain
             return events;
         }
 
+        public void HighlightSectorWithEffects(IEnumerable<Sector> sectors, int distance)
+        {
+            foreach (var sector in sectors)
+            {
+                if (MeasureDistanceTo(sector) <= distance && sector.HasEffect()) sector.OnHighlighted.Invoke();
+                else sector.OnStopHighlighted.Invoke();
+            }
+        }
+
         public void HighlightInRadius(Sector center, int radius)
         {
             if (_active == false) return;
@@ -102,8 +111,6 @@ namespace Features.Sector.Domain
 
         public IEnumerable<IDomainEvent> OpenWithTreasureIn(Sector sector)
         {
-            if (_active == false) return null;
-
             var domainEvents = new List<IDomainEvent>();
 
             var effectEvent = Effect.Call(this, sector);
@@ -119,6 +126,7 @@ namespace Features.Sector.Domain
         }
 
         public bool HasTreasure() => Effect is TreasureEffect;
+        public bool HasEffect() => Effect is not EmptyEffect;
 
         private static float FindAngleBetween(float first, float second)
         {
