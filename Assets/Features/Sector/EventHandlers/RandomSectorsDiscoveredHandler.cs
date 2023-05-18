@@ -1,25 +1,20 @@
-﻿using Features.Sector.Domain;
+﻿using System.Threading.Tasks;
+using Features.Sector.Domain;
 using Features.Sector.Domain.Effects.Events;
-using Features.Sector.UseCases;
-using Features.Sector.UseCases.OpenSector;
 using Zenject;
 
 namespace Features.Sector.EventHandlers
 {
     public class RandomSectorsDiscoveredHandler
     {
+        private const int MillisecondsDelayBeforeOpen = 1000;
+
         private readonly ISectorRepository _repository;
-        private readonly IInteractor<OpenSectorCommand> _interactor;
         private readonly SignalBus _bus;
 
-        public RandomSectorsDiscoveredHandler(
-            ISectorRepository repository,
-            IInteractor<OpenSectorCommand> interactor,
-            SignalBus bus
-        )
+        public RandomSectorsDiscoveredHandler(ISectorRepository repository, SignalBus bus)
         {
             _repository = repository;
-            _interactor = interactor;
             _bus = bus;
         }
 
@@ -31,6 +26,12 @@ namespace Features.Sector.EventHandlers
             var treasure = _repository.FindTreasure();
             if (treasure is null) return;
 
+            Launcher(openSector, treasure);
+        }
+
+        private async void Launcher(Domain.Sector openSector, Domain.Sector treasure)
+        {
+            await Task.Delay(MillisecondsDelayBeforeOpen);
             var events = openSector.RandomOpenFrom(_repository.FindAll(), treasure);
             foreach (var domain in events) _bus.Fire((object)domain);
         }
