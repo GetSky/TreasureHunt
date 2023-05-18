@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Features.Sector.Domain.Effects;
 using Features.Sector.Domain.Events;
 using Vector2 = System.Numerics.Vector2;
@@ -47,6 +48,27 @@ namespace Features.Sector.Domain
         {
             if (_active == false || Opened) return null;
             return new SectorClicked(Position.X, Position.Y);
+        }
+
+        public IEnumerable<IDomainEvent> RandomOpenFrom(IEnumerable<Sector> sectors, Sector treasure)
+        {
+            var random = new Random();
+            var closeSectors = sectors.Where(sector => sector.Opened == false).OrderBy(x => random.Next());
+
+            var events = new List<IDomainEvent>();
+            var i = 0;
+            foreach (var sector in closeSectors)
+            {
+                i++;
+
+                var domainEvents = sector.OpenWithTreasureIn(treasure);
+                if (domainEvents is null) continue;
+                events.AddRange(domainEvents);
+
+                if (i == 2) break;
+            }
+
+            return events;
         }
 
         public void HighlightInRadius(Sector center, int radius)
