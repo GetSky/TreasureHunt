@@ -10,7 +10,8 @@ namespace Features.Sector.Domain
         Distance,
         Direction,
         Energy,
-        RandomOpen
+        RandomOpen,
+        CardsLocation
     }
 
     public interface IEffect

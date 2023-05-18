@@ -15,7 +15,8 @@ namespace Features.Map.Adapters
         Distance,
         Direction,
         Energy,
-        RandomOpen
+        RandomOpen,
+        CardsLocation
     }
 
     public class MapProducer
@@ -29,10 +30,27 @@ namespace Features.Map.Adapters
             _repository = repository;
         }
 
-        public Entity.Map Generate(int rows, int columns, int countDistanceCard, int countCoinCard, int energyCard, int directionCard, int randomOpen)
+        public Entity.Map Generate(
+            int rows,
+            int columns,
+            int countDistanceCard,
+            int countCoinCard,
+            int energyCard,
+            int directionCard,
+            int randomOpenCard,
+            int showLocationCard
+        )
         {
             var map = _repository.FindCurrent();
-            var deck = CreateDeck(rows * columns, countDistanceCard, countCoinCard, energyCard, directionCard, randomOpen);
+            var deck = CreateDeck(
+                rows * columns,
+                countDistanceCard,
+                countCoinCard,
+                energyCard,
+                directionCard,
+                randomOpenCard,
+                showLocationCard
+            );
             var idx = 0;
             for (var x = 0; x < rows; x++)
             {
@@ -45,7 +63,15 @@ namespace Features.Map.Adapters
             return map;
         }
 
-        private static CardType[] CreateDeck(int countAll, int countDistanceCard, int coinCard, int energyCard, int directionCard, int randomOpen)
+        private static CardType[] CreateDeck(
+            int countAll,
+            int countDistanceCard,
+            int coinCard,
+            int energyCard,
+            int directionCard,
+            int randomOpenCard,
+            int showLocationCard
+        )
         {
             if (countAll < countDistanceCard + coinCard + energyCard + 1)
                 throw new ArgumentException("The number of cards must be greater for these parameters.");
@@ -56,7 +82,8 @@ namespace Features.Map.Adapters
             for (var i = 1; i <= coinCard; i++) deck[i] = CardType.Coin;
             for (var i = 1; i <= energyCard; i++) deck[i] = CardType.Energy;
             for (var i = 1; i <= directionCard; i++) deck[i] = CardType.Direction;
-            for (var i = 1; i <= randomOpen; i++) deck[i] = CardType.RandomOpen;
+            for (var i = 1; i <= randomOpenCard; i++) deck[i] = CardType.RandomOpen;
+            for (var i = 1; i <= showLocationCard; i++) deck[i] = CardType.CardsLocation;
 
             var rnd = new Random();
             return deck.OrderBy(x => rnd.Next()).ToArray();

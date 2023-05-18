@@ -35,6 +35,7 @@ namespace Features.Sector
                 EffectType.Energy => new EnergyEffect(2),
                 EffectType.Direction => new DisplayDirectionEffect(1),
                 EffectType.RandomOpen => new RandomSectorsEffect(1),
+                EffectType.CardsLocation => new DisplayEffectLocationEffect(1),
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
 

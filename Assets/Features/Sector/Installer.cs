@@ -41,6 +41,7 @@ namespace Features.Sector
             Container.DeclareSignal<CoinDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<TreasureDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<RandomSectorsDiscovered>().OptionalSubscriber();
+            Container.DeclareSignal<HintEffectLocationDiscovered>().OptionalSubscriber();
         }
 
         private void InstallGateway(DiContainer subContainer)

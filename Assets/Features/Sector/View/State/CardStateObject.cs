@@ -11,6 +11,7 @@ namespace Features.Sector.View.State
         Distance,
         Direction,
         RandomOpen,
+        CardsLocation,
         TooFar,
         Treasure,
         Coin,
