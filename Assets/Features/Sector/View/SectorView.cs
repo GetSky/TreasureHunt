@@ -1,9 +1,7 @@
-﻿using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using Features.Sector.Adapters;
 using Features.Sector.Domain;
 using Features.Sector.UseCases.ClickOnSector;
-using Features.Sector.UseCases.OpenSector;
 using Features.Sector.View.State;
 using TMPro;
 using UnityEngine;
