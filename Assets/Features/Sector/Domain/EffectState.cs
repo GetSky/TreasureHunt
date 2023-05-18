@@ -5,6 +5,7 @@
         Empty,
         Distance,
         Direction,
+        CardsLocation,
         TooFar,
         Treasure,
         Coin,
