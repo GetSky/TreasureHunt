@@ -16,7 +16,7 @@ namespace Features.Sector.Domain.Effects
             return new HintEffectLocationDiscovered(
                 openSector.Position.X,
                 openSector.Position.Y,
-                new EffectState(EffectStateType.CardsLocation, _grade, _grade)
+                new EffectState(EffectStateType.CardsLocation, _grade, _grade + 3)
             );
         }
     }
