@@ -86,6 +86,8 @@ MonoBehaviour:
     _object: {fileID: 11400000, guid: 9cf39c62f95bf874d8cff460a091d56e, type: 2}
   - _state: 6
     _object: {fileID: 11400000, guid: 2c4c167478ebea7498dca083ac6fe297, type: 2}
+  - _state: 11
+    _object: {fileID: 11400000, guid: a548ca97784e0ad4b87fbfaf49e44e37, type: 2}
 --- !u!23 &1824129638018739129
 MeshRenderer:
   m_ObjectHideFlags: 0

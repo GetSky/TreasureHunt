@@ -16,7 +16,8 @@ namespace Features.Map.Adapters
         Direction,
         Energy,
         RandomOpen,
-        CardsLocation
+        CardsLocation,
+        Bomb
     }
 
     public class MapProducer
@@ -38,7 +39,8 @@ namespace Features.Map.Adapters
             int energyCard,
             int directionCard,
             int randomOpenCard,
-            int showLocationCard
+            int showLocationCard,
+            int bombCard
         )
         {
             var map = _repository.FindCurrent();
@@ -49,7 +51,8 @@ namespace Features.Map.Adapters
                 energyCard,
                 directionCard,
                 randomOpenCard,
-                showLocationCard
+                showLocationCard,
+                bombCard
             );
             var idx = 0;
             for (var x = 0; x < rows; x++)
@@ -70,7 +73,8 @@ namespace Features.Map.Adapters
             int energyCard,
             int directionCard,
             int randomOpenCard,
-            int showLocationCard
+            int showLocationCard,
+            int bombCard
         )
         {
             if (countAll < countDistanceCard + coinCard + energyCard + 1)
@@ -84,6 +88,7 @@ namespace Features.Map.Adapters
             for (var i = 1; i <= directionCard; i++) deck[i] = CardType.Direction;
             for (var i = 1; i <= randomOpenCard; i++) deck[i] = CardType.RandomOpen;
             for (var i = 1; i <= showLocationCard; i++) deck[i] = CardType.CardsLocation;
+            for (var i = 1; i <= bombCard; i++) deck[i] = CardType.Bomb;
 
             var rnd = new Random();
             return deck.OrderBy(x => rnd.Next()).ToArray();
