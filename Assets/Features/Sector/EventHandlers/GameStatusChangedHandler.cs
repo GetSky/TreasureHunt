@@ -13,7 +13,7 @@ namespace Features.Sector.EventHandlers
         public GameStatusChangedHandler(
             IInteractor<ActivateSectorsCommand> activateInteractor,
             IInteractor<DeactivateSectorsCommand> deactivateInteractor
-            )
+        )
         {
             _activateInteractor = activateInteractor;
             _deactivateInteractor = deactivateInteractor;

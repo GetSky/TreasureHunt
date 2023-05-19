@@ -4,12 +4,12 @@
     {
         public EffectState EffectState { get; }
         public float X { get; }
-        public float Y { get; }
+        public float Z { get; }
 
-        public BombDiscovered(float x, float y, EffectState state)
+        public BombDiscovered(float x, float z, EffectState state)
         {
             X = x;
-            Y = y;
+            Z = z;
             EffectState = state;
         }
     }
