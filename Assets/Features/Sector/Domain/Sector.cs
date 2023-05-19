@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Features.Sector.Domain.Effects;
@@ -71,6 +72,19 @@ namespace Features.Sector.Domain
             return events;
         }
 
+        public IEnumerable OpenInRadius(IEnumerable<Sector> sectors, Sector treasure, int distance)
+        {
+            var closeSectors = sectors.Where(sector => sector.Opened == false).ToArray();
+            var events = new List<IDomainEvent>();
+
+            foreach (var sector in closeSectors)
+            {
+                if (MeasureDistanceTo(sector) <= distance) events.AddRange(sector.OpenWithTreasureIn(treasure));
+            }
+
+            return events;
+        }
+
         public void HighlightSectorWithEffects(IEnumerable<Sector> sectors, int distance)
         {
             foreach (var sector in sectors)
@@ -126,6 +140,7 @@ namespace Features.Sector.Domain
         }
 
         public bool HasTreasure() => Effect is TreasureEffect;
+
         public bool HasEffect() => Effect is not EmptyEffect;
 
         private static float FindAngleBetween(float first, float second)

@@ -42,6 +42,7 @@ namespace Features.Sector
             Container.DeclareSignal<TreasureDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<RandomSectorsDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<HintEffectLocationDiscovered>().OptionalSubscriber();
+            Container.DeclareSignal<BombDiscovered>().OptionalSubscriber();
         }
 
         private void InstallGateway(DiContainer subContainer)
@@ -102,6 +103,10 @@ namespace Features.Sector
             subContainer
                 .BindSignal<HintEffectLocationDiscovered>()
                 .ToMethod<HintEffectLocationDiscoveredHandler>((handler, domainEvent) => handler.Handle(domainEvent))
+                .FromNew();
+            subContainer
+                .BindSignal<BombDiscovered>()
+                .ToMethod<BombDiscoveredHandler>((handler, domainEvent) => handler.Handle(domainEvent))
                 .FromNew();
         }
     }
