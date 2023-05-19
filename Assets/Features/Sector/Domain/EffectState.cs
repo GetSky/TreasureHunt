@@ -10,7 +10,8 @@
         Treasure,
         Coin,
         Energy,
-        RandomOpen
+        RandomOpen,
+        Bomb
     }
 
     public struct EffectState

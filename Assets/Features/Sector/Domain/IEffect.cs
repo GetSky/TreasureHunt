@@ -11,7 +11,8 @@ namespace Features.Sector.Domain
         Direction,
         Energy,
         RandomOpen,
-        CardsLocation
+        CardsLocation,
+        Bomb
     }
 
     public interface IEffect

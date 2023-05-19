@@ -16,6 +16,7 @@ namespace Features.Sector.View.State
         Treasure,
         Coin,
         Energy,
+        Bomb
     }
 
     [Serializable]
