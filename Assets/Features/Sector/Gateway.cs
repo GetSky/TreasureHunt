@@ -1,7 +1,6 @@
 ﻿using Features.Sector.UseCases;
 using Features.Sector.UseCases.ClickOnSector;
 using Features.Sector.UseCases.CreateSector;
-using Features.Sector.UseCases.OpenSector;
 using UnityEngine;
 
 namespace Features.Sector
