@@ -7,13 +7,13 @@ namespace Features.Sector
 {
     public class Gateway
     {
-        private readonly IInteractor<CreateSectorCommand> _interactor;
-        private readonly IInteractor<ClickOnSectorCommand> _interactorO;
+        private readonly IInteractor<CreateSectorCommand> _createSector;
+        private readonly IInteractor<ClickOnSectorCommand> _clickOnSector;
 
-        public Gateway(IInteractor<CreateSectorCommand> interactor, IInteractor<ClickOnSectorCommand> interactorO)
+        public Gateway(IInteractor<CreateSectorCommand> createSector, IInteractor<ClickOnSectorCommand> clickOnSector)
         {
-            _interactor = interactor;
-            _interactorO = interactorO;
+            _createSector = createSector;
+            _clickOnSector = clickOnSector;
             Debug.Log("Sector gateway start...");
         }
 
@@ -22,10 +22,10 @@ namespace Features.Sector
             switch (command)
             {
                 case CreateSectorCommand sectorCommand:
-                    _interactor.Execute(sectorCommand);
+                    _createSector.Execute(sectorCommand);
                     break;
                 case ClickOnSectorCommand sectorCommand:
-                    _interactorO.Execute(sectorCommand);
+                    _clickOnSector.Execute(sectorCommand);
                     break;
             }
         }
