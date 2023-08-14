@@ -6,17 +6,17 @@ namespace Features.EndGameMenu
     public class Initializer : IInitializable
     {
         private readonly DiContainer _container;
-        private readonly GameObject _endGameMenuPrefab;
+        private readonly GameObject _prefab;
 
-        public Initializer(DiContainer container, GameObject endGameMenuPrefab)
+        public Initializer(DiContainer container, GameObject prefab)
         {
             _container = container;
-            _endGameMenuPrefab = endGameMenuPrefab;
+            _prefab = prefab;
         }
 
         public void Initialize()
         {
-            _container.InstantiatePrefab(_endGameMenuPrefab);
+            _container.InstantiatePrefab(_prefab);
         }
     }
 }

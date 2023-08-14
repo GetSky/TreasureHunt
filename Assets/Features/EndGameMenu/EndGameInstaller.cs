@@ -8,15 +8,10 @@ using Zenject;
 
 namespace Features.EndGameMenu
 {
-    public class Installer : Installer<GameObject, Installer>
+    public class EndGameInstaller : MonoInstaller
     {
-        private readonly GameObject _endGameMenuPrefab;
-
-        public Installer(GameObject endGameMenuPrefab)
-        {
-            _endGameMenuPrefab = endGameMenuPrefab;
-        }
-
+        [SerializeField] private GameObject _endGameMenuPrefab;
+        
         public override void InstallBindings()
         {
             Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_endGameMenuPrefab);
