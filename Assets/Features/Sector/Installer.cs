@@ -99,7 +99,7 @@ namespace Features.Sector
                 .BindSignal<RandomSectorsDiscovered>()
                 .ToMethod<RandomSectorsDiscoveredHandler>((handler, domainEvent) => handler.Handle(domainEvent))
                 .FromNew();
-            
+
             subContainer
                 .BindSignal<HintEffectLocationDiscovered>()
                 .ToMethod<HintEffectLocationDiscoveredHandler>((handler, domainEvent) => handler.Handle(domainEvent))
