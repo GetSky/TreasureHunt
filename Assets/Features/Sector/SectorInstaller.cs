@@ -17,7 +17,7 @@ using Zenject;
 
 namespace Features.Sector
 {
-    public class Installer : MonoInstaller
+    public class SectorInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _prefab;
 
