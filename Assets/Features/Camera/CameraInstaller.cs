@@ -9,14 +9,9 @@ using Zenject;
 
 namespace Features.Camera
 {
-    public class Installer : Installer<GameObject, Installer>
+    public class CameraInstaller : MonoInstaller
     {
-        private readonly GameObject _cameraPrefab;
-
-        public Installer(GameObject cameraPrefab)
-        {
-            _cameraPrefab = cameraPrefab;
-        }
+        [SerializeField] private GameObject _cameraPrefab;
 
         public override void InstallBindings()
         {

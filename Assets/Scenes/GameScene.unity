@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 1284462221}
   - component: {fileID: 1284462222}
   - component: {fileID: 1284462223}
+  - component: {fileID: 1284462224}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -417,8 +418,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 1284462223}
   - {fileID: 1284462221}
+  - {fileID: 1284462224}
+  - {fileID: 1284462223}
   - {fileID: 1284462222}
   _installerPrefabs: []
   _autoRun: 1
@@ -464,7 +466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddbf140ea48062498984dac638d347c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraPrefab: {fileID: 6905129671139444022, guid: 0fa7a824d63823a4595547034e11c107, type: 3}
   _energyCounterPrefab: {fileID: 536198520363383509, guid: fef0bac24d57e9948ae2b655bd1e07eb, type: 3}
   _coinsCounterPrefab: {fileID: 6627968330154227827, guid: 14e4c91af2997a542872eabb0a533453, type: 3}
 --- !u!114 &1284462222
@@ -493,6 +494,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _endGameMenuPrefab: {fileID: 2647774507236475725, guid: 63b7857ce92c38c47825eeb51eb18401, type: 3}
+--- !u!114 &1284462224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284462218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e2552a9a764ab09b623068cbd2563a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraPrefab: {fileID: 6905129671139444022, guid: 0fa7a824d63823a4595547034e11c107, type: 3}
 --- !u!1 &1575465786
 GameObject:
   m_ObjectHideFlags: 0
