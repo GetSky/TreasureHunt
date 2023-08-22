@@ -1,6 +1,4 @@
-﻿using Core;
-using Features.EndGameMenu.Adapters;
-using Features.EndGameMenu.Commands;
+﻿using Features.EndGameMenu.Adapters;
 using UnityEngine;
 using Zenject;
 using Button = UnityEngine.UI.Button;

@@ -1,5 +1,5 @@
 ﻿using Core;
-using Features.EndGameMenu.Commands;
+using Features.EndGameMenu.UseCases;
 using Features.Map.Event;
 
 namespace Features.EndGameMenu.Adapters

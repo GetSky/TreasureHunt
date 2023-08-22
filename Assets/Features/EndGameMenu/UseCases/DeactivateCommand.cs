@@ -1,6 +1,6 @@
 ﻿using Core;
 
-namespace Features.EndGameMenu.Commands
+namespace Features.EndGameMenu.UseCases
 {
     public class DeactivateCommand : ICommand
     {

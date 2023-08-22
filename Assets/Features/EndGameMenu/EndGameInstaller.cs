@@ -1,6 +1,5 @@
 using Core;
 using Features.EndGameMenu.Adapters;
-using Features.EndGameMenu.Commands;
 using Features.EndGameMenu.UseCases;
 using Features.Map.Event;
 using UnityEngine;
@@ -11,20 +10,33 @@ namespace Features.EndGameMenu
     public class EndGameInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _endGameMenuPrefab;
-        
+
         public override void InstallBindings()
         {
-            Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_endGameMenuPrefab);
+            Container
+                .Bind<Gateway>()
+                .FromSubContainerResolve()
+                .ByNewGameObjectMethod(InstallGateway)
+                .WithGameObjectName("UI")
+                .AsSingle()
+                .NonLazy();
+        }
 
-            Container.Bind<IEndGamePresenter>().To<EndGamePresenter>().AsSingle().Lazy();
+        private void InstallGateway(DiContainer subContainer)
+        {
+            subContainer.Bind<Gateway>().AsSingle();
 
-            Container.Bind<IInteractor<DeactivateCommand>>().To<DeactivateInteractor>().AsSingle().Lazy();
-            Container.Bind<IInteractor<ActivateCommand>>().To<ActivateInteractor>().AsSingle().Lazy();
-            Container.Bind<IInteractor<ReloadMapCommand>>().To<ReloadMapInteractor>().AsSingle().Lazy();
+            subContainer.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(subContainer, _endGameMenuPrefab);
 
-            Container.Bind<MapConnector>().AsTransient().Lazy();
+            subContainer.Bind<IEndGamePresenter>().To<EndGamePresenter>().AsSingle().Lazy();
 
-            Container.BindSignal<GameStatusChanged>().ToMethod<MapConnector>(c => c.GameStatusChange).FromResolve();
+            subContainer.Bind<IInteractor<DeactivateCommand>>().To<DeactivateInteractor>().AsSingle().Lazy();
+            subContainer.Bind<IInteractor<ActivateCommand>>().To<ActivateInteractor>().AsSingle().Lazy();
+            subContainer.Bind<IInteractor<ReloadMapCommand>>().To<ReloadMapInteractor>().AsSingle().Lazy();
+
+            subContainer.Bind<MapConnector>().AsTransient().Lazy();
+
+            subContainer.BindSignal<GameStatusChanged>().ToMethod<MapConnector>(c => c.GameStatusChange).FromResolve();
         }
     }
 }
