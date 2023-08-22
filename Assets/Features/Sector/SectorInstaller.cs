@@ -22,7 +22,6 @@ namespace Features.Sector
         [SerializeField] private GameObject _prefab;
 
         public override void InstallBindings()
-
         {
             Container
                 .Bind<Gateway>()
