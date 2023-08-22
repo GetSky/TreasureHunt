@@ -16,7 +16,7 @@ namespace Features.EndGameMenu
 
         public void Initialize()
         {
-            _container.InstantiatePrefab(_prefab);
+            _container.InstantiatePrefab(_prefab).gameObject.SetActive(false);
         }
     }
 }

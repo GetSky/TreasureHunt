@@ -1,6 +1,5 @@
 ﻿using Core;
 using Features.EndGameMenu.Adapters;
-using Features.EndGameMenu.Commands;
 
 namespace Features.EndGameMenu.UseCases
 {
