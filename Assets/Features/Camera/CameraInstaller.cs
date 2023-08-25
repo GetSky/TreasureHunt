@@ -15,17 +15,30 @@ namespace Features.Camera
 
         public override void InstallBindings()
         {
-            Container.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_cameraPrefab);
+            Container
+                .Bind<Gateway>()
+                .FromSubContainerResolve()
+                .ByNewGameObjectMethod(InstallGateway)
+                .WithGameObjectName("Camera")
+                .AsSingle()
+                .NonLazy();
+        }
 
-            Container.Bind<ICameraPresenter>().To<CameraPresenter>().AsSingle().Lazy();
+        private void InstallGateway(DiContainer subContainer)
+        {
+            subContainer.Bind<Gateway>().AsSingle();
+            
+            subContainer.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_cameraPrefab);
 
-            Container.Bind<IInteractor<LookAtCommand>>().To<LookAtInteractor>().AsSingle().Lazy();
+            subContainer.Bind<ICameraPresenter>().To<CameraPresenter>().AsSingle().Lazy();
 
-            Container.Bind<SectorConnector>().AsTransient().Lazy();
-            Container.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();
+            subContainer.Bind<IInteractor<LookAtCommand>>().To<LookAtInteractor>().AsSingle().Lazy();
 
-            Container.Bind<MapConnector>().AsTransient().Lazy();
-            Container.BindSignal<MapLoaded>().ToMethod<MapConnector>(c => c.MapReload).FromResolve();
+            subContainer.Bind<SectorConnector>().AsTransient().Lazy();
+            subContainer.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();
+
+            subContainer.Bind<MapConnector>().AsTransient().Lazy();
+            subContainer.BindSignal<MapLoaded>().ToMethod<MapConnector>(c => c.MapReload).FromResolve();
         }
     }
 }
