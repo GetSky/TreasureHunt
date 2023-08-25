@@ -15,24 +15,35 @@ namespace Features.Camera
 
         public override void InstallBindings()
         {
+            InstallGateway();
+
+            Container.DeclareSignal<LookAtCommand>();
+        }
+
+        private void InstallGateway()
+        {
             Container
                 .Bind<Gateway>()
                 .FromSubContainerResolve()
-                .ByNewGameObjectMethod(InstallGateway)
+                .ByNewGameObjectMethod(InstallGatewayBindings)
                 .WithGameObjectName("Camera")
                 .AsSingle()
                 .NonLazy();
         }
 
-        private void InstallGateway(DiContainer subContainer)
+        private void InstallGatewayBindings(DiContainer subContainer)
         {
             subContainer.Bind<Gateway>().AsSingle();
-            
+
             subContainer.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_cameraPrefab);
 
             subContainer.Bind<ICameraPresenter>().To<CameraPresenter>().AsSingle().Lazy();
 
             subContainer.Bind<IInteractor<LookAtCommand>>().To<LookAtInteractor>().AsSingle().Lazy();
+            subContainer
+                .BindSignal<LookAtCommand>()
+                .ToMethod<IInteractor<LookAtCommand>>(interactor => interactor.Execute)
+                .FromResolve();
 
             subContainer.Bind<SectorConnector>().AsTransient().Lazy();
             subContainer.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();
