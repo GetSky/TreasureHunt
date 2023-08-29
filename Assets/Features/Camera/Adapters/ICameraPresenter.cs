@@ -7,5 +7,6 @@
         public event LookedAtHandler OnLookedAt;
 
         public void LookAt(float x, float z, bool isImmediately);
+        public (float x, float z) GetCurrentPosition();
     }
 }
