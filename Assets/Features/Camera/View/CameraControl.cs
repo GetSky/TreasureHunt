@@ -40,6 +40,8 @@ namespace Features.Camera.View
         private void OnEnable()
         {
             _presenter.OnLookedAt += LookAt;
+            var position = _presenter.GetCurrentPosition();
+            LookAt(position.x, position.z, true);
         }
 
         private void Update()
