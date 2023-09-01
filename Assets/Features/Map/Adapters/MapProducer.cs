@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Features.Map.Entity;
-using Features.Sector;
 using Features.Sector.UseCases.CreateSector;
 using Random = System.Random;
 
@@ -22,10 +21,10 @@ namespace Features.Map.Adapters
 
     public class MapProducer
     {
-        private readonly Gateway _sectorGateway;
+        private readonly Sector.Gateway _sectorGateway;
         private readonly IMapRepository _repository;
 
-        public MapProducer(Gateway sectorGateway, IMapRepository repository)
+        public MapProducer(Sector.Gateway sectorGateway, IMapRepository repository)
         {
             _sectorGateway = sectorGateway;
             _repository = repository;

@@ -14,40 +14,53 @@ namespace Features.Map
     public class MapInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _powerCountPrefab;
-        
+
         public override void InstallBindings()
         {
-            Container.Bind<Factory>().AsSingle().WithArguments(_powerCountPrefab).Lazy();
-            Container.Bind<MapProducer>().AsTransient().Lazy();
-            Container.Bind<IInteractor<LoadMapCommand>>().To<LoadMapInteractor>().AsSingle().Lazy();
-            Container.Bind<IInteractor<UnloadMapCommand>>().To<UnloadMapInteractor>().AsSingle().Lazy();
-            Container.Bind<IInteractor<DeactivateMapCommand>>().To<DeactivateMapInteractor>().AsSingle().Lazy();
-            Container.Bind<IInteractor<DecreaseTurnCountCommand>>().To<DecreaseTurnCountInteractor>().AsSingle().Lazy();
-            Container.Bind<IInteractor<RaiseTurnCountCommand>>().To<RaiseTurnCountInteractor>().AsSingle().Lazy();
-
             Container
+                .Bind<Gateway>()
+                .FromSubContainerResolve()
+                .ByNewGameObjectMethod(InstallGateway)
+                .AsSingle()
+                .NonLazy();
+
+            Container.DeclareSignal<GameStatusChanged>().OptionalSubscriber();
+            Container.DeclareSignal<MapLoaded>().OptionalSubscriber();
+            Container.DeclareSignal<MapUnloaded>().OptionalSubscriber();
+        }
+
+        private void InstallGateway(DiContainer subContainer)
+        {
+            subContainer.Bind<Gateway>().AsSingle();
+
+            subContainer.Bind<Factory>().AsSingle().WithArguments(_powerCountPrefab).Lazy();
+            subContainer.Bind<MapProducer>().AsTransient().Lazy();
+            subContainer.Bind<IInteractor<LoadMapCommand>>().To<LoadMapInteractor>().AsSingle().Lazy();
+            subContainer.Bind<IInteractor<UnloadMapCommand>>().To<UnloadMapInteractor>().AsSingle().Lazy();
+            subContainer.Bind<IInteractor<DeactivateMapCommand>>().To<DeactivateMapInteractor>().AsSingle().Lazy();
+            subContainer.Bind<IInteractor<DecreaseTurnCountCommand>>().To<DecreaseTurnCountInteractor>().AsSingle()
+                .Lazy();
+            subContainer.Bind<IInteractor<RaiseTurnCountCommand>>().To<RaiseTurnCountInteractor>().AsSingle().Lazy();
+
+            subContainer
                 .Bind(typeof(IEnergyPresenter), typeof(IEnergyPresenterBoundary))
                 .To<EnergyPresenter>()
                 .AsSingle()
-                .NonLazy();           
-            
-            Container
+                .NonLazy();
+
+            subContainer
                 .Bind(typeof(IMapContext), typeof(IMapRepository))
                 .To<MemoryMapRepository>()
                 .AsSingle()
                 .NonLazy();
 
-            Container.Bind<SectorConnector>().AsTransient().Lazy();
+            subContainer.Bind<SectorConnector>().AsTransient().Lazy();
 
-            Container.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.DeactivateMap).FromResolve();
-            Container.BindSignal<EnergyDiscovered>().ToMethod<SectorConnector>(c => c.EnergyFound).FromResolve();
-            Container.BindSignal<SectorClicked>().ToMethod<SectorConnector>(c => c.TurnCount).FromResolve();
+            subContainer.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.DeactivateMap).FromResolve();
+            subContainer.BindSignal<EnergyDiscovered>().ToMethod<SectorConnector>(c => c.EnergyFound).FromResolve();
+            subContainer.BindSignal<SectorClicked>().ToMethod<SectorConnector>(c => c.TurnCount).FromResolve();
 
-            Container.DeclareSignal<GameStatusChanged>().OptionalSubscriber();
-            Container.DeclareSignal<MapLoaded>().OptionalSubscriber();
-            Container.DeclareSignal<MapUnloaded>().OptionalSubscriber();
-
-            Container.Bind<IInitializable>().To<Initializer>().AsSingle();
+            subContainer.Bind<IInitializable>().To<Initializer>().AsSingle();
         }
     }
 }

@@ -6,25 +6,18 @@ namespace Features.EndGameMenu.UseCases
     public class ReloadMapInteractor : IInteractor<ReloadMapCommand>
     {
         private readonly IInteractor<DeactivateCommand> _deactivateInteractor;
-        private readonly IInteractor<LoadMapCommand> _mapInteractor;
-        private readonly IInteractor<UnloadMapCommand> _unloadMapInteractor;
+        private readonly Map.Gateway _map;
 
-        public ReloadMapInteractor(
-            IInteractor<DeactivateCommand> deactivateInteractor,
-            IInteractor<LoadMapCommand> loadMapInteractor,
-            IInteractor<UnloadMapCommand> unloadMapInteractor
-        )
+        public ReloadMapInteractor(IInteractor<DeactivateCommand> deactivateInteractor, Map.Gateway map)
         {
             _deactivateInteractor = deactivateInteractor;
-            _mapInteractor = loadMapInteractor;
-            _unloadMapInteractor = unloadMapInteractor;
+            _map = map;
         }
 
         public void Execute(ReloadMapCommand command)
         {
             _deactivateInteractor.Execute(new DeactivateCommand());
-            _unloadMapInteractor.Execute(new UnloadMapCommand());
-            _mapInteractor.Execute(new LoadMapCommand());
+            _map.Reload();
         }
     }
 }
