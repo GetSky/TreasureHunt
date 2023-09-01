@@ -11,15 +11,10 @@ using Zenject;
 
 namespace Features.Map
 {
-    public class Installer : Installer<GameObject, Installer>
+    public class MapInstaller : MonoInstaller
     {
-        private readonly GameObject _powerCountPrefab;
-
-        public Installer(GameObject prefab)
-        {
-            _powerCountPrefab = prefab;
-        }
-
+        [SerializeField] private GameObject _powerCountPrefab;
+        
         public override void InstallBindings()
         {
             Container.Bind<Factory>().AsSingle().WithArguments(_powerCountPrefab).Lazy();
