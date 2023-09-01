@@ -19,7 +19,7 @@ namespace Features.Map
 
         public Entity.Map Create()
         {
-            _container.InstantiatePrefab(_powerCountPrefab);
+            _container.InstantiatePrefab(_powerCountPrefab).name = _powerCountPrefab.name;
             var entity = new Entity.Map("map", 6);
             _context.Save(entity);
             return entity;

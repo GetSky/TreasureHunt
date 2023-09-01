@@ -21,6 +21,7 @@ namespace Features.Map
                 .Bind<Gateway>()
                 .FromSubContainerResolve()
                 .ByNewGameObjectMethod(InstallGateway)
+                .WithGameObjectName("Map")
                 .AsSingle()
                 .NonLazy();
 
