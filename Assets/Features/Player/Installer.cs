@@ -4,7 +4,6 @@ using Features.Player.Commands;
 using Features.Player.Entity;
 using Features.Player.UseCases;
 using Features.Sector.Domain.Effects.Events;
-using Features.Sector.Domain.Events;
 using UnityEngine;
 using Zenject;
 
