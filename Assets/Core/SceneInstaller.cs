@@ -8,14 +8,12 @@ namespace Core
 {
     public class SceneInstaller : MonoInstaller
     {
-        [SerializeField] private GameObject _energyCounterPrefab;
         [SerializeField] private GameObject _coinsCounterPrefab;
 
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
-            
-            Features.Map.Installer.Install(Container, _energyCounterPrefab);
+
             Features.Player.Installer.Install(Container, _coinsCounterPrefab);
 
             var boundBinder = Container.Bind(typeof(IInputCameraControl), typeof(IInputSectorControl));
