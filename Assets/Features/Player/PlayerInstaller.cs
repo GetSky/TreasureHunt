@@ -9,14 +9,9 @@ using Zenject;
 
 namespace Features.Player
 {
-    public class Installer : Installer<GameObject, Installer>
+    public class PlayerInstaller : MonoInstaller
     {
-        private readonly GameObject _coinsCounterPrefab;
-
-        public Installer(GameObject coinsCounterPrefab)
-        {
-            _coinsCounterPrefab = coinsCounterPrefab;
-        }
+        [SerializeField] private GameObject _coinsCounterPrefab;
 
         public override void InstallBindings()
         {
