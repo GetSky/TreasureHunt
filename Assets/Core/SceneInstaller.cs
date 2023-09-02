@@ -8,14 +8,10 @@ namespace Core
 {
     public class SceneInstaller : MonoInstaller
     {
-        [SerializeField] private GameObject _coinsCounterPrefab;
-
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
-
-            Features.Player.Installer.Install(Container, _coinsCounterPrefab);
-
+            
             var boundBinder = Container.Bind(typeof(IInputCameraControl), typeof(IInputSectorControl));
             switch (Application.platform)
             {
