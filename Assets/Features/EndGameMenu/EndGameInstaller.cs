@@ -17,7 +17,7 @@ namespace Features.EndGameMenu
                 .Bind<Gateway>()
                 .FromSubContainerResolve()
                 .ByNewGameObjectMethod(InstallGateway)
-                .WithGameObjectName("UI")
+                .WithGameObjectName("EndGameMenu")
                 .AsSingle()
                 .NonLazy();
         }
