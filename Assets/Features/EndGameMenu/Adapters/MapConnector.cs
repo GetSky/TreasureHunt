@@ -1,6 +1,6 @@
 ﻿using Core;
 using Features.EndGameMenu.UseCases;
-using Features.Map.Event;
+using Features.Level.Event;
 
 namespace Features.EndGameMenu.Adapters
 {

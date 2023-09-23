@@ -1,5 +1,4 @@
 ﻿using System;
-using Features.Map.Adapters;
 using Features.Sector.Domain;
 
 namespace Features.Sector.UseCases.CreateSector

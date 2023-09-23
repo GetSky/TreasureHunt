@@ -1,14 +1,13 @@
 ﻿using Core;
-using Features.Map.Commands;
 
 namespace Features.EndGameMenu.UseCases
 {
     public class ReloadMapInteractor : IInteractor<ReloadMapCommand>
     {
         private readonly IInteractor<DeactivateCommand> _deactivateInteractor;
-        private readonly Map.Gateway _map;
+        private readonly Level.Gateway _map;
 
-        public ReloadMapInteractor(IInteractor<DeactivateCommand> deactivateInteractor, Map.Gateway map)
+        public ReloadMapInteractor(IInteractor<DeactivateCommand> deactivateInteractor, Level.Gateway map)
         {
             _deactivateInteractor = deactivateInteractor;
             _map = map;
