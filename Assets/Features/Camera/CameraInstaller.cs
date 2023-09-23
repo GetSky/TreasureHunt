@@ -2,7 +2,7 @@
 using Features.Camera.Adapters;
 using Features.Camera.Commands;
 using Features.Camera.UseCases;
-using Features.Map.Event;
+using Features.Level.Event;
 using Features.Sector.Domain.Effects.Events;
 using UnityEngine;
 using Zenject;

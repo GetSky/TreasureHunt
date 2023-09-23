@@ -1,7 +1,7 @@
 using Core;
 using Features.EndGameMenu.Adapters;
 using Features.EndGameMenu.UseCases;
-using Features.Map.Event;
+using Features.Level.Event;
 using UnityEngine;
 using Zenject;
 

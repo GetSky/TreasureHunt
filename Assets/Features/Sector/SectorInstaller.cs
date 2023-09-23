@@ -1,4 +1,4 @@
-using Features.Map.Event;
+using Features.Level.Event;
 using Features.Sector.Domain;
 using Features.Sector.Domain.Effects.Events;
 using Features.Sector.Domain.Events;
