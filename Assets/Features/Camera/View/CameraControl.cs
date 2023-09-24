@@ -11,10 +11,10 @@ namespace Features.Camera.View
         [Range(0.0f, 1.0f)] [SerializeField] private float _duration = 0.5f;
 
         private IInputCameraControl _input;
-        private ICameraPresenter _presenter;
+        private CameraPresenter _presenter;
 
         [Inject]
-        public void Construct(IInputCameraControl input, ICameraPresenter presenter)
+        public void Construct(IInputCameraControl input, CameraPresenter presenter)
         {
             _input = input;
             _presenter = presenter;

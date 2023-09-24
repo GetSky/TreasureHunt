@@ -6,9 +6,9 @@ namespace Features.Camera.UseCases
 {
     public class LookAtInteractor : IInteractor<LookAtCommand>
     {
-        private readonly ICameraPresenter _presenter;
+        private readonly CameraPresenter _presenter;
 
-        public LookAtInteractor(ICameraPresenter presenter)
+        public LookAtInteractor(CameraPresenter presenter)
         {
             _presenter = presenter;
         }
