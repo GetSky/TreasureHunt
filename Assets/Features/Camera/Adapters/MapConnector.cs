@@ -13,7 +13,7 @@ namespace Features.Camera.Adapters
             _interactor = interactor;
         }
 
-        public void MapReload(MapLoaded _)
+        public void MapReload(LevelLoaded _)
         {
             _interactor.Execute(new LookAtCommand(4.5f, 4f, true));
         }

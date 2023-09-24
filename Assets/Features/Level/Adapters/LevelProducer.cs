@@ -19,18 +19,18 @@ namespace Features.Level.Adapters
         Bomb
     }
 
-    public class MapProducer
+    public class LevelProducer
     {
         private readonly Sector.Gateway _sectorGateway;
         private readonly ILevelRepository _repository;
 
-        public MapProducer(Sector.Gateway sectorGateway, ILevelRepository repository)
+        public LevelProducer(Sector.Gateway sectorGateway, ILevelRepository repository)
         {
             _sectorGateway = sectorGateway;
             _repository = repository;
         }
 
-        public Entity.Map Generate(
+        public Entity.Level Generate(
             int rows,
             int columns,
             int countDistanceCard,

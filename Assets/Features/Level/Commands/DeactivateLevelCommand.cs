@@ -2,7 +2,7 @@
 
 namespace Features.Level.Commands
 {
-    public class DeactivateMapCommand : ICommand
+    public class DeactivateLevelCommand : ICommand
     {
     }
 }

@@ -21,7 +21,7 @@ namespace Features.Level.View
             _energy = gameObject.GetComponentsInChildren<Image>();
         }
 
-        public void UpdateEnergy(int count)
+        private void UpdateEnergy(int count)
         {
             for (var i = 0; i < _energy.Length; i++) 
                 _energy[i].gameObject.SetActive(i <= count);

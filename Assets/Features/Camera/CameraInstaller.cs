@@ -49,7 +49,7 @@ namespace Features.Camera
             subContainer.BindSignal<TreasureDiscovered>().ToMethod<SectorConnector>(c => c.FoundTreasure).FromResolve();
 
             subContainer.Bind<MapConnector>().AsTransient().Lazy();
-            subContainer.BindSignal<MapLoaded>().ToMethod<MapConnector>(c => c.MapReload).FromResolve();
+            subContainer.BindSignal<LevelLoaded>().ToMethod<MapConnector>(c => c.MapReload).FromResolve();
         }
     }
 }

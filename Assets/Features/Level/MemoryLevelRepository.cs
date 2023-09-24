@@ -8,14 +8,14 @@ namespace Features.Level
     public class MemoryLevelRepository : ILevelContext, ILevelRepository
     {
         private readonly SignalBus _signalBus;
-        private readonly Dictionary<string, Map> _levels = new();
+        private readonly Dictionary<string, Entity.Level> _levels = new();
 
         public MemoryLevelRepository(SignalBus signalBus)
         {
             _signalBus = signalBus;
         }
 
-        public void Save(Map level)
+        public void Save(Entity.Level level)
         {
             Clear();
             _levels[level.Id] = level;
@@ -30,7 +30,7 @@ namespace Features.Level
             _levels.Clear();
         }
 
-        public Map FindCurrent()
+        public Entity.Level FindCurrent()
         {
             return _levels.Values.First();
         }

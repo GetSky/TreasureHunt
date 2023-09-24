@@ -85,7 +85,7 @@ namespace Features.Sector
                 .FromNew();
 
             subContainer
-                .BindSignal<MapUnloaded>()
+                .BindSignal<LevelUnloaded>()
                 .ToMethod<MapUploadedHandler>((handler, domainEvent) => handler.Handle(domainEvent))
                 .FromNew();
 

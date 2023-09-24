@@ -17,10 +17,10 @@ namespace Features.Level
             _powerCountPrefab = powerCountPrefab;
         }
 
-        public Level.Entity.Map Create()
+        public Level.Entity.Level Create()
         {
             _container.InstantiatePrefab(_powerCountPrefab).name = _powerCountPrefab.name;
-            var entity = new Level.Entity.Map("map", 6);
+            var entity = new Level.Entity.Level("map", 6);
             _context.Save(entity);
             return entity;
         }

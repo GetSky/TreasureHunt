@@ -21,13 +21,13 @@ namespace Features.Level
                 .Bind<Gateway>()
                 .FromSubContainerResolve()
                 .ByNewGameObjectMethod(InstallGateway)
-                .WithGameObjectName("Map")
+                .WithGameObjectName("LevelLevel")
                 .AsSingle()
                 .NonLazy();
 
             Container.DeclareSignal<GameStatusChanged>().OptionalSubscriber();
-            Container.DeclareSignal<MapLoaded>().OptionalSubscriber();
-            Container.DeclareSignal<MapUnloaded>().OptionalSubscriber();
+            Container.DeclareSignal<LevelLoaded>().OptionalSubscriber();
+            Container.DeclareSignal<LevelUnloaded>().OptionalSubscriber();
         }
 
         private void InstallGateway(DiContainer subContainer)
@@ -35,10 +35,10 @@ namespace Features.Level
             subContainer.Bind<Gateway>().AsSingle();
 
             subContainer.Bind<Factory>().AsSingle().WithArguments(_powerCountPrefab).Lazy();
-            subContainer.Bind<MapProducer>().AsTransient().Lazy();
-            subContainer.Bind<IInteractor<LoadMapCommand>>().To<LoadMapInteractor>().AsSingle().Lazy();
-            subContainer.Bind<IInteractor<UnloadMapCommand>>().To<UnloadMapInteractor>().AsSingle().Lazy();
-            subContainer.Bind<IInteractor<DeactivateMapCommand>>().To<DeactivateMapInteractor>().AsSingle().Lazy();
+            subContainer.Bind<LevelProducer>().AsTransient().Lazy();
+            subContainer.Bind<IInteractor<LoadLevelCommand>>().To<LoadLevelInteractor>().AsSingle().Lazy();
+            subContainer.Bind<IInteractor<UnloadLevelCommand>>().To<UnloadLevelInteractor>().AsSingle().Lazy();
+            subContainer.Bind<IInteractor<DeactivateLevelCommand>>().To<DeactivateLevelInteractor>().AsSingle().Lazy();
             subContainer.Bind<IInteractor<DecreaseTurnCountCommand>>().To<DecreaseTurnCountInteractor>().AsSingle()
                 .Lazy();
             subContainer.Bind<IInteractor<RaiseTurnCountCommand>>().To<RaiseTurnCountInteractor>().AsSingle().Lazy();

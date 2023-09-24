@@ -5,10 +5,10 @@ namespace Features.Level
 {
     public class Gateway
     {
-        private readonly IInteractor<LoadMapCommand> _loadMapInteractor;
-        private readonly IInteractor<UnloadMapCommand> _unloadMapInteractor;
+        private readonly IInteractor<LoadLevelCommand> _loadMapInteractor;
+        private readonly IInteractor<UnloadLevelCommand> _unloadMapInteractor;
 
-        public Gateway(IInteractor<LoadMapCommand> loadMapInteractor, IInteractor<UnloadMapCommand> unloadMapInteractor)
+        public Gateway(IInteractor<LoadLevelCommand> loadMapInteractor, IInteractor<UnloadLevelCommand> unloadMapInteractor)
         {
             _loadMapInteractor = loadMapInteractor;
             _unloadMapInteractor = unloadMapInteractor;
@@ -16,8 +16,8 @@ namespace Features.Level
 
         public void Reload()
         {
-            _unloadMapInteractor.Execute(new UnloadMapCommand());
-            _loadMapInteractor.Execute(new LoadMapCommand());
+            _unloadMapInteractor.Execute(new UnloadLevelCommand());
+            _loadMapInteractor.Execute(new LoadLevelCommand());
         }
     }
 }

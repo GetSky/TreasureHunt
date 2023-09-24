@@ -24,9 +24,9 @@ namespace Features.Level.UseCases
 
         public void Execute(RaiseTurnCountCommand command)
         {
-            var map = _repository.FindCurrent();
-            _presenter.UpdateEnergy(map.RaiseTurnCount(command));
-            _context.Save(map);
+            var level = _repository.FindCurrent();
+            _presenter.UpdateEnergy(level.RaiseTurnCount(command));
+            _context.Save(level);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public interface ILevelContext
     {
-        public void Save(Map map);
+        public void Save(Level level);
 
         public void Clear();
     }

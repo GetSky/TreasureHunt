@@ -4,14 +4,14 @@ using Features.Level.Event;
 
 namespace Features.Level.Entity
 {
-    public class Map
+    public class Level
     {
         public ICollection<IDomainEvent> Events { get; }
         public string Id { get; }
         private readonly Energy _energy;
         private bool _active = true;
 
-        public Map(string id, int energy)
+        public Level(string id, int energy)
         {
             Id = id;
             _energy = new Energy(energy);
@@ -30,7 +30,7 @@ namespace Features.Level.Entity
             _active = true;
             Events.Add(new GameStatusChanged(_active));
             _energy.Reset();
-            Events.Add(new MapLoaded());
+            Events.Add(new LevelLoaded());
         }
 
         public int DecreaseTurnCount()
@@ -46,10 +46,10 @@ namespace Features.Level.Entity
             return _energy.Count();
         }
 
-        public void UnloadMap()
+        public void UnloadLevel()
         {
             if (_active) return;
-            Events.Add(new MapUnloaded());
+            Events.Add(new LevelUnloaded());
         }
     }
 }
