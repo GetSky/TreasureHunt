@@ -22,9 +22,9 @@ namespace Features.Level.Adapters
     public class MapProducer
     {
         private readonly Sector.Gateway _sectorGateway;
-        private readonly IMapRepository _repository;
+        private readonly ILevelRepository _repository;
 
-        public MapProducer(Sector.Gateway sectorGateway, IMapRepository repository)
+        public MapProducer(Sector.Gateway sectorGateway, ILevelRepository repository)
         {
             _sectorGateway = sectorGateway;
             _repository = repository;

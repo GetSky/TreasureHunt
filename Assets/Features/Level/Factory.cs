@@ -7,10 +7,10 @@ namespace Features.Level
     public class Factory
     {
         private readonly DiContainer _container;
-        private readonly IMapContext _context;
+        private readonly ILevelContext _context;
         private readonly GameObject _powerCountPrefab;
 
-        public Factory(DiContainer container, IMapContext context, GameObject powerCountPrefab)
+        public Factory(DiContainer container, ILevelContext context, GameObject powerCountPrefab)
         {
             _container = container;
             _context = context;

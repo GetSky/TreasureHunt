@@ -50,8 +50,8 @@ namespace Features.Level
                 .NonLazy();
 
             subContainer
-                .Bind(typeof(IMapContext), typeof(IMapRepository))
-                .To<MemoryMapRepository>()
+                .Bind(typeof(ILevelContext), typeof(ILevelRepository))
+                .To<MemoryLevelRepository>()
                 .AsSingle()
                 .NonLazy();
 
