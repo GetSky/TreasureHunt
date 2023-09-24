@@ -11,7 +11,7 @@ using Zenject;
 
 namespace Features.Level
 {
-    public class MapInstaller : MonoInstaller
+    public class LevelInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _powerCountPrefab;
 
