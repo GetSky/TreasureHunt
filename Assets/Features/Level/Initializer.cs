@@ -7,9 +7,9 @@ namespace Features.Level
     public class Initializer : IInitializable
     {
         private readonly Factory _factory;
-        private readonly IInteractor<LoadMapCommand> _loadMapInteractor;
+        private readonly IInteractor<LoadLevelCommand> _loadMapInteractor;
 
-        public Initializer(Factory factory, IInteractor<LoadMapCommand> loadMapInteractor)
+        public Initializer(Factory factory, IInteractor<LoadLevelCommand> loadMapInteractor)
         {
             _factory = factory;
             _loadMapInteractor = loadMapInteractor;
@@ -18,7 +18,7 @@ namespace Features.Level
         public void Initialize()
         {
             _factory.Create();
-            _loadMapInteractor.Execute(new LoadMapCommand());
+            _loadMapInteractor.Execute(new LoadLevelCommand());
         }
     }
 }

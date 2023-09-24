@@ -1,6 +1,6 @@
 ﻿namespace Features.Level.Event
 {
-    public class MapLoaded : IDomainEvent
+    public class LevelLoaded : IDomainEvent
     {
     }
 }

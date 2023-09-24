@@ -2,7 +2,7 @@
 
 namespace Features.Level.Commands
 {
-    public class LoadMapCommand : ICommand
+    public class UnloadLevelCommand : ICommand
     {
     }
 }

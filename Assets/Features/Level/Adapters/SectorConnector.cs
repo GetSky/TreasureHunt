@@ -6,12 +6,12 @@ namespace Features.Level.Adapters
 {
     public class SectorConnector
     {
-        private readonly IInteractor<DeactivateMapCommand> _deactivateInteractor;
+        private readonly IInteractor<DeactivateLevelCommand> _deactivateInteractor;
         private readonly IInteractor<DecreaseTurnCountCommand> _turnCountInteractor;
         private readonly IInteractor<RaiseTurnCountCommand> _raiseTurnCountInteractor;
 
         public SectorConnector(
-            IInteractor<DeactivateMapCommand> deactivateInteractor,
+            IInteractor<DeactivateLevelCommand> deactivateInteractor,
             IInteractor<DecreaseTurnCountCommand> turnCountInteractor,
             IInteractor<RaiseTurnCountCommand> raiseTurnCountInteractor
         )
@@ -21,7 +21,7 @@ namespace Features.Level.Adapters
             _raiseTurnCountInteractor = raiseTurnCountInteractor;
         }
 
-        public void DeactivateMap() => _deactivateInteractor.Execute(new DeactivateMapCommand());
+        public void DeactivateMap() => _deactivateInteractor.Execute(new DeactivateLevelCommand());
         public void TurnCount() => _turnCountInteractor.Execute(new DecreaseTurnCountCommand());
 
         public void EnergyFound(EnergyDiscovered e) => _raiseTurnCountInteractor.Execute(new RaiseTurnCountCommand(e.EffectState.Grade));

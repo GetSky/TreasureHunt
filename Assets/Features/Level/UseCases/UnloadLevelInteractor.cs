@@ -4,22 +4,22 @@ using Features.Level.Entity;
 
 namespace Features.Level.UseCases
 {
-    public class UnloadMapInteractor : IInteractor<UnloadMapCommand>
+    public class UnloadLevelInteractor : IInteractor<UnloadLevelCommand>
     {
         private readonly ILevelRepository _repository;
         private readonly ILevelContext _context;
 
-        public UnloadMapInteractor(ILevelRepository repository, ILevelContext context)
+        public UnloadLevelInteractor(ILevelRepository repository, ILevelContext context)
         {
             _repository = repository;
             _context = context;
         }
 
-        public void Execute(UnloadMapCommand command)
+        public void Execute(UnloadLevelCommand command)
         {
-            var map = _repository.FindCurrent();
-            map.UnloadMap();
-            _context.Save(map);
+            var level = _repository.FindCurrent();
+            level.UnloadLevel();
+            _context.Save(level);
         }
     }
 }

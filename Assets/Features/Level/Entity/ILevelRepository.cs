@@ -2,6 +2,6 @@
 {
     public interface ILevelRepository
     {
-        public Map FindCurrent();
+        public Level FindCurrent();
     }
 }
