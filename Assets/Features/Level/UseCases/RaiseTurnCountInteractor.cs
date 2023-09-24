@@ -11,13 +11,17 @@ namespace Features.Level.UseCases
         private readonly IMapContext _context;
         private readonly IEnergyPresenterBoundary _presenter;
 
-        public RaiseTurnCountInteractor(IMapRepository repository, IMapContext context, IEnergyPresenterBoundary presenter)
+        public RaiseTurnCountInteractor(
+            IMapRepository repository,
+            IMapContext context,
+            IEnergyPresenterBoundary presenter
+        )
         {
             _repository = repository;
             _context = context;
             _presenter = presenter;
         }
-        
+
         public void Execute(RaiseTurnCountCommand command)
         {
             var map = _repository.FindCurrent();

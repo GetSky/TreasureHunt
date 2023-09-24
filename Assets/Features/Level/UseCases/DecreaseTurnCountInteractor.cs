@@ -11,7 +11,11 @@ namespace Features.Level.UseCases
         private readonly IMapContext _context;
         private readonly IEnergyPresenterBoundary _presenter;
 
-        public DecreaseTurnCountInteractor(IMapRepository repository, IMapContext context, IEnergyPresenterBoundary presenter)
+        public DecreaseTurnCountInteractor(
+            IMapRepository repository,
+            IMapContext context,
+            IEnergyPresenterBoundary presenter
+        )
         {
             _repository = repository;
             _context = context;
