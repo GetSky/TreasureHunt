@@ -1,11 +1,12 @@
 ﻿namespace Features.Camera.Adapters
 {
-    public class CameraPresenter : ICameraPresenter
+    public class CameraPresenter
     {
         private float _x;
         private float _z;
 
-        public event ICameraPresenter.LookedAtHandler OnLookedAt;
+        public delegate void LookedAtHandler(float x, float z, bool isImmediately);
+        public event LookedAtHandler OnLookedAt;
 
         public void LookAt(float x, float z, bool isImmediately)
         {
@@ -14,7 +15,7 @@
             OnLookedAt?.Invoke(x, z, isImmediately);
         }
 
-        public (float, float) GetCurrentPosition()
+        public (float x, float z) GetCurrentPosition()
         {
             return (_x, _z);
         }

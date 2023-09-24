@@ -37,7 +37,7 @@ namespace Features.Camera
 
             subContainer.Bind<IInitializable>().To<Initializer>().AsSingle().WithArguments(_cameraPrefab);
 
-            subContainer.Bind<ICameraPresenter>().To<CameraPresenter>().AsSingle().Lazy();
+            subContainer.Bind<CameraPresenter>().AsSingle().Lazy();
 
             subContainer.Bind<IInteractor<LookAtCommand>>().To<LookAtInteractor>().AsSingle().Lazy();
             subContainer
