@@ -6,10 +6,10 @@ namespace Features.Level.UseCases
 {
     public class UnloadMapInteractor : IInteractor<UnloadMapCommand>
     {
-        private readonly IMapRepository _repository;
-        private readonly IMapContext _context;
+        private readonly ILevelRepository _repository;
+        private readonly ILevelContext _context;
 
-        public UnloadMapInteractor(IMapRepository repository, IMapContext context)
+        public UnloadMapInteractor(ILevelRepository repository, ILevelContext context)
         {
             _repository = repository;
             _context = context;

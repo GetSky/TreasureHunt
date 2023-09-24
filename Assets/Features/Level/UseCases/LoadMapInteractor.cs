@@ -8,10 +8,10 @@ namespace Features.Level.UseCases
     public class LoadMapInteractor : IInteractor<LoadMapCommand>
     {
         private readonly MapProducer _producer;
-        private readonly IMapContext _context;
+        private readonly ILevelContext _context;
         private readonly IEnergyPresenterBoundary _presenter;
 
-        public LoadMapInteractor(MapProducer producer, IMapContext context, IEnergyPresenterBoundary presenter)
+        public LoadMapInteractor(MapProducer producer, ILevelContext context, IEnergyPresenterBoundary presenter)
         {
             _producer = producer;
             _context = context;

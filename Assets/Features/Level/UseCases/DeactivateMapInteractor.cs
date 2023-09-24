@@ -6,10 +6,10 @@ namespace Features.Level.UseCases
 {
     public class DeactivateMapInteractor : IInteractor<DeactivateMapCommand>
     {
-        private readonly IMapRepository _repository;
-        private readonly IMapContext _context;
+        private readonly ILevelRepository _repository;
+        private readonly ILevelContext _context;
 
-        public DeactivateMapInteractor(IMapRepository repository, IMapContext context)
+        public DeactivateMapInteractor(ILevelRepository repository, ILevelContext context)
         {
             _repository = repository;
             _context = context;

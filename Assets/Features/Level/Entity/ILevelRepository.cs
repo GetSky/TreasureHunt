@@ -1,6 +1,6 @@
 ﻿namespace Features.Level.Entity
 {
-    public interface IMapRepository
+    public interface ILevelRepository
     {
         public Map FindCurrent();
     }

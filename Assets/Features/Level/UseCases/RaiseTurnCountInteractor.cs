@@ -7,13 +7,13 @@ namespace Features.Level.UseCases
 {
     public class RaiseTurnCountInteractor : IInteractor<RaiseTurnCountCommand>
     {
-        private readonly IMapRepository _repository;
-        private readonly IMapContext _context;
+        private readonly ILevelRepository _repository;
+        private readonly ILevelContext _context;
         private readonly IEnergyPresenterBoundary _presenter;
 
         public RaiseTurnCountInteractor(
-            IMapRepository repository,
-            IMapContext context,
+            ILevelRepository repository,
+            ILevelContext context,
             IEnergyPresenterBoundary presenter
         )
         {

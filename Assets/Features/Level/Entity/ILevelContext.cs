@@ -1,6 +1,6 @@
 ﻿namespace Features.Level.Entity
 {
-    public interface IMapContext
+    public interface ILevelContext
     {
         public void Save(Map map);
 
