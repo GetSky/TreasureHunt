@@ -18,7 +18,6 @@ namespace Features.Sector.Domain
         public string Id { get; }
         public Vector2 Position { get; }
         public bool Opened { get; private set; }
-
         private IEffect Effect { get; }
 
         private bool _active = true;
