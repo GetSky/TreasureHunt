@@ -1,4 +1,4 @@
-﻿using Features.Level.Entity;
+﻿using Features.Level.Domain;
 using UnityEngine;
 using Zenject;
 
@@ -17,10 +17,10 @@ namespace Features.Level
             _powerCountPrefab = powerCountPrefab;
         }
 
-        public Level.Entity.Level Create()
+        public Domain.Level Create()
         {
             _container.InstantiatePrefab(_powerCountPrefab).name = _powerCountPrefab.name;
-            var entity = new Level.Entity.Level("map", 6);
+            var entity = new Domain.Level("map", 6);
             _context.Save(entity);
             return entity;
         }

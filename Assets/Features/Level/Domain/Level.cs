@@ -2,7 +2,7 @@
 using Features.Level.Commands;
 using Features.Level.Event;
 
-namespace Features.Level.Entity
+namespace Features.Level.Domain
 {
     public class Level
     {

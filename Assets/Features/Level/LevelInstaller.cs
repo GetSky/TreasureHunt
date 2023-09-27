@@ -1,7 +1,7 @@
 using Core;
 using Features.Level.Adapters;
 using Features.Level.Commands;
-using Features.Level.Entity;
+using Features.Level.Domain;
 using Features.Level.Event;
 using Features.Level.UseCases;
 using Features.Sector.Domain.Effects.Events;

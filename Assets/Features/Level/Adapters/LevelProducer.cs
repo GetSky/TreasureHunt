@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Features.Level.Entity;
+using Features.Level.Domain;
 using Features.Sector.UseCases.CreateSector;
 using Random = System.Random;
 
@@ -30,7 +30,7 @@ namespace Features.Level.Adapters
             _repository = repository;
         }
 
-        public Entity.Level Generate(
+        public Domain.Level Generate(
             int rows,
             int columns,
             int countDistanceCard,

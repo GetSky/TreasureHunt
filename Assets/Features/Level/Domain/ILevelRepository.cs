@@ -1,4 +1,4 @@
-﻿namespace Features.Level.Entity
+﻿namespace Features.Level.Domain
 {
     public interface ILevelRepository
     {
