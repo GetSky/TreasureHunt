@@ -1,6 +1,6 @@
 ﻿using Core;
 using Features.Level.Commands;
-using Features.Level.Entity;
+using Features.Level.Domain;
 
 namespace Features.Level.UseCases
 {

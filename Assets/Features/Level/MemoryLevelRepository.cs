@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Features.Level.Entity;
+using Features.Level.Domain;
 using Zenject;
 
 namespace Features.Level
@@ -8,14 +8,14 @@ namespace Features.Level
     public class MemoryLevelRepository : ILevelContext, ILevelRepository
     {
         private readonly SignalBus _signalBus;
-        private readonly Dictionary<string, Entity.Level> _levels = new();
+        private readonly Dictionary<string, Domain.Level> _levels = new();
 
         public MemoryLevelRepository(SignalBus signalBus)
         {
             _signalBus = signalBus;
         }
 
-        public void Save(Entity.Level level)
+        public void Save(Domain.Level level)
         {
             Clear();
             _levels[level.Id] = level;
@@ -30,7 +30,7 @@ namespace Features.Level
             _levels.Clear();
         }
 
-        public Entity.Level FindCurrent()
+        public Domain.Level FindCurrent()
         {
             return _levels.Values.First();
         }
