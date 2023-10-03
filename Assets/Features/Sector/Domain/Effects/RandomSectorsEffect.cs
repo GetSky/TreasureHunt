@@ -10,6 +10,7 @@ namespace Features.Sector.Domain.Effects
         {
             _grade = grade;
         }
+
         public IEventDomainEvent Call(Sector openSector, Sector treasureSector)
         {
             if (openSector.Opened) return null;
