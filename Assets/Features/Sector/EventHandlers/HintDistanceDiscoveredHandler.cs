@@ -1,5 +1,4 @@
 ﻿using Features.Sector.Domain.Effects.Events;
-using Features.Sector.Domain.Events;
 using Features.Sector.UseCases;
 using Features.Sector.UseCases.HighlightSectorsAtDistance;
 

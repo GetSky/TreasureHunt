@@ -21,7 +21,7 @@ namespace Features.Level
                 .Bind<Gateway>()
                 .FromSubContainerResolve()
                 .ByNewGameObjectMethod(InstallGateway)
-                .WithGameObjectName("LevelLevel")
+                .WithGameObjectName("Level")
                 .AsSingle()
                 .NonLazy();
 

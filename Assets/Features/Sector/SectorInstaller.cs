@@ -30,8 +30,7 @@ namespace Features.Sector
                 .WithGameObjectName("Sectors")
                 .AsSingle()
                 .NonLazy();
-
-            Container.DeclareSignal<SectorOpened>().OptionalSubscriber();
+            
             Container.DeclareSignal<SectorClicked>().OptionalSubscriber();
             Container.DeclareSignal<EmptyDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<HintDistanceDiscovered>().OptionalSubscriber();
@@ -42,6 +41,7 @@ namespace Features.Sector
             Container.DeclareSignal<RandomSectorsDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<HintEffectLocationDiscovered>().OptionalSubscriber();
             Container.DeclareSignal<BombDiscovered>().OptionalSubscriber();
+            Container.DeclareSignal<SectorOpened>().OptionalSubscriber();
         }
 
         private void InstallGateway(DiContainer subContainer)
